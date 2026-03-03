@@ -5,14 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Before – Matcha Anatomy</title>
 
-<!-- Typography -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
-
 <link rel="stylesheet" href="styles.css">
 
 <style>
 
-/* Page Background */
 body{
 background:#f4f3ee;
 }
@@ -37,10 +34,9 @@ line-height:1.8;
 .diagram-wrapper{
 position:relative;
 width:720px;
-margin:120px auto;
+margin:100px auto;
 }
 
-/* Subtle radial depth */
 .diagram-wrapper::before{
 content:"";
 position:absolute;
@@ -58,52 +54,52 @@ width:100%;
 display:block;
 }
 
-/* Anchor Dot */
-.dot{
-width:12px;
-height:12px;
-background:#2f5d3a;
+/* Hotspot */
+.hotspot{
+position:absolute;
+width:18px;
+height:18px;
 border-radius:50%;
-position:absolute;
-box-shadow:0 0 0 4px rgba(47,93,58,0.15);
+background:#2f5d3a;
+cursor:pointer;
+transition:opacity .3s ease;
+animation:pulse 2.5s infinite;
 }
 
-/* Minimal Connector */
-.connector{
-position:absolute;
-width:160px;
-height:1px;
-background:rgba(47,93,58,0.35);
-transform-origin:left center;
+@keyframes pulse{
+0%{ box-shadow:0 0 0 0 rgba(47,93,58,0.4); }
+70%{ box-shadow:0 0 0 15px rgba(47,93,58,0); }
+100%{ box-shadow:0 0 0 0 rgba(47,93,58,0); }
 }
 
-/* Label Styling */
-.label{
+/* Info panel hidden by default */
+.info{
 position:absolute;
+width:260px;
 font-family:'Noto Serif JP',serif;
 font-size:14px;
-width:250px;
 line-height:1.7;
-cursor:pointer;
-}
-
-.label strong{
-display:block;
-font-size:16px;
-margin-bottom:6px;
-letter-spacing:0.5px;
-}
-
-/* Hover Expansion */
-.tooltip{
-margin-top:10px;
-font-size:13px;
-color:#555;
+background:white;
+padding:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
 opacity:0;
 transition:opacity .3s ease;
+pointer-events:none;
 }
 
-.label:hover .tooltip{
+.info strong{
+display:block;
+font-size:16px;
+margin-bottom:8px;
+}
+
+/* Hover behavior */
+.hotspot-container:hover .hotspot{
+opacity:0;
+animation:none;
+}
+
+.hotspot-container:hover .info{
 opacity:1;
 }
 
@@ -112,7 +108,6 @@ opacity:1;
 
 <body>
 
-<!-- Navigation -->
 <div class="navbar">
 <div class="nav-title">Matcha Practicum</div>
 <div class="nav-links">
@@ -128,8 +123,7 @@ opacity:1;
 <h1>Matcha Anatomy</h1>
 
 <p class="subtitle">
-This diagram maps the biological, chemical, and mechanical variables that define ceremonial-grade matcha.  
-Hover over each trait to explore how cultivation technique translates into sensory experience.
+Hover over each point to explore how cultivation technique translates into sensory and chemical quality.
 </p>
 
 <div class="diagram-wrapper">
@@ -137,57 +131,52 @@ Hover over each trait to explore how cultivation technique translates into senso
 <img src="matcha-leaf.png" class="leaf" alt="Matcha leaf">
 
 <!-- COLOR -->
-<div class="dot" style="top:130px; left:360px;"></div>
-<div class="connector" style="top:135px; left:360px; transform:rotate(-160deg);"></div>
-<div class="label" style="top:70px; left:40px;">
+<div class="hotspot-container" style="top:130px; left:360px; position:absolute;">
+<div class="hotspot"></div>
+<div class="info" style="top:-120px; left:-260px;">
 <strong>Color (色)</strong>
-The vivid green hue reflects chlorophyll preservation during pre-harvest shading.
-<div class="tooltip">
+The vivid green hue reflects chlorophyll preservation during pre-harvest shading.<br><br>
 Shading tea plants for 3–4 weeks reduces photodegradation and slows the conversion of L-theanine into catechins. Elevated chlorophyll density signals amino acid retention, careful canopy management, and higher ceremonial classification.
 </div>
 </div>
 
 <!-- UMAMI -->
-<div class="dot" style="top:240px; left:420px;"></div>
-<div class="connector" style="top:245px; left:420px; transform:rotate(10deg);"></div>
-<div class="label" style="top:220px; right:-40px;">
+<div class="hotspot-container" style="top:240px; left:420px; position:absolute;">
+<div class="hotspot"></div>
+<div class="info" style="top:-20px; left:40px;">
 <strong>Umami (旨味)</strong>
-Amino acid retention defines matcha’s sweetness and depth.
-<div class="tooltip">
-L-theanine accumulates under low-light conditions. This shifts the biochemical balance toward glutamate-driven savoriness, producing the soft, rounded profile associated with high-grade Uji matcha. Excess sunlight converts these amino acids into more bitter catechins.
+Amino acid retention defines matcha’s sweetness and depth.<br><br>
+L-theanine accumulates under low-light conditions, shifting biochemical balance toward glutamate-driven savoriness. This produces the soft, rounded profile associated with high-grade Uji matcha.
 </div>
 </div>
 
 <!-- BITTERNESS -->
-<div class="dot" style="top:350px; left:330px;"></div>
-<div class="connector" style="top:355px; left:330px; transform:rotate(-140deg);"></div>
-<div class="label" style="top:390px; left:10px;">
+<div class="hotspot-container" style="top:350px; left:330px; position:absolute;">
+<div class="hotspot"></div>
+<div class="info" style="top:40px; left:-260px;">
 <strong>Bitterness (渋み)</strong>
-Catechin concentration governs astringency and structure.
-<div class="tooltip">
-Increased UV exposure accelerates catechin biosynthesis. While catechins contribute antioxidant capacity and structural sharpness, excessive concentration disrupts balance and reduces smoothness, often indicating lower ceremonial quality.
+Catechin concentration governs astringency and structural sharpness.<br><br>
+Increased UV exposure accelerates catechin biosynthesis. While essential for antioxidant capacity, excessive concentration disrupts balance and reduces smoothness.
 </div>
 </div>
 
 <!-- TEXTURE -->
-<div class="dot" style="top:430px; left:450px;"></div>
-<div class="connector" style="top:435px; left:450px; transform:rotate(30deg);"></div>
-<div class="label" style="top:450px; right:-60px;">
+<div class="hotspot-container" style="top:430px; left:450px; position:absolute;">
+<div class="hotspot"></div>
+<div class="info" style="top:20px; left:40px;">
 <strong>Texture (質感)</strong>
-Micron-level particle refinement shapes mouthfeel.
-<div class="tooltip">
-Traditional granite stone mills grind tencha into particles averaging 5–10 microns. This ultra-fine powder forms a stable colloidal suspension in water, producing the creamy, velvety texture valued in tea ceremony practice.
+Micron-level particle refinement shapes mouthfeel.<br><br>
+Traditional granite stone mills grind tencha into particles averaging 5–10 microns, forming a stable colloidal suspension that produces the creamy texture valued in tea ceremony.
 </div>
 </div>
 
 <!-- AROMA -->
-<div class="dot" style="top:90px; left:430px;"></div>
-<div class="connector" style="top:95px; left:430px; transform:rotate(60deg);"></div>
-<div class="label" style="top:20px; right:40px;">
+<div class="hotspot-container" style="top:90px; left:430px; position:absolute;">
+<div class="hotspot"></div>
+<div class="info" style="top:-140px; left:40px;">
 <strong>Aroma (香り)</strong>
-Volatile compounds shape the first sensory impression.
-<div class="tooltip">
-Fresh milling preserves aldehydes and grassy volatiles responsible for marine and vegetal notes. Aromatic integrity declines rapidly with oxygen exposure and humidity, making storage conditions critical to perceived quality.
+Volatile compounds shape the first sensory impression.<br><br>
+Fresh milling preserves grassy aldehydes and marine notes. Aromatic integrity declines rapidly with oxygen and humidity exposure.
 </div>
 </div>
 
