@@ -13,10 +13,26 @@
 
 body{
 margin:0;
-background:#f6f5f0;
 font-family:'Noto Serif JP', serif;
 color:#1c1c1c;
 overflow-x:hidden;
+background:#f6f5f0;
+position:relative;
+}
+
+/* Washi Texture Overlay */
+
+body::before{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background-image:url('https://www.transparenttextures.com/patterns/washi.png');
+opacity:0.06;
+pointer-events:none;
+z-index:-1;
 }
 
 /* ---------------- NAV ---------------- */
@@ -41,10 +57,10 @@ font-size:14px;
 letter-spacing:.5px;
 }
 
-/* ---------------- HERO SECTION ---------------- */
+/* ---------------- HERO ---------------- */
 
 .hero{
-height:100vh;
+height:90vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
@@ -55,7 +71,7 @@ padding:0 40px;
 
 h1{
 font-family:'Playfair Display', serif;
-font-size:48px;
+font-size:46px;
 font-weight:400;
 margin-bottom:20px;
 }
@@ -69,15 +85,16 @@ color:#555;
 /* ---------------- SCROLL SECTION ---------------- */
 
 .scroll-section{
-height:300vh;
+height:280vh;
 position:relative;
+margin-top:120px; /* pushes diagram lower */
 }
 
 .diagram-wrapper{
 position:sticky;
 top:50vh;
 transform:translateY(-50%);
-height:900px;
+height:720px;
 display:flex;
 justify-content:center;
 }
@@ -86,8 +103,8 @@ justify-content:center;
 
 .system-diagram{
 position:relative;
-width:900px;
-height:900px;
+width:720px;
+height:720px;
 transition:.6s ease;
 }
 
@@ -97,7 +114,7 @@ transition:.6s ease;
 position:absolute;
 left:50%;
 transform:translateX(-50%);
-font-size:13px;
+font-size:12px;
 letter-spacing:2px;
 text-transform:uppercase;
 color:#2f5d3a;
@@ -106,9 +123,9 @@ transition:opacity .5s ease;
 pointer-events:none;
 }
 
-.label-outer{ top:30px; }
-.label-middle{ top:60px; }
-.label-inner{ top:90px; }
+.label-outer{ top:20px; }
+.label-middle{ top:45px; }
+.label-inner{ top:70px; }
 
 .focus-outer .label-outer{ opacity:1; }
 .focus-middle .label-middle{ opacity:1; }
@@ -127,23 +144,21 @@ transition:.6s ease;
 }
 
 .outer{
-width:850px;
-height:850px;
+width:680px;
+height:680px;
 }
 
 .middle{
-width:600px;
-height:600px;
+width:480px;
+height:480px;
 border-width:1.5px;
 }
 
 .inner{
-width:400px;
-height:400px;
+width:320px;
+height:320px;
 border-width:2px;
 }
-
-/* Emphasis */
 
 .focus-outer .outer,
 .focus-middle .middle,
@@ -151,7 +166,7 @@ border-width:2px;
 border-color:#2f5d3a;
 box-shadow:
 0 0 0 6px rgba(47,93,58,0.05),
-0 0 40px rgba(47,93,58,0.18);
+0 0 35px rgba(47,93,58,0.15);
 }
 
 .focus-outer .middle,
@@ -170,7 +185,7 @@ position:absolute;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%);
-width:280px;
+width:220px;
 pointer-events:none;
 z-index:1;
 }
@@ -183,8 +198,8 @@ z-index:20;
 }
 
 .hotspot{
-width:14px;
-height:14px;
+width:12px;
+height:12px;
 border-radius:50%;
 cursor:pointer;
 animation:pulse 2.6s infinite;
@@ -196,11 +211,11 @@ animation:pulse 2.6s infinite;
 
 @keyframes pulse{
 0%{ box-shadow:0 0 0 0 rgba(47,93,58,0.35); }
-70%{ box-shadow:0 0 0 16px rgba(47,93,58,0); }
+70%{ box-shadow:0 0 0 14px rgba(47,93,58,0); }
 100%{ box-shadow:0 0 0 0 rgba(47,93,58,0); }
 }
 
-/* Fade inactive layer dots */
+/* Fade inactive layers */
 
 .focus-outer .craft,
 .focus-outer .sensory,
@@ -211,26 +226,20 @@ animation:pulse 2.6s infinite;
 opacity:.2;
 }
 
-/* Info Box */
+/* Info */
 
 .info{
 position:absolute;
-width:300px;
+width:260px;
 background:white;
-padding:22px;
+padding:18px;
 box-shadow:0 20px 40px rgba(0,0,0,0.08);
 opacity:0;
 transition:.3s ease;
-font-size:13px;
-line-height:1.85;
+font-size:12px;
+line-height:1.8;
 pointer-events:none;
 z-index:30;
-}
-
-.info strong{
-display:block;
-margin-bottom:10px;
-font-size:15px;
 }
 
 .hotspot:hover + .info{
@@ -275,118 +284,11 @@ Scroll to explore each nested layer of influence.
 
 <img src="matcha-bowl.png" alt="Matcha Bowl">
 
-<!-- BIOLOGICAL -->
-
-<div class="hotspot-container bio" style="top:70px; left:430px;">
-<div class="hotspot"></div>
-<div class="info" style="top:-190px; left:-140px;">
-<strong>Cultivar (品種)</strong>
-Genetic lineage regulates chlorophyll density, amino acid synthesis, and catechin balance. Shade-adapted cultivars retain elevated L-theanine levels, producing enhanced sweetness and refined bitterness structure.
-</div>
-</div>
-
-<div class="hotspot-container bio" style="top:230px; left:130px;">
-<div class="hotspot"></div>
-<div class="info" style="top:-40px; left:-300px;">
-<strong>Soil Composition (土壌)</strong>
-Nitrogen availability increases amino acid production. Balanced mineral ecosystems improve nutrient uptake efficiency and sweetness persistence.
-</div>
-</div>
-
-<div class="hotspot-container bio" style="top:650px; left:160px;">
-<div class="hotspot"></div>
-<div class="info" style="top:40px; left:-300px;">
-<strong>Harvest Timing (一番茶)</strong>
-First flush leaves exhibit maximal L-theanine concentration and minimal fiber, leading to smoother texture and reduced astringency.
-</div>
-</div>
-
-<div class="hotspot-container bio" style="top:230px; left:730px;">
-<div class="hotspot"></div>
-<div class="info" style="top:-40px; left:120px;">
-<strong>Shading Strategy (覆下栽培)</strong>
-Pre-harvest shading suppresses catechin formation, deepening umami and preserving jade coloration.
-</div>
-</div>
-
-<!-- CRAFT -->
-
-<div class="hotspot-container craft" style="top:190px; left:430px;">
-<div class="hotspot"></div>
-<div class="info" style="top:-170px; left:-140px;">
-<strong>Processing (製茶工程)</strong>
-Immediate steaming halts enzymatic oxidation, preserving chlorophyll and preventing bitterness escalation.
-</div>
-</div>
-
-<div class="hotspot-container craft" style="top:430px; left:770px;">
-<div class="hotspot"></div>
-<div class="info" style="top:-40px; left:120px;">
-<strong>Stone Milling (石臼挽き)</strong>
-Slow granite milling prevents thermal degradation, preserving aromatics and particle integrity.
-</div>
-</div>
-
-<div class="hotspot-container craft" style="top:730px; left:430px;">
-<div class="hotspot"></div>
-<div class="info" style="top:80px; left:-140px;">
-<strong>Freshness Management (鮮度管理)</strong>
-Cold storage slows oxidation, maintaining sweetness clarity and vibrant color.
-</div>
-</div>
-
-<div class="hotspot-container craft" style="top:430px; left:110px;">
-<div class="hotspot"></div>
-<div class="info" style="top:-40px; left:-300px;">
-<strong>Water Character (湯質)</strong>
-Soft water enhances sweetness perception, while mineral hardness sharpens catechin structure.
-</div>
-</div>
-
-<!-- SENSORY -->
-
-<div class="hotspot-container sensory" style="top:320px; left:430px;">
-<div class="hotspot"></div>
-<div class="info" style="top:-150px; left:-140px;">
-<strong>Color (色)</strong>
-High chlorophyll concentration produces deep jade vibrancy indicating preserved integrity.
-</div>
-</div>
-
-<div class="hotspot-container sensory" style="top:430px; left:570px;">
-<div class="hotspot"></div>
-<div class="info" style="top:-40px; left:120px;">
-<strong>Aroma (香り)</strong>
-Volatile grassy aldehydes define freshness and marine sweetness.
-</div>
-</div>
-
-<div class="hotspot-container sensory" style="top:570px; left:430px;">
-<div class="hotspot"></div>
-<div class="info" style="top:80px; left:-140px;">
-<strong>Umami (旨味)</strong>
-L-theanine stimulates glutamate receptors, creating depth and lingering sweetness.
-</div>
-</div>
-
-<div class="hotspot-container sensory" style="top:430px; left:290px;">
-<div class="hotspot"></div>
-<div class="info" style="top:-40px; left:-300px;">
-<strong>Bitterness (渋み)</strong>
-Catechin balance determines structural tension and complexity.
-</div>
-</div>
-
-<div class="hotspot-container sensory" style="top:250px; left:570px;">
-<div class="hotspot"></div>
-<div class="info" style="top:-170px; left:120px;">
-<strong>Texture (質感)</strong>
-Ultra-fine particles create a stable suspension and ceremonial creaminess.
-</div>
-</div>
+<!-- Keep your existing hotspot-container blocks here unchanged -->
 
 </div>
 </div>
+
 </section>
 
 <script>
