@@ -75,10 +75,10 @@ position:relative;
 
 .diagram-wrapper{
 position:sticky;
-top:120px;
+top:50vh;
+transform:translateY(-50%);
 height:900px;
 display:flex;
-align-items:center;
 justify-content:center;
 }
 
@@ -90,6 +90,29 @@ width:900px;
 height:900px;
 transition:.6s ease;
 }
+
+/* Ring Labels */
+
+.ring-label{
+position:absolute;
+left:50%;
+transform:translateX(-50%);
+font-size:13px;
+letter-spacing:2px;
+text-transform:uppercase;
+color:#2f5d3a;
+opacity:0;
+transition:opacity .5s ease;
+pointer-events:none;
+}
+
+.label-outer{ top:30px; }
+.label-middle{ top:60px; }
+.label-inner{ top:90px; }
+
+.focus-outer .label-outer{ opacity:1; }
+.focus-middle .label-middle{ opacity:1; }
+.focus-inner .label-inner{ opacity:1; }
 
 /* Rings */
 
@@ -103,9 +126,22 @@ border:1px solid rgba(47,93,58,0.08);
 transition:.6s ease;
 }
 
-.outer{ width:850px; height:850px; }
-.middle{ width:600px; height:600px; }
-.inner{ width:400px; height:400px; }
+.outer{
+width:850px;
+height:850px;
+}
+
+.middle{
+width:600px;
+height:600px;
+border-width:1.5px;
+}
+
+.inner{
+width:400px;
+height:400px;
+border-width:2px;
+}
 
 /* Emphasis */
 
@@ -113,7 +149,9 @@ transition:.6s ease;
 .focus-middle .middle,
 .focus-inner .inner{
 border-color:#2f5d3a;
-box-shadow:0 0 30px rgba(47,93,58,0.15);
+box-shadow:
+0 0 0 6px rgba(47,93,58,0.05),
+0 0 40px rgba(47,93,58,0.18);
 }
 
 .focus-outer .middle,
@@ -148,10 +186,13 @@ z-index:20;
 width:14px;
 height:14px;
 border-radius:50%;
-background:#2f5d3a;
 cursor:pointer;
 animation:pulse 2.6s infinite;
 }
+
+.bio .hotspot{ background:#2f5d3a; }
+.craft .hotspot{ background:#6b7d5c; }
+.sensory .hotspot{ background:#a3b18a; }
 
 @keyframes pulse{
 0%{ box-shadow:0 0 0 0 rgba(47,93,58,0.35); }
@@ -159,7 +200,18 @@ animation:pulse 2.6s infinite;
 100%{ box-shadow:0 0 0 0 rgba(47,93,58,0); }
 }
 
-/* Info box */
+/* Fade inactive layer dots */
+
+.focus-outer .craft,
+.focus-outer .sensory,
+.focus-middle .bio,
+.focus-middle .sensory,
+.focus-inner .bio,
+.focus-inner .craft{
+opacity:.2;
+}
+
+/* Info Box */
 
 .info{
 position:absolute;
@@ -171,6 +223,7 @@ opacity:0;
 transition:.3s ease;
 font-size:13px;
 line-height:1.85;
+pointer-events:none;
 z-index:30;
 }
 
@@ -180,15 +233,8 @@ margin-bottom:10px;
 font-size:15px;
 }
 
-/* Only dot hover triggers popup */
-
 .hotspot:hover + .info{
-  opacity:1;
-  pointer-events:auto;
-}
-
-.info{
-  pointer-events:none;
+opacity:1;
 }
 
 </style>
@@ -206,8 +252,6 @@ font-size:15px;
 </div>
 </div>
 
-<!-- HERO TITLE SECTION -->
-
 <section class="hero">
 <h1>The Matcha Lifecycle System</h1>
 <p class="subtitle">
@@ -216,12 +260,14 @@ Scroll to explore each nested layer of influence.
 </p>
 </section>
 
-<!-- SCROLL DIAGRAM SECTION -->
-
 <section class="scroll-section" id="scroll-section">
 
 <div class="diagram-wrapper">
 <div class="system-diagram focus-outer" id="diagram">
+
+<div class="ring-label label-outer">Biological Foundations</div>
+<div class="ring-label label-middle">Craft & Processing</div>
+<div class="ring-label label-inner">Sensory Expression</div>
 
 <div class="ring outer"></div>
 <div class="ring middle"></div>
@@ -229,136 +275,118 @@ Scroll to explore each nested layer of influence.
 
 <img src="matcha-bowl.png" alt="Matcha Bowl">
 
-<!-- ================= BIOLOGICAL ================= -->
+<!-- BIOLOGICAL -->
 
-<div class="hotspot-container" style="top:70px; left:430px;">
+<div class="hotspot-container bio" style="top:70px; left:430px;">
 <div class="hotspot"></div>
 <div class="info" style="top:-190px; left:-140px;">
 <strong>Cultivar (品種)</strong>
-Genetic lineage regulates chlorophyll density, amino acid synthesis, and catechin balance.
-Shade-adapted cultivars retain elevated L-theanine levels,
-producing enhanced sweetness and refined bitterness structure.
+Genetic lineage regulates chlorophyll density, amino acid synthesis, and catechin balance. Shade-adapted cultivars retain elevated L-theanine levels, producing enhanced sweetness and refined bitterness structure.
 </div>
 </div>
 
-<div class="hotspot-container" style="top:230px; left:130px;">
+<div class="hotspot-container bio" style="top:230px; left:130px;">
 <div class="hotspot"></div>
 <div class="info" style="top:-40px; left:-300px;">
 <strong>Soil Composition (土壌)</strong>
-Nitrogen availability increases amino acid production within leaf tissue.
-Balanced mineral ecosystems improve nutrient uptake efficiency,
-resulting in structural complexity and longer sweetness persistence.
+Nitrogen availability increases amino acid production. Balanced mineral ecosystems improve nutrient uptake efficiency and sweetness persistence.
 </div>
 </div>
 
-<div class="hotspot-container" style="top:650px; left:160px;">
+<div class="hotspot-container bio" style="top:650px; left:160px;">
 <div class="hotspot"></div>
 <div class="info" style="top:40px; left:-300px;">
 <strong>Harvest Timing (一番茶)</strong>
-First flush leaves exhibit maximal L-theanine concentration and minimal cellulose fiber.
-Early harvesting preserves tenderness,
-leading to smoother texture and diminished astringency.
+First flush leaves exhibit maximal L-theanine concentration and minimal fiber, leading to smoother texture and reduced astringency.
 </div>
 </div>
 
-<div class="hotspot-container" style="top:230px; left:730px;">
+<div class="hotspot-container bio" style="top:230px; left:730px;">
 <div class="hotspot"></div>
 <div class="info" style="top:-40px; left:120px;">
 <strong>Shading Strategy (覆下栽培)</strong>
-Pre-harvest shading suppresses photosynthesis,
-preventing conversion of L-theanine into catechins.
-This deepens umami while maintaining vivid jade coloration.
+Pre-harvest shading suppresses catechin formation, deepening umami and preserving jade coloration.
 </div>
 </div>
 
-<!-- ================= CRAFT ================= -->
+<!-- CRAFT -->
 
-<div class="hotspot-container" style="top:190px; left:430px;">
+<div class="hotspot-container craft" style="top:190px; left:430px;">
 <div class="hotspot"></div>
 <div class="info" style="top:-170px; left:-140px;">
 <strong>Processing (製茶工程)</strong>
-Immediate steaming denatures oxidative enzymes,
-preserving chlorophyll integrity and preventing bitterness escalation.
+Immediate steaming halts enzymatic oxidation, preserving chlorophyll and preventing bitterness escalation.
 </div>
 </div>
 
-<div class="hotspot-container" style="top:430px; left:770px;">
+<div class="hotspot-container craft" style="top:430px; left:770px;">
 <div class="hotspot"></div>
 <div class="info" style="top:-40px; left:120px;">
 <strong>Stone Milling (石臼挽き)</strong>
-Granite milling at slow rotational speed prevents thermal degradation.
-Maintaining low heat preserves aromatic compounds and structural delicacy.
+Slow granite milling prevents thermal degradation, preserving aromatics and particle integrity.
 </div>
 </div>
 
-<div class="hotspot-container" style="top:730px; left:430px;">
+<div class="hotspot-container craft" style="top:730px; left:430px;">
 <div class="hotspot"></div>
 <div class="info" style="top:80px; left:-140px;">
 <strong>Freshness Management (鮮度管理)</strong>
-Oxygen oxidizes chlorophyll and volatile aromatics.
-Cold storage slows degradation,
-preserving sweetness clarity and vibrant color.
+Cold storage slows oxidation, maintaining sweetness clarity and vibrant color.
 </div>
 </div>
 
-<div class="hotspot-container" style="top:430px; left:110px;">
+<div class="hotspot-container craft" style="top:430px; left:110px;">
 <div class="hotspot"></div>
 <div class="info" style="top:-40px; left:-300px;">
 <strong>Water Character (湯質)</strong>
-Mineral hardness interacts with catechins and amino acids.
-Soft water enhances sweetness perception,
-while hard water increases structural sharpness.
+Soft water enhances sweetness perception, while mineral hardness sharpens catechin structure.
 </div>
 </div>
 
-<!-- ================= SENSORY ================= -->
+<!-- SENSORY -->
 
-<div class="hotspot-container" style="top:320px; left:430px;">
+<div class="hotspot-container sensory" style="top:320px; left:430px;">
 <div class="hotspot"></div>
 <div class="info" style="top:-150px; left:-140px;">
 <strong>Color (色)</strong>
-High chlorophyll concentration produces deep jade vibrancy,
-indicating preserved leaf integrity.
+High chlorophyll concentration produces deep jade vibrancy indicating preserved integrity.
 </div>
 </div>
 
-<div class="hotspot-container" style="top:430px; left:570px;">
+<div class="hotspot-container sensory" style="top:430px; left:570px;">
 <div class="hotspot"></div>
 <div class="info" style="top:-40px; left:120px;">
 <strong>Aroma (香り)</strong>
-Volatile grassy aldehydes define freshness and marine-like sweetness.
-These compounds diminish rapidly with oxidation.
+Volatile grassy aldehydes define freshness and marine sweetness.
 </div>
 </div>
 
-<div class="hotspot-container" style="top:570px; left:430px;">
+<div class="hotspot-container sensory" style="top:570px; left:430px;">
 <div class="hotspot"></div>
 <div class="info" style="top:80px; left:-140px;">
 <strong>Umami (旨味)</strong>
-L-theanine stimulates glutamate receptors,
-creating depth and lingering sweetness without harshness.
+L-theanine stimulates glutamate receptors, creating depth and lingering sweetness.
 </div>
 </div>
 
-<div class="hotspot-container" style="top:430px; left:290px;">
+<div class="hotspot-container sensory" style="top:430px; left:290px;">
 <div class="hotspot"></div>
 <div class="info" style="top:-40px; left:-300px;">
 <strong>Bitterness (渋み)</strong>
-Catechin concentration determines structural tension.
-Balanced shading and harvest timing moderate phenolic intensity.
+Catechin balance determines structural tension and complexity.
 </div>
 </div>
 
-<div class="hotspot-container" style="top:250px; left:570px;">
+<div class="hotspot-container sensory" style="top:250px; left:570px;">
 <div class="hotspot"></div>
 <div class="info" style="top:-170px; left:120px;">
 <strong>Texture (質感)</strong>
-Ultra-fine 5–10 micron particles create a stable colloidal suspension.
-Proper whisking generates microfoam,
-enhancing viscosity and ceremonial creaminess.
+Ultra-fine particles create a stable suspension and ceremonial creaminess.
 </div>
 </div>
 
+</div>
+</div>
 </section>
 
 <script>
