@@ -21,7 +21,7 @@ color:#1c1c1c;
 .container{
 max-width:1200px;
 margin:auto;
-padding:100px 40px 140px 40px;
+padding:120px 40px 160px 40px;
 text-align:center;
 }
 
@@ -34,7 +34,7 @@ margin-bottom:20px;
 
 .subtitle{
 max-width:750px;
-margin:0 auto 100px auto;
+margin:0 auto 140px auto;
 line-height:1.9;
 color:#555;
 }
@@ -60,24 +60,21 @@ letter-spacing:.5px;
 
 /* ---------------- DIAGRAM ---------------- */
 
+.system-section{
+height:160vh;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
 .system-diagram{
 position:relative;
 width:900px;
 height:900px;
-margin:0 auto;
+transition:all .6s ease;
 }
 
-.system-diagram img{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-width:280px;
-z-index:5;
-filter:saturate(90%);
-}
-
-/* Ring Guides */
+/* Rings */
 
 .ring{
 position:absolute;
@@ -86,11 +83,38 @@ left:50%;
 transform:translate(-50%,-50%);
 border-radius:50%;
 border:1px solid rgba(47,93,58,0.08);
+transition:all .6s ease;
 }
 
 .ring.outer{ width:850px; height:850px; }
 .ring.middle{ width:600px; height:600px; }
 .ring.inner{ width:400px; height:400px; }
+
+/* Focus States */
+
+.system-diagram.focus-outer .outer{ border-color:#2f5d3a; }
+.system-diagram.focus-middle .middle{ border-color:#2f5d3a; }
+.system-diagram.focus-inner .inner{ border-color:#2f5d3a; }
+
+.system-diagram.focus-outer .middle,
+.system-diagram.focus-outer .inner,
+.system-diagram.focus-middle .outer,
+.system-diagram.focus-middle .inner,
+.system-diagram.focus-inner .outer,
+.system-diagram.focus-inner .middle{
+opacity:.35;
+}
+
+/* Center Image */
+
+.system-diagram img{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:280px;
+z-index:5;
+}
 
 /* ---------------- HOTSPOTS ---------------- */
 
@@ -111,7 +135,7 @@ transition:opacity .3s ease;
 100%{ box-shadow:0 0 0 0 rgba(47,93,58,0); }
 }
 
-/* ---------------- INFO BOX ---------------- */
+/* Info Box */
 
 .info{
 position:absolute;
@@ -125,12 +149,17 @@ pointer-events:none;
 font-size:13px;
 line-height:1.8;
 text-align:left;
+z-index:20;
 }
 
 .info strong{
 display:block;
-margin-bottom:8px;
+margin-bottom:10px;
 font-size:14px;
+}
+
+.hotspot-container{
+position:absolute;
 }
 
 .hotspot-container:hover .hotspot{
@@ -158,146 +187,153 @@ opacity:1;
 </div>
 
 <div class="container">
-
 <h1>The Matcha Lifecycle System</h1>
-
 <p class="subtitle">
-Matcha quality emerges from a nested system of biological potential, human craft, and sensory perception.
-The outer layers define possibility. The inner layer reveals experience.
+Biological potential defines possibility. Craft refines it. Sensory perception reveals it.
+Scroll to move through the layers.
 </p>
+</div>
 
-<div class="system-diagram">
+<div class="system-section">
+<div class="system-diagram focus-outer" id="diagram">
 
-<!-- Rings -->
 <div class="ring outer"></div>
 <div class="ring middle"></div>
 <div class="ring inner"></div>
 
-<!-- Center Image -->
 <img src="matcha-bowl.png" alt="Matcha Bowl">
 
-<!-- ================= OUTER RING (BIOLOGICAL FOUNDATIONS) ================= -->
+<!-- ================= OUTER: BIOLOGICAL ================= -->
 
-<div class="hotspot-container" style="top:80px; left:430px;">
+<div class="hotspot-container" style="top:60px; left:430px;">
 <div class="hotspot"></div>
 <div class="info" style="top:-160px; left:-120px;">
 <strong>Cultivar (品種)</strong>
-Genetic lineage determines amino acid synthesis capacity and chlorophyll density.
-High-grade cultivars produce elevated L-theanine and refined bitterness structure.
+Genetics determine amino acid and chlorophyll capacity.
 </div>
 </div>
 
-<div class="hotspot-container" style="top:250px; left:120px;">
+<div class="hotspot-container" style="top:230px; left:120px;">
 <div class="hotspot"></div>
 <div class="info" style="top:-40px; left:-260px;">
 <strong>Soil Composition (土壌)</strong>
-Mineral balance and nitrogen levels influence sweetness, structure, and plant resilience.
-Microbial ecosystems shape nutrient uptake efficiency.
+Mineral density influences sweetness and structural complexity.
 </div>
 </div>
 
-<div class="hotspot-container" style="top:650px; left:170px;">
+<div class="hotspot-container" style="top:650px; left:150px;">
 <div class="hotspot"></div>
-<div class="info" style="top:20px; left:-260px;">
+<div class="info" style="top:40px; left:-260px;">
 <strong>Harvest Timing (一番茶)</strong>
-First flush leaves contain maximum L-theanine and minimal fiber.
-Delayed harvest increases catechins and astringency.
+First flush maximizes L-theanine and reduces fiber.
 </div>
 </div>
 
-<div class="hotspot-container" style="top:250px; left:700px;">
+<div class="hotspot-container" style="top:230px; left:720px;">
 <div class="hotspot"></div>
 <div class="info" style="top:-40px; left:80px;">
 <strong>Shading Strategy (覆下栽培)</strong>
-Pre-harvest shading preserves chlorophyll and slows conversion of amino acids to catechins,
-deepening umami and softening bitterness.
+Pre-harvest shading intensifies umami and preserves chlorophyll.
 </div>
 </div>
 
-<!-- ================= MIDDLE RING (CRAFT TRANSFORMATION) ================= -->
+<!-- ================= MIDDLE: CRAFT ================= -->
 
-<div class="hotspot-container" style="top:200px; left:430px;">
+<div class="hotspot-container" style="top:180px; left:430px;">
 <div class="hotspot"></div>
 <div class="info" style="top:-150px; left:-120px;">
 <strong>Processing (製茶工程)</strong>
-Steaming halts oxidation. Drying stabilizes color before stems are removed to form tencha.
+Steaming halts oxidation; drying stabilizes color.
 </div>
 </div>
 
-<div class="hotspot-container" style="top:430px; left:720px;">
+<div class="hotspot-container" style="top:430px; left:760px;">
 <div class="hotspot"></div>
-<div class="info" style="top:-40px; left:80px;">
+<div class="info" style="top:-40px; left:100px;">
 <strong>Stone Milling (石臼挽き)</strong>
-Slow granite milling produces 5–10 micron particles,
-enabling suspension stability and refined texture.
+Slow grinding creates ultra-fine particles.
 </div>
 </div>
 
-<div class="hotspot-container" style="top:680px; left:430px;">
+<div class="hotspot-container" style="top:720px; left:430px;">
 <div class="hotspot"></div>
 <div class="info" style="top:60px; left:-120px;">
 <strong>Freshness Management (鮮度管理)</strong>
-Oxygen and light degrade volatile aromatics and chlorophyll.
-Cold storage preserves vibrancy.
+Cold storage preserves aroma and vibrancy.
 </div>
 </div>
 
-<div class="hotspot-container" style="top:430px; left:150px;">
+<div class="hotspot-container" style="top:430px; left:100px;">
 <div class="hotspot"></div>
 <div class="info" style="top:-40px; left:-260px;">
 <strong>Water Character (湯質)</strong>
-Mineral hardness and temperature (70–80°C) influence bitterness expression
-and foam structure.
+Mineral content and temperature influence bitterness expression.
 </div>
 </div>
 
-<!-- ================= INNER RING (SENSORY EXPRESSION) ================= -->
+<!-- ================= INNER: SENSORY ================= -->
 
-<div class="hotspot-container" style="top:330px; left:430px;">
+<div class="hotspot-container" style="top:310px; left:430px;">
 <div class="hotspot"></div>
-<div class="info" style="top:-120px; left:-120px;">
+<div class="info" style="top:-130px; left:-120px;">
 <strong>Color (色)</strong>
-Vivid jade hue signals high chlorophyll concentration and minimal oxidation.
+Vivid jade hue signals chlorophyll preservation.
 </div>
 </div>
 
-<div class="hotspot-container" style="top:430px; left:550px;">
+<div class="hotspot-container" style="top:430px; left:570px;">
 <div class="hotspot"></div>
-<div class="info" style="top:-40px; left:80px;">
+<div class="info" style="top:-40px; left:100px;">
 <strong>Aroma (香り)</strong>
-Volatile grassy aldehydes define first perception and freshness.
+Volatile compounds define freshness.
 </div>
 </div>
 
-<div class="hotspot-container" style="top:530px; left:430px;">
+<div class="hotspot-container" style="top:570px; left:430px;">
 <div class="hotspot"></div>
 <div class="info" style="top:60px; left:-120px;">
 <strong>Umami (旨味)</strong>
-Driven by L-theanine concentration,
-producing sweetness and depth without harshness.
+Driven by L-theanine concentration.
 </div>
 </div>
 
-<div class="hotspot-container" style="top:430px; left:310px;">
+<div class="hotspot-container" style="top:430px; left:290px;">
 <div class="hotspot"></div>
 <div class="info" style="top:-40px; left:-260px;">
 <strong>Bitterness (渋み)</strong>
-Catechin levels determine astringency and structural tension.
+Catechins determine astringency.
 </div>
 </div>
 
-<div class="hotspot-container" style="top:280px; left:550px;">
+<div class="hotspot-container" style="top:250px; left:570px;">
 <div class="hotspot"></div>
-<div class="info" style="top:-150px; left:80px;">
+<div class="info" style="top:-150px; left:100px;">
 <strong>Texture (質感)</strong>
-Ultra-fine particles create a stable colloidal suspension
-and ceremonial creaminess.
+Microfoam and fine particle size create ceremonial creaminess.
 </div>
 </div>
 
 </div>
-
 </div>
+
+<script>
+const diagram = document.getElementById("diagram");
+
+window.addEventListener("scroll", () => {
+const scroll = window.scrollY;
+const height = window.innerHeight;
+
+if(scroll < height * 0.6){
+diagram.className = "system-diagram focus-outer";
+}
+else if(scroll < height * 1.3){
+diagram.className = "system-diagram focus-middle";
+}
+else{
+diagram.className = "system-diagram focus-inner";
+}
+});
+</script>
 
 </body>
 </html>
