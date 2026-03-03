@@ -1,3 +1,43 @@
+/* NAVIGATION */
+
+.navbar{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:rgba(244,243,238,0.9);
+backdrop-filter:blur(6px);
+border-bottom:1px solid #e5e3dc;
+padding:18px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:1000;
+}
+
+.nav-title{
+font-family:'Playfair Display',serif;
+font-size:18px;
+letter-spacing:1px;
+}
+
+.nav-links a{
+margin-left:30px;
+text-decoration:none;
+font-family:'Noto Serif JP',serif;
+color:#444;
+font-size:14px;
+transition:opacity .2s;
+}
+
+.nav-links a:hover{
+opacity:0.6;
+}
+
+body{
+padding-top:80px;
+}
+
 body{
 background:#f6f5f0;
 font-family:Georgia,serif;
