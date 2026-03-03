@@ -1,223 +1,109 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Before – Matcha Lifecycle</title>
+<!-- BIOLOGICAL -->
 
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
-
-<style>
-
-/* Page */
-body{
-background:#f6f5f0;
-}
-
-/* Title */
-h1{
-font-family:'Playfair Display', serif;
-font-size:44px;
-font-weight:400;
-margin-bottom:15px;
-}
-
-.subtitle{
-max-width:700px;
-line-height:1.8;
-color:#555;
-margin-bottom:80px;
-}
-
-/* Diagram */
-.diagram-wrapper{
-position:relative;
-width:760px;
-margin:100px auto;
-}
-
-/* Subtle system halo */
-.diagram-wrapper::before{
-content:"";
-position:absolute;
-width:580px;
-height:580px;
-background:radial-gradient(circle, rgba(47,93,58,0.05), transparent 70%);
-top:90px;
-left:90px;
-border-radius:50%;
-z-index:-1;
-}
-
-/* Leaf */
-.leaf{
-width:100%;
-display:block;
-filter:saturate(80%) contrast(95%);
-}
-
-/* Hotspot */
-.hotspot{
-position:absolute;
-width:18px;
-height:18px;
-border-radius:50%;
-background:#2f5d3a;
-cursor:pointer;
-transition:opacity .3s ease;
-animation:pulse 2.5s infinite;
-}
-
-@keyframes pulse{
-0%{ box-shadow:0 0 0 0 rgba(47,93,58,0.4); }
-70%{ box-shadow:0 0 0 15px rgba(47,93,58,0); }
-100%{ box-shadow:0 0 0 0 rgba(47,93,58,0); }
-}
-
-/* Info panel */
-.info{
-position:absolute;
-width:300px;
-font-size:14px;
-line-height:1.75;
-background:white;
-padding:22px;
-box-shadow:0 15px 35px rgba(0,0,0,0.08);
-opacity:0;
-transition:opacity .3s ease;
-pointer-events:none;
-}
-
-.info strong{
-display:block;
-font-size:16px;
-margin-bottom:10px;
-letter-spacing:0.5px;
-}
-
-/* Hover behavior */
-.hotspot-container:hover .hotspot{
-opacity:0;
-animation:none;
-}
-
-.hotspot-container:hover .info{
-opacity:1;
-}
-
-</style>
-</head>
-
-<body>
-
-<div class="navbar">
-<div class="nav-title">Matcha Practicum</div>
-<div class="nav-links">
-<a href="index.html">Home</a>
-<a href="before.html">Before</a>
-<a href="during.html">During</a>
-<a href="after.html">After</a>
-</div>
-</div>
-
-<div class="container">
-
-<h1>Matcha Lifecycle System</h1>
-
-<p class="subtitle">
-This diagram maps the full agricultural and preparation system behind ceremonial-grade matcha —
-from cultivar selection and shading strategy to milling, storage, and final sensory expression.
-Hover over each point to explore how individual variables interact across the lifecycle.
-</p>
-
-<div class="diagram-wrapper">
-
-<img src="matcha-leaf.png" class="leaf" alt="Matcha leaf">
-
-<!-- CULTIVAR -->
-<div class="hotspot-container" style="top:120px; left:220px; position:absolute;">
+<div class="hotspot-container bio" style="top:70px; left:430px;">
 <div class="hotspot"></div>
-<div class="info" style="top:-140px; left:-260px;">
+<div class="info" style="top:-190px; left:-140px;">
 <strong>Cultivar (品種)</strong>
-Genetic variation determines baseline sweetness, bitterness, and shade tolerance.<br><br>
-Cultivars such as Yabukita, Okumidori, and Samidori differ in amino acid concentration, leaf thickness, and aromatic expression. Genetic selection shapes the plant’s potential long before cultivation begins.
+Genetic lineage regulates chlorophyll density, amino acid synthesis, and catechin balance. Shade-adapted cultivars retain elevated L-theanine levels, producing enhanced sweetness and refined bitterness structure.
 </div>
 </div>
 
-<!-- SHADING METHOD -->
-<div class="hotspot-container" style="top:170px; left:360px; position:absolute;">
+<div class="hotspot-container bio" style="top:230px; left:130px;">
 <div class="hotspot"></div>
-<div class="info" style="top:-170px; left:-40px;">
+<div class="info" style="top:-40px; left:-300px;">
+<strong>Soil Composition (土壌)</strong>
+Nitrogen availability increases amino acid production. Balanced mineral ecosystems improve nutrient uptake efficiency and sweetness persistence.
+</div>
+</div>
+
+<div class="hotspot-container bio" style="top:650px; left:160px;">
+<div class="hotspot"></div>
+<div class="info" style="top:40px; left:-300px;">
+<strong>Harvest Timing (一番茶)</strong>
+First flush leaves exhibit maximal L-theanine concentration and minimal fiber, leading to smoother texture and reduced astringency.
+</div>
+</div>
+
+<div class="hotspot-container bio" style="top:230px; left:730px;">
+<div class="hotspot"></div>
+<div class="info" style="top:-40px; left:120px;">
 <strong>Shading Strategy (覆下栽培)</strong>
-Pre-harvest shading regulates biochemical composition.<br><br>
-Reducing sunlight for 3–4 weeks preserves L-theanine and chlorophyll while limiting catechin development. The method of shading — tana shelving versus direct covering — alters microclimate stress and flavor balance.
+Pre-harvest shading suppresses catechin formation, deepening umami and preserving jade coloration.
 </div>
 </div>
 
-<!-- FIRST FLUSH -->
-<div class="hotspot-container" style="top:250px; left:250px; position:absolute;">
+<!-- CRAFT -->
+
+<div class="hotspot-container craft" style="top:190px; left:430px;">
 <div class="hotspot"></div>
-<div class="info" style="top:40px; left:-280px;">
-<strong>First Flush (一番茶)</strong>
-Harvest timing defines sweetness and fiber content.<br><br>
-Early spring leaves contain higher amino acid density and thinner cellular structure. Later harvests increase fiber and catechins, producing harsher texture and reduced vibrancy.
+<div class="info" style="top:-170px; left:-140px;">
+<strong>Processing (製茶工程)</strong>
+Immediate steaming halts enzymatic oxidation, preserving chlorophyll and preventing bitterness escalation.
 </div>
 </div>
 
-<!-- PROCESSING -->
-<div class="hotspot-container" style="top:330px; left:350px; position:absolute;">
+<div class="hotspot-container craft" style="top:430px; left:770px;">
 <div class="hotspot"></div>
-<div class="info" style="top:60px; left:40px;">
-<strong>Steaming & Drying</strong>
-Post-harvest treatment prevents oxidation.<br><br>
-Leaves are steamed immediately after picking to halt enzymatic browning. Controlled drying preserves chlorophyll stability and aromatic integrity before stems and veins are removed to create tencha.
-</div>
-</div>
-
-<!-- STONE MILLING -->
-<div class="hotspot-container" style="top:400px; left:460px; position:absolute;">
-<div class="hotspot"></div>
-<div class="info" style="top:40px; left:60px;">
+<div class="info" style="top:-40px; left:120px;">
 <strong>Stone Milling (石臼挽き)</strong>
-Mechanical refinement shapes texture and suspension.<br><br>
-Granite mills rotate slowly to avoid heat buildup, producing particles averaging 5–10 microns. This ultra-fine powder forms a stable colloidal suspension, creating ceremonial creaminess.
+Slow granite milling prevents thermal degradation, preserving aromatics and particle integrity.
 </div>
 </div>
 
-<!-- STORAGE -->
-<div class="hotspot-container" style="top:200px; left:500px; position:absolute;">
+<div class="hotspot-container craft" style="top:730px; left:430px;">
 <div class="hotspot"></div>
-<div class="info" style="top:-40px; left:60px;">
-<strong>Storage & Oxidation</strong>
-Environmental control preserves sensory quality.<br><br>
-Exposure to oxygen, light, and humidity degrades volatile compounds and dulls chlorophyll vibrancy. Cold storage and airtight packaging maintain aromatic complexity.
+<div class="info" style="top:80px; left:-140px;">
+<strong>Freshness Management (鮮度管理)</strong>
+Cold storage slows oxidation, maintaining sweetness clarity and vibrant color.
 </div>
 </div>
 
-<!-- PREPARATION -->
-<div class="hotspot-container" style="top:300px; left:560px; position:absolute;">
+<div class="hotspot-container craft" style="top:430px; left:110px;">
 <div class="hotspot"></div>
-<div class="info" style="top:20px; left:80px;">
-<strong>Preparation Variables</strong>
-Water chemistry and whisking technique influence perception.<br><br>
-Soft water enhances sweetness and foam stability. Temperature control (70–80°C) prevents bitterness amplification. Whisk aeration alters texture and aromatic release.
+<div class="info" style="top:-40px; left:-300px;">
+<strong>Water Character (湯質)</strong>
+Soft water enhances sweetness perception, while mineral hardness sharpens catechin structure.
 </div>
 </div>
 
-<!-- SENSORY EXPRESSION -->
-<div class="hotspot-container" style="top:270px; left:380px; position:absolute;">
+<!-- SENSORY -->
+
+<div class="hotspot-container sensory" style="top:320px; left:430px;">
 <div class="hotspot"></div>
-<div class="info" style="top:-20px; left:-150px;">
-<strong>Sensory Integration</strong>
-Color, aroma, umami, bitterness, and texture converge here.<br><br>
-Matcha quality is not determined by a single variable but by system-level balance. Cultivation, processing, and preparation variables interact to shape the final embodied experience.
+<div class="info" style="top:-150px; left:-140px;">
+<strong>Color (色)</strong>
+High chlorophyll concentration produces deep jade vibrancy indicating preserved integrity.
 </div>
 </div>
 
+<div class="hotspot-container sensory" style="top:430px; left:570px;">
+<div class="hotspot"></div>
+<div class="info" style="top:-40px; left:120px;">
+<strong>Aroma (香り)</strong>
+Volatile grassy aldehydes define freshness and marine sweetness.
+</div>
 </div>
 
+<div class="hotspot-container sensory" style="top:570px; left:430px;">
+<div class="hotspot"></div>
+<div class="info" style="top:80px; left:-140px;">
+<strong>Umami (旨味)</strong>
+L-theanine stimulates glutamate receptors, creating depth and lingering sweetness.
+</div>
 </div>
 
-</body>
-</html>
+<div class="hotspot-container sensory" style="top:430px; left:290px;">
+<div class="hotspot"></div>
+<div class="info" style="top:-40px; left:-300px;">
+<strong>Bitterness (渋み)</strong>
+Catechin balance determines structural tension and complexity.
+</div>
+</div>
+
+<div class="hotspot-container sensory" style="top:250px; left:570px;">
+<div class="hotspot"></div>
+<div class="info" style="top:-170px; left:120px;">
+<strong>Texture (質感)</strong>
+Ultra-fine particles create a stable suspension and ceremonial creaminess.
+</div>
+</div>
