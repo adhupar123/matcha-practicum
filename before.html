@@ -1,42 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Before – Matcha Anatomy</title>
+
+<!-- Japanese + Elegant Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="styles.css">
 
 <style>
 
-.diagram{
+body{
+background:#f4f3ee;
+}
+
+h1{
+font-family:'Playfair Display',serif;
+font-size:42px;
+font-weight:400;
+margin-bottom:10px;
+}
+
+.subtitle{
+font-family:'Noto Serif JP',serif;
+color:#556b5d;
+margin-bottom:60px;
+}
+
+.diagram-wrapper{
 position:relative;
-width:600px;
-margin:80px auto;
+width:700px;
+margin:100px auto;
 }
 
 .leaf{
 width:100%;
+display:block;
 }
 
+/* Label styling */
 .label{
 position:absolute;
-background:white;
-padding:10px 14px;
-border-left:3px solid #2f5d3a;
+font-family:'Noto Serif JP',serif;
 font-size:14px;
-max-width:180px;
+cursor:pointer;
 }
 
-.color{ top:40px; left:-200px; }
-.umami{ top:160px; right:-200px; }
-.bitterness{ top:300px; left:-220px; }
-.texture{ bottom:80px; right:-200px; }
-.aroma{ bottom:-20px; left:50px; }
+.dot{
+width:10px;
+height:10px;
+background:#2f5d3a;
+border-radius:50%;
+position:absolute;
+}
 
+/* Tooltip */
+.tooltip{
+position:absolute;
+background:white;
+padding:15px;
+width:220px;
+font-size:13px;
+line-height:1.6;
+box-shadow:0 8px 20px rgba(0,0,0,0.08);
+opacity:0;
+transition:opacity .3s ease;
+pointer-events:none;
+}
+
+.label:hover .tooltip{
+opacity:1;
+}
+
+/* Connector lines */
 .line{
 position:absolute;
 background:#2f5d3a;
 height:1px;
 }
+
+/* POSITIONING */
+
+/* Color */
+.color-dot{ top:120px; left:330px; }
+.color-label{ top:100px; left:20px; }
+.color-line{ top:125px; left:70px; width:260px; }
+
+/* Umami */
+.umami-dot{ top:220px; left:400px; }
+.umami-label{ top:210px; right:-20px; }
+.umami-line{ top:225px; left:400px; width:200px; }
+
+/* Bitterness */
+.bitterness-dot{ top:340px; left:300px; }
+.bitterness-label{ top:360px; left:-40px; }
+.bitterness-line{ top:345px; left:50px; width:250px; }
+
+/* Texture */
+.texture-dot{ top:420px; left:420px; }
+.texture-label{ top:430px; right:-40px; }
+.texture-line{ top:425px; left:420px; width:220px; }
+
+/* Aroma */
+.aroma-dot{ top:70px; left:380px; }
+.aroma-label{ top:40px; right:60px; }
+.aroma-line{ top:75px; left:380px; width:120px; }
 
 </style>
 </head>
@@ -46,39 +116,68 @@ height:1px;
 <div class="container">
 
 <h1>Matcha Anatomy</h1>
-
-<p>
-This diagram maps sensory traits of high-quality matcha to the cultivation
-and chemical mechanisms that produce them.
+<p class="subtitle">
+Mapping cultivation variables to sensory quality and biological mechanisms.
+Hover over each trait to explore its structure.
 </p>
 
-<div class="diagram">
+<div class="diagram-wrapper">
 
-<img src="matcha-leaf.jpg" class="leaf">
+<img src="matcha-leaf.png" class="leaf">
 
-<div class="label color">
-<strong>Color</strong><br>
-High chlorophyll concentration caused by shading before harvest.
+<!-- COLOR -->
+<div class="dot color-dot"></div>
+<div class="line color-line"></div>
+<div class="label color-label">
+Color
+<div class="tooltip">
+<strong>Mechanism:</strong> Increased chlorophyll under 3–4 weeks shading.<br><br>
+<strong>Impact:</strong> Vivid green signals high amino acid retention and careful oxidation control.
+</div>
 </div>
 
-<div class="label umami">
-<strong>Umami</strong><br>
-Shading preserves L-theanine, producing sweetness and depth.
+<!-- UMAMI -->
+<div class="dot umami-dot"></div>
+<div class="line umami-line"></div>
+<div class="label umami-label">
+Umami
+<div class="tooltip">
+<strong>Mechanism:</strong> L-theanine preserved through reduced sunlight conversion.<br><br>
+<strong>Impact:</strong> Produces smooth, savory depth valued in ceremonial grade matcha.
+</div>
 </div>
 
-<div class="label bitterness">
-<strong>Bitterness</strong><br>
-Catechin concentration increases with sunlight exposure.
+<!-- BITTERNESS -->
+<div class="dot bitterness-dot"></div>
+<div class="line bitterness-line"></div>
+<div class="label bitterness-label">
+Bitterness
+<div class="tooltip">
+<strong>Mechanism:</strong> Catechin concentration increases with sunlight and maturity.<br><br>
+<strong>Impact:</strong> Higher bitterness often indicates lower ceremonial quality.
+</div>
 </div>
 
-<div class="label texture">
-<strong>Texture</strong><br>
-Stone grinding creates ultra-fine particles (~10µm).
+<!-- TEXTURE -->
+<div class="dot texture-dot"></div>
+<div class="line texture-line"></div>
+<div class="label texture-label">
+Texture
+<div class="tooltip">
+<strong>Mechanism:</strong> Stone grinding reduces particles to ~10µm.<br><br>
+<strong>Impact:</strong> Fine suspension produces smooth, creamy mouthfeel.
+</div>
 </div>
 
-<div class="label aroma">
-<strong>Aroma</strong><br>
-Volatile compounds preserved through fresh milling.
+<!-- AROMA -->
+<div class="dot aroma-dot"></div>
+<div class="line aroma-line"></div>
+<div class="label aroma-label">
+Aroma
+<div class="tooltip">
+<strong>Mechanism:</strong> Preservation of volatile organic compounds.<br><br>
+<strong>Impact:</strong> Fresh milling enhances sweet, marine, grassy notes.
+</div>
 </div>
 
 </div>
