@@ -5,45 +5,50 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Before – Matcha Lifecycle</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 
 <style>
+
+/* ---------- PAGE ---------- */
 
 body{
 background:#f6f5f0;
 }
 
-/* Title */
+/* ---------- TITLE ---------- */
+
 h1{
 font-family:'Playfair Display', serif;
-font-size:44px;
+font-size:46px;
 font-weight:400;
 margin-bottom:15px;
 }
 
 .subtitle{
-max-width:720px;
-line-height:1.8;
+max-width:760px;
+line-height:1.85;
 color:#555;
-margin-bottom:90px;
+margin-bottom:100px;
 }
 
-/* Diagram */
+/* ---------- DIAGRAM ---------- */
+
 .diagram-wrapper{
 position:relative;
-width:820px;
-margin:100px auto;
+width:900px;
+margin:120px auto;
 }
 
+/* Premium soft halo */
 .diagram-wrapper::before{
 content:"";
 position:absolute;
-width:620px;
-height:620px;
-background:radial-gradient(circle, rgba(47,93,58,0.05), transparent 70%);
-top:80px;
-left:100px;
+width:640px;
+height:640px;
+background:radial-gradient(circle, rgba(47,93,58,0.04), transparent 70%);
+top:110px;
+left:130px;
 border-radius:50%;
 z-index:-1;
 }
@@ -52,36 +57,38 @@ z-index:-1;
 .leaf{
 width:100%;
 display:block;
-filter:saturate(80%) contrast(95%);
+filter:saturate(78%) contrast(96%);
 }
 
-/* Hotspot */
+/* ---------- HOTSPOTS ---------- */
+
 .hotspot{
 position:absolute;
-width:18px;
-height:18px;
+width:16px;
+height:16px;
 border-radius:50%;
 background:#2f5d3a;
 cursor:pointer;
 transition:opacity .3s ease;
-animation:pulse 2.5s infinite;
+animation:pulse 2.8s infinite;
 }
 
 @keyframes pulse{
-0%{ box-shadow:0 0 0 0 rgba(47,93,58,0.4); }
-70%{ box-shadow:0 0 0 15px rgba(47,93,58,0); }
+0%{ box-shadow:0 0 0 0 rgba(47,93,58,0.35); }
+70%{ box-shadow:0 0 0 18px rgba(47,93,58,0); }
 100%{ box-shadow:0 0 0 0 rgba(47,93,58,0); }
 }
 
-/* Info panel */
+/* ---------- INFO PANEL ---------- */
+
 .info{
 position:absolute;
-width:300px;
+width:280px;
 font-size:14px;
 line-height:1.75;
 background:white;
 padding:22px;
-box-shadow:0 15px 35px rgba(0,0,0,0.08);
+box-shadow:0 18px 40px rgba(0,0,0,0.08);
 opacity:0;
 transition:opacity .3s ease;
 pointer-events:none;
@@ -123,107 +130,105 @@ opacity:1;
 <h1>Matcha Lifecycle System</h1>
 
 <p class="subtitle">
-A systems-level map of ceremonial-grade matcha — integrating genetics, soil ecology, harvest timing, processing, storage, and preparation into a single agricultural continuum.
-Hover over each point to explore how individual variables interact to shape final sensory expression.
+A systems-level model of ceremonial matcha — integrating cultivar genetics, soil ecology, harvest timing, shading strategy, processing precision, preservation management, preparation variables, and final sensory expression.
 </p>
 
 <div class="diagram-wrapper">
 
 <img src="matcha-leaf.png" class="leaf" alt="Matcha leaf">
 
-<!-- CULTIVAR -->
-<div class="hotspot-container" style="top:110px; left:200px; position:absolute;">
+<!-- ================= AGRICULTURE ================= -->
+
+<!-- Cultivar -->
+<div class="hotspot-container" style="top:130px; left:170px; position:absolute;">
 <div class="hotspot"></div>
-<div class="info" style="top:-150px; left:-280px;">
+<div class="info" style="top:-160px; left:-260px;">
 <strong>Cultivar (品種)</strong>
-Genetic lineage determines biochemical potential.<br><br>
-Varieties such as Yabukita, Okumidori, and Samidori differ in amino acid density, chlorophyll concentration, and shade tolerance. Genetic selection defines the ceiling of sweetness, aroma complexity, and bitterness balance before cultivation even begins.
+Genetic lineage determines amino acid potential and bitterness balance.<br><br>
+Varieties such as Samidori and Okumidori exhibit higher shade tolerance and deeper chlorophyll expression, shaping flavor long before harvest.
 </div>
 </div>
 
-<!-- SOIL -->
-<div class="hotspot-container" style="top:180px; left:130px; position:absolute;">
+<!-- Soil -->
+<div class="hotspot-container" style="top:230px; left:110px; position:absolute;">
 <div class="hotspot"></div>
 <div class="info" style="top:-40px; left:-300px;">
 <strong>Soil Composition (土壌)</strong>
-Mineral density and nitrogen availability shape leaf chemistry.<br><br>
-Balanced soil microbiomes influence amino acid synthesis and stress response. Regions such as Uji are prized for mineral-rich volcanic soils that contribute structural smoothness and depth.
+Mineral density and nitrogen availability regulate leaf chemistry.<br><br>
+Healthy soil microbiomes support amino acid synthesis and influence structural smoothness in the final cup.
 </div>
 </div>
 
-<!-- HARVEST TIMING -->
-<div class="hotspot-container" style="top:260px; left:240px; position:absolute;">
+<!-- Harvest Timing -->
+<div class="hotspot-container" style="top:330px; left:190px; position:absolute;">
 <div class="hotspot"></div>
-<div class="info" style="top:40px; left:-300px;">
-<strong>Harvest Timing (一番茶)</strong>
-Early spring harvest maximizes sweetness.<br><br>
-First flush leaves contain higher L-theanine and lower fiber content. Later harvests increase catechins and cellulose, producing stronger bitterness and coarser texture.
+<div class="info" style="top:60px; left:-280px;">
+<strong>First Flush (一番茶)</strong>
+Early spring harvest maximizes sweetness and softness.<br><br>
+Higher L-theanine and lower fiber density define ceremonial-grade tencha.
 </div>
 </div>
 
-<!-- SHADING -->
-<div class="hotspot-container" style="top:150px; left:360px; position:absolute;">
+<!-- Shading -->
+<div class="hotspot-container" style="top:170px; left:360px; position:absolute;">
 <div class="hotspot"></div>
-<div class="info" style="top:-170px; left:-20px;">
+<div class="info" style="top:-170px; left:-40px;">
 <strong>Shading Strategy (覆下栽培)</strong>
-Controlled light exposure preserves chlorophyll and amino acids.<br><br>
-Three to four weeks of shading reduces photosynthetic stress, limiting catechin formation and intensifying umami concentration. Shading technique alters microclimate stress patterns.
+Three to four weeks of shading preserves chlorophyll and umami.<br><br>
+Reduced sunlight limits catechin conversion and intensifies depth.
 </div>
 </div>
 
-<!-- PROCESSING -->
-<div class="hotspot-container" style="top:340px; left:360px; position:absolute;">
+<!-- ================= PROCESSING ================= -->
+
+<div class="hotspot-container" style="top:440px; left:360px; position:absolute;">
 <div class="hotspot"></div>
-<div class="info" style="top:60px; left:30px;">
-<strong>Steaming & Drying</strong>
-Immediate steaming prevents enzymatic oxidation.<br><br>
-Heat treatment stabilizes chlorophyll and halts browning reactions. Leaves are dried and deveined to produce tencha before grinding.
+<div class="info" style="top:80px; left:-60px;">
+<strong>製茶工程 (Processing)</strong>
+Steaming (蒸し) halts oxidation; drying (乾燥) stabilizes chlorophyll before milling into tencha.
 </div>
 </div>
 
-<!-- MILLING -->
-<div class="hotspot-container" style="top:420px; left:480px; position:absolute;">
+<div class="hotspot-container" style="top:480px; left:520px; position:absolute;">
 <div class="hotspot"></div>
-<div class="info" style="top:40px; left:70px;">
-<strong>Stone Milling (石臼挽き)</strong>
-Particle size determines mouthfeel.<br><br>
-Granite mills produce powder averaging 5–10 microns while minimizing heat. This ultra-fine structure creates the creamy suspension characteristic of ceremonial matcha.
+<div class="info" style="top:80px; left:40px;">
+<strong>石臼挽き (Stone Milling)</strong>
+Granite mills reduce particles to 5–10 microns, defining texture and suspension quality.
 </div>
 </div>
 
-<!-- STORAGE -->
-<div class="hotspot-container" style="top:210px; left:540px; position:absolute;">
+<!-- ================= PRESERVATION ================= -->
+
+<div class="hotspot-container" style="top:210px; left:580px; position:absolute;">
 <div class="hotspot"></div>
-<div class="info" style="top:-20px; left:80px;">
-<strong>Storage Stability</strong>
-Oxidation degrades color and aroma.<br><br>
-Exposure to oxygen, light, and humidity dulls chlorophyll vibrancy and diminishes volatile aromatic compounds. Refrigerated, airtight storage preserves complexity.
+<div class="info" style="top:-30px; left:90px;">
+<strong>鮮度管理 (Freshness Management)</strong>
+Oxygen, humidity, and light degrade aroma and color. Cold, airtight storage preserves vibrancy.
 </div>
 </div>
 
-<!-- WATER QUALITY -->
-<div class="hotspot-container" style="top:300px; left:620px; position:absolute;">
+<!-- ================= PREPARATION ================= -->
+
+<div class="hotspot-container" style="top:330px; left:640px; position:absolute;">
 <div class="hotspot"></div>
-<div class="info" style="top:20px; left:90px;">
-<strong>Water Quality</strong>
-Mineral content alters flavor perception.<br><br>
-Soft water enhances sweetness and foam stability, while hard water amplifies bitterness and suppresses aromatic clarity. Temperature control (70–80°C) prevents excessive astringency.
+<div class="info" style="top:20px; left:100px;">
+<strong>湯質 (Water Character)</strong>
+Mineral composition and temperature (70–80°C) influence sweetness, foam stability, and perceived bitterness.
 </div>
 </div>
 
-<!-- SENSORY INTEGRATION -->
-<div class="hotspot-container" style="top:270px; left:400px; position:absolute;">
+<!-- ================= SENSORY CORE ================= -->
+
+<div class="hotspot-container" style="top:260px; left:400px; position:absolute;">
 <div class="hotspot"></div>
-<div class="info" style="top:-10px; left:-150px;">
-<strong>Sensory Integration</strong>
-All variables converge in final perception.<br><br>
-Matcha quality emerges from system-level balance. Genetics, soil, harvest timing, processing precision, storage integrity, and preparation technique collectively determine color, aroma, texture, and umami harmony.
+<div class="info" style="top:-140px; left:-120px;">
+<strong>色 • 旨味 • 香り • 渋み • 質感</strong>
+Color, Umami, Aroma, Bitterness, Texture<br><br>
+The convergence of agricultural precision, processing control, and preparation technique defines ceremonial harmony.
 </div>
 </div>
 
 </div>
-
 </div>
-
 </body>
 </html>
