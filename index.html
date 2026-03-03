@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matcha Anatomy – Before</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: "Georgia", serif;
+        background-color: #f5f4ef;
+        color: #1e1e1e;
+        line-height: 1.7;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 100px auto;
+        padding: 0 20px;
+    }
+
+    h1 {
+        font-weight: normal;
+        font-size: 42px;
+        margin-bottom: 10px;
+    }
+
+    .subtitle {
+        color: #5a6b5d;
+        font-size: 16px;
+        margin-bottom: 60px;
+    }
+
+    .diagram {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .trait {
+        border-left: 2px solid #2f5d3a;
+        padding-left: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .trait h3 {
+        margin: 0;
+        font-weight: normal;
+        font-size: 20px;
+    }
+
+    .details {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+        font-size: 15px;
+        color: #333;
+    }
+
+    .trait.active .details {
+        max-height: 500px;
+        margin-top: 10px;
+    }
+
+    .footer {
+        margin-top: 80px;
+        font-size: 14px;
+        color: #777;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Matcha Anatomy</h1>
+    <div class="subtitle">
+        An exploration of production variables, biological mechanisms, and sensory quality.
+        Click each trait to reveal its underlying structure.
+    </div>
+
+    <div class="diagram">
+
+        <div class="trait" onclick="toggle(this)">
+            <h3>Color</h3>
+            <div class="details">
+                <p><strong>Production Variable:</strong> 3–4 weeks shading before harvest</p>
+                <p><strong>Biological Mechanism:</strong> Increased chlorophyll production in low-light environments</p>
+                <p><strong>Result:</strong> Vivid emerald green, indicating minimal oxidation and careful steaming</p>
+                <p><strong>Quality Interpretation:</strong> Bright color signals high amino acid retention and ceremonial-grade cultivation.</p>
+            </div>
+        </div>
+
+        <div class="trait" onclick="toggle(this)">
+            <h3>Umami</h3>
+            <div class="details">
+                <p><strong>Production Variable:</strong> Shade-growing + early harvest</p>
+                <p><strong>Chemical Mechanism:</strong> Retention of L-theanine due to reduced sunlight conversion into catechins</p>
+                <p><strong>Result:</strong> Smooth, savory sweetness</p>
+                <p><strong>Quality Interpretation:</strong> High theanine content is central to ceremonial balance and depth.</p>
+            </div>
+        </div>
+
+        <div class="trait" onclick="toggle(this)">
+            <h3>Bitterness</h3>
+            <div class="details">
+                <p><strong>Production Variable:</strong> Sunlight exposure + leaf maturity</p>
+                <p><strong>Chemical Mechanism:</strong> Increased catechin concentration</p>
+                <p><strong>Result:</strong> Astringency and drying sensation</p>
+                <p><strong>Quality Interpretation:</strong> Excess bitterness suggests lower shading or later harvest.</p>
+            </div>
+        </div>
+
+        <div class="trait" onclick="toggle(this)">
+            <h3>Texture</h3>
+            <div class="details">
+                <p><strong>Production Variable:</strong> Stone grinding speed and method</p>
+                <p><strong>Physical Mechanism:</strong> Particle size reduced to ~5–10 microns</p>
+                <p><strong>Result:</strong> Smooth suspension in water</p>
+                <p><strong>Quality Interpretation:</strong> Ultra-fine powder enhances mouthfeel and ceremonial foam.</p>
+            </div>
+        </div>
+
+        <div class="trait" onclick="toggle(this)">
+            <h3>Aroma</h3>
+            <div class="details">
+                <p><strong>Production Variable:</strong> Fresh milling + oxygen protection</p>
+                <p><strong>Chemical Mechanism:</strong> Preservation of volatile organic compounds</p>
+                <p><strong>Result:</strong> Sweet, grassy, marine notes</p>
+                <p><strong>Quality Interpretation:</strong> Freshness strongly influences perceived sophistication.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        This diagram represents my foundational research before experiential learning.
+        Future stages will test and refine these assumptions.
+    </div>
+
+</div>
+
+<script>
+function toggle(element) {
+    element.classList.toggle("active");
+}
+</script>
+
+</body>
+</html>
