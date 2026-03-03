@@ -13,7 +13,6 @@
 
 body{
 margin:0;
-height:300vh;
 background:#f6f5f0;
 font-family:'Noto Serif JP', serif;
 color:#1c1c1c;
@@ -23,15 +22,14 @@ overflow-x:hidden;
 /* ---------------- NAV ---------------- */
 
 .navbar{
-position:fixed;
-top:0;
-width:100%;
 display:flex;
 justify-content:space-between;
 align-items:center;
 padding:25px 60px;
 background:white;
 box-shadow:0 3px 15px rgba(0,0,0,0.05);
+position:sticky;
+top:0;
 z-index:100;
 }
 
@@ -43,45 +41,50 @@ font-size:14px;
 letter-spacing:.5px;
 }
 
-/* ---------------- TITLE ---------------- */
+/* ---------------- HEADER ---------------- */
 
 .header{
-position:fixed;
-top:120px;
-width:100%;
+max-width:900px;
+margin:140px auto 100px auto;
 text-align:center;
-z-index:50;
+padding:0 40px;
 }
 
 h1{
 font-family:'Playfair Display', serif;
 font-size:44px;
 font-weight:400;
-margin-bottom:10px;
+margin-bottom:20px;
 }
 
 .subtitle{
-max-width:700px;
-margin:0 auto;
 line-height:1.8;
 color:#555;
 }
 
-/* ---------------- DIAGRAM ---------------- */
+/* ---------------- SCROLL SECTION ---------------- */
+
+.scroll-section{
+height:320vh;
+position:relative;
+}
 
 .diagram-wrapper{
-position:fixed;
+position:sticky;
 top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-width:900px;
+transform:translateY(-50%);
 height:900px;
+display:flex;
+align-items:center;
+justify-content:center;
 }
+
+/* ---------------- DIAGRAM ---------------- */
 
 .system-diagram{
 position:relative;
-width:100%;
-height:100%;
+width:900px;
+height:900px;
 transition:.6s ease;
 }
 
@@ -107,7 +110,7 @@ transition:.6s ease;
 .focus-middle .middle,
 .focus-inner .inner{
 border-color:#2f5d3a;
-box-shadow:0 0 25px rgba(47,93,58,0.15);
+box-shadow:0 0 30px rgba(47,93,58,0.15);
 }
 
 .focus-outer .middle,
@@ -199,10 +202,12 @@ opacity:1;
 <div class="header">
 <h1>The Matcha Lifecycle System</h1>
 <p class="subtitle">
-Scroll to move through biological foundations, craft transformation, and sensory expression.
-The diagram remains fixed while influence layers are emphasized.
+Biological potential defines possibility. Craft refines it. Sensory perception reveals it.
+Scroll to move through each nested layer of influence.
 </p>
 </div>
+
+<div class="scroll-section" id="scroll-section">
 
 <div class="diagram-wrapper">
 <div class="system-diagram focus-outer" id="diagram">
@@ -213,151 +218,153 @@ The diagram remains fixed while influence layers are emphasized.
 
 <img src="matcha-bowl.png" alt="Matcha Bowl">
 
-<!-- OUTER RING -->
+<!-- ================= BIOLOGICAL ================= -->
 
 <div class="hotspot-container" style="top:70px; left:430px;">
 <div class="hotspot"></div>
-<div class="info" style="top:-180px; left:-140px;">
+<div class="info" style="top:-190px; left:-140px;">
 <strong>Cultivar (品種)</strong>
-Genetic lineage regulates L-theanine synthesis, chlorophyll accumulation, and catechin expression.
-Shade-adapted cultivars maintain higher amino acid retention, producing enhanced sweetness,
-greater umami depth, and reduced harsh phenolic bitterness.
+Genetic lineage regulates chlorophyll density, amino acid synthesis, and catechin balance.
+Shade-adapted cultivars retain elevated L-theanine levels,
+producing enhanced sweetness and refined bitterness structure.
 </div>
 </div>
 
 <div class="hotspot-container" style="top:230px; left:130px;">
 <div class="hotspot"></div>
-<div class="info" style="top:-40px; left:-280px;">
+<div class="info" style="top:-40px; left:-300px;">
 <strong>Soil Composition (土壌)</strong>
-Nitrogen availability directly increases amino acid production within the leaf.
-Balanced mineral ecosystems improve root absorption efficiency,
-resulting in structural complexity and greater sweetness persistence in the cup.
+Nitrogen availability increases amino acid production within leaf tissue.
+Balanced mineral ecosystems improve nutrient uptake efficiency,
+resulting in structural complexity and longer sweetness persistence.
 </div>
 </div>
 
 <div class="hotspot-container" style="top:650px; left:160px;">
 <div class="hotspot"></div>
-<div class="info" style="top:40px; left:-280px;">
+<div class="info" style="top:40px; left:-300px;">
 <strong>Harvest Timing (一番茶)</strong>
-First flush leaves exhibit maximal L-theanine and minimal cellulose fiber.
-Early harvesting preserves tenderness and vibrancy,
+First flush leaves exhibit maximal L-theanine concentration and minimal cellulose fiber.
+Early harvesting preserves tenderness,
 leading to smoother texture and diminished astringency.
 </div>
 </div>
 
 <div class="hotspot-container" style="top:230px; left:730px;">
 <div class="hotspot"></div>
-<div class="info" style="top:-40px; left:100px;">
+<div class="info" style="top:-40px; left:120px;">
 <strong>Shading Strategy (覆下栽培)</strong>
 Pre-harvest shading suppresses photosynthesis,
 preventing conversion of L-theanine into catechins.
-This preserves chlorophyll density and amplifies umami concentration.
+This deepens umami while maintaining vivid jade coloration.
 </div>
 </div>
 
-<!-- MIDDLE RING -->
+<!-- ================= CRAFT ================= -->
 
 <div class="hotspot-container" style="top:190px; left:430px;">
 <div class="hotspot"></div>
-<div class="info" style="top:-160px; left:-140px;">
+<div class="info" style="top:-170px; left:-140px;">
 <strong>Processing (製茶工程)</strong>
-Steaming denatures oxidative enzymes immediately after harvest.
-This prevents polyphenol oxidation,
-preserving vibrant color and preventing bitterness escalation.
+Immediate steaming denatures oxidative enzymes,
+preserving chlorophyll integrity and preventing bitterness escalation.
 </div>
 </div>
 
 <div class="hotspot-container" style="top:430px; left:770px;">
 <div class="hotspot"></div>
-<div class="info" style="top:-40px; left:110px;">
+<div class="info" style="top:-40px; left:120px;">
 <strong>Stone Milling (石臼挽き)</strong>
-Granite milling at low rotational speed prevents thermal degradation.
-Maintaining low heat preserves aromatic compounds and structural integrity.
+Granite milling at slow rotational speed prevents thermal degradation.
+Maintaining low heat preserves aromatic compounds and structural delicacy.
 </div>
 </div>
 
 <div class="hotspot-container" style="top:730px; left:430px;">
 <div class="hotspot"></div>
-<div class="info" style="top:70px; left:-140px;">
+<div class="info" style="top:80px; left:-140px;">
 <strong>Freshness Management (鮮度管理)</strong>
-Oxygen exposure oxidizes chlorophyll and volatile aromatics.
+Oxygen oxidizes chlorophyll and volatile aromatics.
 Cold storage slows degradation,
-preserving sweetness clarity and color brightness.
+preserving sweetness clarity and vibrant color.
 </div>
 </div>
 
 <div class="hotspot-container" style="top:430px; left:110px;">
 <div class="hotspot"></div>
-<div class="info" style="top:-40px; left:-280px;">
+<div class="info" style="top:-40px; left:-300px;">
 <strong>Water Character (湯質)</strong>
 Mineral hardness interacts with catechins and amino acids.
 Soft water enhances sweetness perception,
-while hard water increases astringency and structural sharpness.
+while hard water increases structural sharpness.
 </div>
 </div>
 
-<!-- INNER RING -->
+<!-- ================= SENSORY ================= -->
 
 <div class="hotspot-container" style="top:320px; left:430px;">
 <div class="hotspot"></div>
-<div class="info" style="top:-140px; left:-140px;">
+<div class="info" style="top:-150px; left:-140px;">
 <strong>Color (色)</strong>
-Chlorophyll concentration determines vibrancy.
-High-quality matcha displays deep jade coloration,
+High chlorophyll concentration produces deep jade vibrancy,
 indicating preserved leaf integrity.
 </div>
 </div>
 
 <div class="hotspot-container" style="top:430px; left:570px;">
 <div class="hotspot"></div>
-<div class="info" style="top:-40px; left:110px;">
+<div class="info" style="top:-40px; left:120px;">
 <strong>Aroma (香り)</strong>
-Volatile grassy aldehydes and marine-like notes define freshness.
+Volatile grassy aldehydes define freshness and marine-like sweetness.
 These compounds diminish rapidly with oxidation.
 </div>
 </div>
 
 <div class="hotspot-container" style="top:570px; left:430px;">
 <div class="hotspot"></div>
-<div class="info" style="top:70px; left:-140px;">
+<div class="info" style="top:80px; left:-140px;">
 <strong>Umami (旨味)</strong>
-L-theanine concentration stimulates glutamate receptors,
-creating depth and lingering sweetness.
+L-theanine stimulates glutamate receptors,
+creating depth and lingering sweetness without harshness.
 </div>
 </div>
 
 <div class="hotspot-container" style="top:430px; left:290px;">
 <div class="hotspot"></div>
-<div class="info" style="top:-40px; left:-280px;">
+<div class="info" style="top:-40px; left:-300px;">
 <strong>Bitterness (渋み)</strong>
-Catechin density determines structural tension.
-Balanced shading and harvest timing moderate harsh phenolic expression.
+Catechin concentration determines structural tension.
+Balanced shading and harvest timing moderate phenolic intensity.
 </div>
 </div>
 
 <div class="hotspot-container" style="top:250px; left:570px;">
 <div class="hotspot"></div>
-<div class="info" style="top:-160px; left:110px;">
+<div class="info" style="top:-170px; left:120px;">
 <strong>Texture (質感)</strong>
-Ultra-fine 5–10 micron particles form a stable colloidal suspension.
+Ultra-fine 5–10 micron particles create a stable colloidal suspension.
 Proper whisking generates microfoam,
-enhancing viscosity and perceived creaminess.
+enhancing viscosity and ceremonial creaminess.
 </div>
 </div>
 
+</div>
 </div>
 </div>
 
 <script>
 const diagram = document.getElementById("diagram");
+const section = document.getElementById("scroll-section");
 
 window.addEventListener("scroll", () => {
-const scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+const rect = section.getBoundingClientRect();
+const total = section.offsetHeight - window.innerHeight;
+const progress = Math.min(Math.max(-rect.top / total, 0), 1);
 
-if(scrollPercent < 0.33){
+if(progress < 0.33){
 diagram.className = "system-diagram focus-outer";
 }
-else if(scrollPercent < 0.66){
+else if(progress < 0.66){
 diagram.className = "system-diagram focus-middle";
 }
 else{
