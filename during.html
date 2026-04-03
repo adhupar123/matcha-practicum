@@ -11,41 +11,40 @@
 
 .timeline{
 position:relative;
-max-width:800px;
+max-width:850px;
 margin:100px auto;
 padding-left:40px;
 border-left:2px solid #dcdcdc;
 }
 
-/* Each entry */
-
 .entry{
 position:relative;
-margin-bottom:80px;
+margin-bottom:90px;
 }
-
-/* Dot */
 
 .entry::before{
 content:"";
 position:absolute;
 left:-49px;
-top:5px;
+top:6px;
 width:14px;
 height:14px;
 background:#2f5d3a;
 border-radius:50%;
 }
 
-/* Title */
+.phase{
+font-size:12px;
+letter-spacing:2px;
+color:#2f5d3a;
+margin-bottom:10px;
+}
 
 .entry h3{
 margin:0 0 10px 0;
-font-size:20px;
+font-size:22px;
 font-weight:400;
 }
-
-/* Meta labels */
 
 .meta{
 font-size:12px;
@@ -53,16 +52,6 @@ letter-spacing:1px;
 color:#777;
 margin-bottom:12px;
 }
-
-/* Content */
-
-.entry p{
-margin:0;
-line-height:1.7;
-color:#444;
-}
-
-/* Section tags */
 
 .tag{
 display:inline-block;
@@ -74,11 +63,15 @@ border-radius:4px;
 color:#555;
 }
 
-/* Subtle hover effect */
+.entry p{
+margin:0;
+line-height:1.8;
+color:#444;
+}
 
 .entry:hover{
 transform:translateX(6px);
-transition:all .2s ease;
+transition:.2s ease;
 }
 
 </style>
@@ -101,78 +94,134 @@ transition:all .2s ease;
 <h1>During</h1>
 
 <p class="intro">
-This phase captures how matcha quality shifted from abstract knowledge to lived experience. Through tastings, preparation, and observation, each moment contributed to a deeper understanding of how quality is constructed, perceived, and refined over time.
+This phase traces the full lifecycle of matcha from cultivation to consumption. Through direct experience and observation, this timeline connects biological processes, production techniques, and cultural practices to evolving perceptions of quality.
 </p>
 
 </div>
-
-<!-- TIMELINE -->
 
 <div class="timeline">
 
+<!-- CULTIVATION -->
+
 <div class="entry">
-<h3>Initial Comparative Tasting</h3>
+<div class="phase">Cultivation Foundations</div>
+<h3>Soil Preparation and Cultivar Selection</h3>
 <div class="meta">
-<span class="tag">Observation</span>
-<span class="tag">Analysis</span>
+<span class="tag">Biology</span>
+<span class="tag">Foundation</span>
 </div>
 <p>
-Tasting multiple matcha side by side immediately revealed differences in bitterness, color, and aroma. What previously felt like abstract grading categories became sensory distinctions that could be directly experienced.
+Matcha quality begins at the agricultural level. Soil composition rich in nitrogen supports amino acid synthesis, particularly L-theanine. Cultivar selection determines genetic potential for sweetness, bitterness, and color. Shade tolerant cultivars are specifically chosen for their ability to retain chlorophyll and amino acids under reduced light conditions.
 </p>
 </div>
 
 <div class="entry">
-<h3>Recognizing Variation Within Grades</h3>
+<h3>Growth and Leaf Development</h3>
 <div class="meta">
+<span class="tag">Biology</span>
 <span class="tag">Observation</span>
-<span class="tag">Insight</span>
 </div>
 <p>
-Even within similar grades, noticeable variation emerged. This suggested that matcha quality exists on a spectrum rather than within rigid classifications, complicating my initial assumptions.
+As tea plants grow, photosynthesis regulates the balance between amino acids and catechins. Exposure to sunlight increases catechin production, contributing to bitterness. Observing this relationship reframed quality as something biologically dynamic rather than fixed.
+</p>
+</div>
+
+<!-- SHADING -->
+
+<div class="entry">
+<div class="phase">Pre Harvest Shading</div>
+<h3>Shading Process (覆下栽培)</h3>
+<div class="meta">
+<span class="tag">Technique</span>
+<span class="tag">Chemistry</span>
+</div>
+<p>
+Tea plants are shaded for several weeks before harvest, reducing photosynthesis. This prevents the conversion of L-theanine into catechins, preserving umami and sweetness. Chlorophyll production increases, deepening the vibrant green color associated with high grade matcha.
+</p>
+</div>
+
+<!-- HARVEST -->
+
+<div class="entry">
+<div class="phase">Harvest and Processing</div>
+<h3>First Flush Harvest (一番茶)</h3>
+<div class="meta">
+<span class="tag">Quality</span>
+<span class="tag">Observation</span>
+</div>
+<p>
+The first harvest yields the youngest, most nutrient dense leaves. These leaves contain higher concentrations of amino acids and lower fiber content, resulting in smoother texture and reduced astringency. Experiencing high quality matcha highlighted how critical timing is to overall quality.
 </p>
 </div>
 
 <div class="entry">
-<h3>Experimenting with Whisking Technique</h3>
+<h3>Steaming and Drying</h3>
 <div class="meta">
-<span class="tag">Action</span>
+<span class="tag">Processing</span>
+<span class="tag">Chemistry</span>
+</div>
+<p>
+Leaves are immediately steamed after harvest to halt enzymatic oxidation. This preserves chlorophyll and prevents browning. Drying stabilizes the leaf for storage while maintaining volatile aroma compounds. These steps protect the chemical integrity established during cultivation.
+</p>
+</div>
+
+<div class="entry">
+<h3>Tencha Refinement</h3>
+<div class="meta">
+<span class="tag">Processing</span>
+</div>
+<p>
+After drying, stems and veins are removed, leaving only soft leaf material known as tencha. This refinement reduces bitterness and improves texture, preparing the material for grinding into matcha.
+</p>
+</div>
+
+<!-- GRINDING -->
+
+<div class="entry">
+<div class="phase">Grinding and Preparation</div>
+<h3>Stone Grinding (石臼挽き)</h3>
+<div class="meta">
+<span class="tag">Technique</span>
 <span class="tag">Application</span>
 </div>
 <p>
-Adjusting whisk speed, rhythm, and wrist motion altered foam structure and mouthfeel. This demonstrated that preparation is not neutral, but actively shapes the final expression of quality.
+Tencha is ground using granite stone mills at very low speeds to prevent heat buildup. This produces ultra fine particles around 5 to 10 microns, allowing matcha to suspend evenly in water and create a smooth mouthfeel.
 </p>
 </div>
 
 <div class="entry">
-<h3>Testing Water Temperature</h3>
+<h3>Water and Whisking Variables</h3>
 <div class="meta">
-<span class="tag">Action</span>
-<span class="tag">Analysis</span>
+<span class="tag">Application</span>
+<span class="tag">Experiment</span>
 </div>
 <p>
-Lower water temperatures enhanced sweetness and reduced bitterness, while higher temperatures intensified astringency. This revealed how extraction conditions influence chemical perception.
+Through hands on preparation, changes in water temperature and whisking technique significantly altered flavor and texture. Lower temperatures enhanced sweetness, while whisking influenced foam stability and perceived creaminess.
 </p>
 </div>
 
+<!-- CEREMONY -->
+
 <div class="entry">
+<div class="phase">Tea Ceremony and Consumption</div>
 <h3>Tea Ceremony Experience</h3>
 <div class="meta">
+<span class="tag">Culture</span>
 <span class="tag">Observation</span>
-<span class="tag">Cultural Insight</span>
 </div>
 <p>
-Participating in a formal tea ceremony reframed matcha quality as something inseparable from ritual, intention, and environment. The experience emphasized harmony and presence over isolated sensory traits.
+The tea ceremony emphasized intentionality, precision, and presence. Quality extended beyond taste to include ritual, environment, and interaction. This introduced a cultural dimension that cannot be replicated through production knowledge alone.
 </p>
 </div>
 
 <div class="entry">
-<h3>Shift in Understanding of Quality</h3>
+<h3>Shift in Perception of Quality</h3>
 <div class="meta">
 <span class="tag">Evaluation</span>
 <span class="tag">Synthesis</span>
 </div>
 <p>
-Quality became less about measurable attributes and more about balance, context, and experience. This marked a shift from a technical definition of quality to a more holistic and culturally embedded understanding.
+Quality became a balance between biological potential, technical execution, and experiential context. Rather than being a fixed property, matcha quality emerged as something constructed through interaction between material, preparation, and perception.
 </p>
 </div>
 
