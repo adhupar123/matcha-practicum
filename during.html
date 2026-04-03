@@ -7,137 +7,78 @@
 
 <style>
 
-/* ---------------- DIAGRAM SECTION ---------------- */
+/* ---------------- TIMELINE ---------------- */
 
-.diagram-section{
-height:260vh;
+.timeline{
 position:relative;
-margin-top:140px;
+max-width:800px;
+margin:100px auto;
+padding-left:40px;
+border-left:2px solid #dcdcdc;
 }
 
-.diagram-wrapper{
-position:sticky;
-top:calc(50vh + 70px);
-transform:translateY(-50%);
-height:700px;
-display:flex;
-justify-content:center;
-}
+/* Each entry */
 
-/* ---------------- DIAGRAM ---------------- */
-
-.system-diagram{
+.entry{
 position:relative;
-width:700px;
-height:700px;
-transition:.6s ease;
+margin-bottom:80px;
 }
 
-/* Rings */
+/* Dot */
 
-.ring{
+.entry::before{
+content:"";
 position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-border-radius:50%;
-border:1px solid rgba(47,93,58,0.08);
-transition:.6s ease;
-}
-
-.outer{ width:660px; height:660px; }
-.middle{ width:460px; height:460px; }
-.inner{ width:300px; height:300px; }
-
-/* Emphasis */
-
-.focus-outer .outer,
-.focus-middle .middle,
-.focus-inner .inner{
-border-color:#2f5d3a;
-box-shadow:0 0 30px rgba(47,93,58,0.15);
-}
-
-.focus-outer .middle,
-.focus-outer .inner,
-.focus-middle .outer,
-.focus-middle .inner,
-.focus-inner .outer,
-.focus-inner .middle{
-opacity:.25;
-}
-
-/* Labels */
-
-.ring-label{
-position:absolute;
-left:50%;
-transform:translateX(-50%);
-font-size:12px;
-letter-spacing:2px;
-color:#2f5d3a;
-opacity:0;
-transition:.4s ease;
-}
-
-.label-outer{ top:25px; }
-.label-middle{ top:50px; }
-.label-inner{ top:75px; }
-
-.focus-outer .label-outer{ opacity:1; }
-.focus-middle .label-middle{ opacity:1; }
-.focus-inner .label-inner{ opacity:1; }
-
-/* Center image */
-
-.system-diagram img{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-width:200px;
-opacity:0.9;
-}
-
-/* ---------------- HOTSPOTS ---------------- */
-
-.hotspot-container{
-position:absolute;
-z-index:20;
-}
-
-.hotspot{
-width:12px;
-height:12px;
-border-radius:50%;
+left:-49px;
+top:5px;
+width:14px;
+height:14px;
 background:#2f5d3a;
-cursor:pointer;
-animation:pulse 2.5s infinite;
+border-radius:50%;
 }
 
-@keyframes pulse{
-0%{ box-shadow:0 0 0 0 rgba(47,93,58,0.35); }
-70%{ box-shadow:0 0 0 14px rgba(47,93,58,0); }
-100%{ box-shadow:0 0 0 0 rgba(47,93,58,0); }
+/* Title */
+
+.entry h3{
+margin:0 0 10px 0;
+font-size:20px;
+font-weight:400;
 }
 
-/* Info */
+/* Meta labels */
 
-.info{
-position:absolute;
-width:260px;
-background:white;
-padding:18px;
-box-shadow:0 20px 40px rgba(0,0,0,0.08);
-opacity:0;
-transition:.3s ease;
+.meta{
 font-size:12px;
-line-height:1.7;
-pointer-events:none;
+letter-spacing:1px;
+color:#777;
+margin-bottom:12px;
 }
 
-.hotspot:hover + .info{
-opacity:1;
+/* Content */
+
+.entry p{
+margin:0;
+line-height:1.7;
+color:#444;
+}
+
+/* Section tags */
+
+.tag{
+display:inline-block;
+font-size:11px;
+padding:4px 8px;
+margin-right:6px;
+border:1px solid #ccc;
+border-radius:4px;
+color:#555;
+}
+
+/* Subtle hover effect */
+
+.entry:hover{
+transform:translateX(6px);
+transition:all .2s ease;
 }
 
 </style>
@@ -160,112 +101,82 @@ opacity:1;
 <h1>During</h1>
 
 <p class="intro">
-This phase translates the matcha lifecycle system into lived experience. Through tasting, preparation, and observation, each layer reflects how interaction reshapes the perception of quality.
+This phase captures how matcha quality shifted from abstract knowledge to lived experience. Through tastings, preparation, and observation, each moment contributed to a deeper understanding of how quality is constructed, perceived, and refined over time.
 </p>
 
 </div>
 
-<!-- DIAGRAM -->
+<!-- TIMELINE -->
 
-<section class="diagram-section" id="scroll-section">
+<div class="timeline">
 
-<div class="diagram-wrapper">
-<div class="system-diagram focus-outer" id="diagram">
-
-<div class="ring-label label-outer">Encounter</div>
-<div class="ring-label label-middle">Application</div>
-<div class="ring-label label-inner">Perception</div>
-
-<div class="ring outer"></div>
-<div class="ring middle"></div>
-<div class="ring inner"></div>
-
-<img src="matcha-bowl.png">
-
-<!-- OUTER -->
-
-<div class="hotspot-container" style="top:80px; left:350px;">
-<div class="hotspot"></div>
-<div class="info" style="top:-180px; left:-120px;">
-<strong>Comparative Tasting</strong>
-Tasting multiple matcha side by side revealed differences in bitterness, aroma, and color,
-making grading distinctions more tangible.
+<div class="entry">
+<h3>Initial Comparative Tasting</h3>
+<div class="meta">
+<span class="tag">Observation</span>
+<span class="tag">Analysis</span>
 </div>
+<p>
+Tasting multiple matcha side by side immediately revealed differences in bitterness, color, and aroma. What previously felt like abstract grading categories became sensory distinctions that could be directly experienced.
+</p>
 </div>
 
-<div class="hotspot-container" style="top:550px; left:150px;">
-<div class="hotspot"></div>
-<div class="info" style="top:40px; left:-260px;">
-<strong>Variation Across Samples</strong>
-Even within similar grades, subtle differences emerged,
-suggesting that quality exists along a spectrum rather than fixed categories.
+<div class="entry">
+<h3>Recognizing Variation Within Grades</h3>
+<div class="meta">
+<span class="tag">Observation</span>
+<span class="tag">Insight</span>
 </div>
-</div>
-
-<!-- MIDDLE -->
-
-<div class="hotspot-container" style="top:200px; left:350px;">
-<div class="hotspot"></div>
-<div class="info" style="top:-150px; left:-120px;">
-<strong>Whisking Technique</strong>
-Adjusting whisking speed and motion changed foam structure and texture,
-demonstrating how preparation directly affects experience.
-</div>
+<p>
+Even within similar grades, noticeable variation emerged. This suggested that matcha quality exists on a spectrum rather than within rigid classifications, complicating my initial assumptions.
+</p>
 </div>
 
-<div class="hotspot-container" style="top:420px; left:520px;">
-<div class="hotspot"></div>
-<div class="info" style="top:-40px; left:120px;">
-<strong>Water Temperature</strong>
-Lower temperatures enhanced sweetness and reduced bitterness,
-revealing the importance of extraction control.
+<div class="entry">
+<h3>Experimenting with Whisking Technique</h3>
+<div class="meta">
+<span class="tag">Action</span>
+<span class="tag">Application</span>
 </div>
-</div>
-
-<!-- INNER -->
-
-<div class="hotspot-container" style="top:320px; left:350px;">
-<div class="hotspot"></div>
-<div class="info" style="top:-120px; left:-120px;">
-<strong>Redefining Quality</strong>
-Quality became less about fixed traits and more about balance, intention, and context.
-</div>
+<p>
+Adjusting whisk speed, rhythm, and wrist motion altered foam structure and mouthfeel. This demonstrated that preparation is not neutral, but actively shapes the final expression of quality.
+</p>
 </div>
 
-<div class="hotspot-container" style="top:400px; left:250px;">
-<div class="hotspot"></div>
-<div class="info" style="top:40px; left:-240px;">
-<strong>Role of Context</strong>
-The same matcha felt different depending on environment and preparation,
-suggesting quality is partially constructed through experience.
+<div class="entry">
+<h3>Testing Water Temperature</h3>
+<div class="meta">
+<span class="tag">Action</span>
+<span class="tag">Analysis</span>
 </div>
+<p>
+Lower water temperatures enhanced sweetness and reduced bitterness, while higher temperatures intensified astringency. This revealed how extraction conditions influence chemical perception.
+</p>
+</div>
+
+<div class="entry">
+<h3>Tea Ceremony Experience</h3>
+<div class="meta">
+<span class="tag">Observation</span>
+<span class="tag">Cultural Insight</span>
+</div>
+<p>
+Participating in a formal tea ceremony reframed matcha quality as something inseparable from ritual, intention, and environment. The experience emphasized harmony and presence over isolated sensory traits.
+</p>
+</div>
+
+<div class="entry">
+<h3>Shift in Understanding of Quality</h3>
+<div class="meta">
+<span class="tag">Evaluation</span>
+<span class="tag">Synthesis</span>
+</div>
+<p>
+Quality became less about measurable attributes and more about balance, context, and experience. This marked a shift from a technical definition of quality to a more holistic and culturally embedded understanding.
+</p>
 </div>
 
 </div>
-</div>
-
-</section>
-
-<script>
-const diagram = document.getElementById("diagram");
-const section = document.getElementById("scroll-section");
-
-window.addEventListener("scroll", () => {
-const rect = section.getBoundingClientRect();
-const total = section.offsetHeight - window.innerHeight;
-const progress = Math.min(Math.max(-rect.top / total, 0), 1);
-
-if(progress < 0.33){
-diagram.className = "system-diagram focus-outer";
-}
-else if(progress < 0.66){
-diagram.className = "system-diagram focus-middle";
-}
-else{
-diagram.className = "system-diagram focus-inner";
-}
-});
-</script>
 
 </body>
 </html>
