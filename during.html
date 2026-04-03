@@ -2,8 +2,145 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>After</title>
+<title>During</title>
 <link rel="stylesheet" href="styles.css">
+
+<style>
+
+/* ---------------- DIAGRAM SECTION ---------------- */
+
+.diagram-section{
+height:260vh;
+position:relative;
+margin-top:140px;
+}
+
+.diagram-wrapper{
+position:sticky;
+top:calc(50vh + 70px);
+transform:translateY(-50%);
+height:700px;
+display:flex;
+justify-content:center;
+}
+
+/* ---------------- DIAGRAM ---------------- */
+
+.system-diagram{
+position:relative;
+width:700px;
+height:700px;
+transition:.6s ease;
+}
+
+/* Rings */
+
+.ring{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+border-radius:50%;
+border:1px solid rgba(47,93,58,0.08);
+transition:.6s ease;
+}
+
+.outer{ width:660px; height:660px; }
+.middle{ width:460px; height:460px; }
+.inner{ width:300px; height:300px; }
+
+/* Emphasis */
+
+.focus-outer .outer,
+.focus-middle .middle,
+.focus-inner .inner{
+border-color:#2f5d3a;
+box-shadow:0 0 30px rgba(47,93,58,0.15);
+}
+
+.focus-outer .middle,
+.focus-outer .inner,
+.focus-middle .outer,
+.focus-middle .inner,
+.focus-inner .outer,
+.focus-inner .middle{
+opacity:.25;
+}
+
+/* Labels */
+
+.ring-label{
+position:absolute;
+left:50%;
+transform:translateX(-50%);
+font-size:12px;
+letter-spacing:2px;
+color:#2f5d3a;
+opacity:0;
+transition:.4s ease;
+}
+
+.label-outer{ top:25px; }
+.label-middle{ top:50px; }
+.label-inner{ top:75px; }
+
+.focus-outer .label-outer{ opacity:1; }
+.focus-middle .label-middle{ opacity:1; }
+.focus-inner .label-inner{ opacity:1; }
+
+/* Center image */
+
+.system-diagram img{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:200px;
+opacity:0.9;
+}
+
+/* ---------------- HOTSPOTS ---------------- */
+
+.hotspot-container{
+position:absolute;
+z-index:20;
+}
+
+.hotspot{
+width:12px;
+height:12px;
+border-radius:50%;
+background:#2f5d3a;
+cursor:pointer;
+animation:pulse 2.5s infinite;
+}
+
+@keyframes pulse{
+0%{ box-shadow:0 0 0 0 rgba(47,93,58,0.35); }
+70%{ box-shadow:0 0 0 14px rgba(47,93,58,0); }
+100%{ box-shadow:0 0 0 0 rgba(47,93,58,0); }
+}
+
+/* Info */
+
+.info{
+position:absolute;
+width:260px;
+background:white;
+padding:18px;
+box-shadow:0 20px 40px rgba(0,0,0,0.08);
+opacity:0;
+transition:.3s ease;
+font-size:12px;
+line-height:1.7;
+pointer-events:none;
+}
+
+.hotspot:hover + .info{
+opacity:1;
+}
+
+</style>
 </head>
 
 <body>
@@ -22,11 +159,113 @@
 
 <h1>During</h1>
 
-<p>
-This section will contain a timeline diagram detailing the steps in matcha cultivation and preparation.
+<p class="intro">
+This phase translates the matcha lifecycle system into lived experience. Through tasting, preparation, and observation, each layer reflects how interaction reshapes the perception of quality.
 </p>
 
 </div>
+
+<!-- DIAGRAM -->
+
+<section class="diagram-section" id="scroll-section">
+
+<div class="diagram-wrapper">
+<div class="system-diagram focus-outer" id="diagram">
+
+<div class="ring-label label-outer">Encounter</div>
+<div class="ring-label label-middle">Application</div>
+<div class="ring-label label-inner">Perception</div>
+
+<div class="ring outer"></div>
+<div class="ring middle"></div>
+<div class="ring inner"></div>
+
+<img src="matcha-bowl.png">
+
+<!-- OUTER -->
+
+<div class="hotspot-container" style="top:80px; left:350px;">
+<div class="hotspot"></div>
+<div class="info" style="top:-180px; left:-120px;">
+<strong>Comparative Tasting</strong>
+Tasting multiple matcha side by side revealed differences in bitterness, aroma, and color,
+making grading distinctions more tangible.
+</div>
+</div>
+
+<div class="hotspot-container" style="top:550px; left:150px;">
+<div class="hotspot"></div>
+<div class="info" style="top:40px; left:-260px;">
+<strong>Variation Across Samples</strong>
+Even within similar grades, subtle differences emerged,
+suggesting that quality exists along a spectrum rather than fixed categories.
+</div>
+</div>
+
+<!-- MIDDLE -->
+
+<div class="hotspot-container" style="top:200px; left:350px;">
+<div class="hotspot"></div>
+<div class="info" style="top:-150px; left:-120px;">
+<strong>Whisking Technique</strong>
+Adjusting whisking speed and motion changed foam structure and texture,
+demonstrating how preparation directly affects experience.
+</div>
+</div>
+
+<div class="hotspot-container" style="top:420px; left:520px;">
+<div class="hotspot"></div>
+<div class="info" style="top:-40px; left:120px;">
+<strong>Water Temperature</strong>
+Lower temperatures enhanced sweetness and reduced bitterness,
+revealing the importance of extraction control.
+</div>
+</div>
+
+<!-- INNER -->
+
+<div class="hotspot-container" style="top:320px; left:350px;">
+<div class="hotspot"></div>
+<div class="info" style="top:-120px; left:-120px;">
+<strong>Redefining Quality</strong>
+Quality became less about fixed traits and more about balance, intention, and context.
+</div>
+</div>
+
+<div class="hotspot-container" style="top:400px; left:250px;">
+<div class="hotspot"></div>
+<div class="info" style="top:40px; left:-240px;">
+<strong>Role of Context</strong>
+The same matcha felt different depending on environment and preparation,
+suggesting quality is partially constructed through experience.
+</div>
+</div>
+
+</div>
+</div>
+
+</section>
+
+<script>
+const diagram = document.getElementById("diagram");
+const section = document.getElementById("scroll-section");
+
+window.addEventListener("scroll", () => {
+const rect = section.getBoundingClientRect();
+const total = section.offsetHeight - window.innerHeight;
+const progress = Math.min(Math.max(-rect.top / total, 0), 1);
+
+if(progress < 0.33){
+diagram.className = "system-diagram focus-outer";
+}
+else if(progress < 0.66){
+diagram.className = "system-diagram focus-middle";
+}
+else{
+diagram.className = "system-diagram focus-inner";
+}
+});
+</script>
 
 </body>
 </html>
