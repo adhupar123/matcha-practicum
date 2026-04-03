@@ -7,45 +7,85 @@
 
 <style>
 
-/* ---------------- HORIZONTAL SCROLL ---------------- */
-
-.timeline-wrapper{
-overflow-x:auto;
-white-space:nowrap;
-padding:120px 0;
-scroll-snap-type:x mandatory;
-}
+/* ---------------- TIMELINE ---------------- */
 
 .timeline{
-display:flex;
-gap:40px;
-padding:0 80px;
+position:relative;
+max-width:850px;
+margin:120px auto;
+padding-left:40px;
+border-left:2px solid #dcdcdc;
 }
 
-/* ---------------- CARD ---------------- */
-
-.card{
-flex:0 0 420px;
-background:white;
-padding:30px;
-border:1px solid #ddd;
-scroll-snap-align:start;
-transition:.3s ease;
+.entry{
+position:relative;
+margin-bottom:100px;
 opacity:0;
 transform:translateY(30px);
+transition:.6s ease;
 }
 
-.card.visible{
+.entry.visible{
 opacity:1;
 transform:translateY(0);
 }
 
-.card h2{
-font-weight:400;
-margin-top:0;
+.entry::before{
+content:"";
+position:absolute;
+left:-49px;
+top:6px;
+width:14px;
+height:14px;
+background:#2f5d3a;
+border-radius:50%;
 }
 
-/* ---------------- COLLAPSIBLE ---------------- */
+/* PHASE LABEL */
+
+.phase{
+font-size:12px;
+letter-spacing:2px;
+color:#2f5d3a;
+margin-bottom:10px;
+}
+
+/* TITLE */
+
+.entry h3{
+margin:0 0 10px 0;
+font-size:22px;
+font-weight:400;
+}
+
+/* TAGS */
+
+.meta{
+font-size:12px;
+letter-spacing:1px;
+color:#777;
+margin-bottom:12px;
+}
+
+.tag{
+display:inline-block;
+font-size:11px;
+padding:4px 8px;
+margin-right:6px;
+border:1px solid #ccc;
+border-radius:4px;
+color:#555;
+}
+
+/* TEXT */
+
+.entry p{
+margin:0;
+line-height:1.8;
+color:#444;
+}
+
+/* COLLAPSIBLE */
 
 .toggle{
 margin-top:15px;
@@ -57,22 +97,22 @@ color:#2f5d3a;
 .details{
 max-height:0;
 overflow:hidden;
-transition:max-height .4s ease;
+transition:max-height .5s ease;
 font-size:13px;
-line-height:1.8;
+line-height:1.9;
 margin-top:10px;
 color:#444;
 }
 
 .details.open{
-max-height:500px;
+max-height:800px;
 }
 
-/* subtle hover */
+/* HOVER */
 
-.card:hover{
-transform:translateY(-4px);
-border-color:#2f5d3a;
+.entry:hover{
+transform:translateX(6px);
+transition:.2s ease;
 }
 
 </style>
@@ -95,147 +135,173 @@ border-color:#2f5d3a;
 <h1>During</h1>
 
 <p class="intro">
-This section follows the complete lifecycle of matcha, from cultivation to tea ceremony. Each stage reveals how biological processes, human intervention, and ritual practice shape the final perception of quality.
+This phase follows the full lifecycle of matcha from cultivation to tea ceremony. Through direct engagement, each step reveals how biological processes, human intervention, and ritual practice collectively shape the perception of quality.
 </p>
 
 </div>
 
-<!-- TIMELINE -->
-
-<div class="timeline-wrapper">
 <div class="timeline">
 
 <!-- CULTIVATION -->
 
-<div class="card">
-<h2>Planting and Cultivation</h2>
+<div class="entry">
+<div class="phase">Cultivation</div>
+<h3>Planting and Soil Preparation</h3>
+<div class="meta">
+<span class="tag">Biology</span>
+<span class="tag">Foundation</span>
+</div>
 <p>
-Tea plants are cultivated from carefully selected cultivars in nitrogen rich soil to promote amino acid production.
+Matcha quality begins long before harvest. Soil composition and cultivar selection determine the plant’s biochemical potential, particularly its ability to produce amino acids like L-theanine that drive sweetness and umami.
 </p>
 <div class="toggle">View Details</div>
 <div class="details">
-Seeds or cuttings are planted in controlled soil environments. Nitrogen availability increases L-theanine synthesis, which contributes to sweetness and umami. Over several years, plants are pruned to encourage lateral growth, producing tender leaves ideal for matcha production.
+Tea plants are grown in nitrogen-rich soil, which directly increases amino acid synthesis. Over time, careful pruning encourages lateral growth, producing softer, more desirable leaves. What initially felt like a distant agricultural detail became more meaningful as I began to connect these early decisions to the sensory differences I experienced in tasting.
 </div>
 </div>
 
 <!-- SHADING -->
 
-<div class="card">
-<h2>Shading Process</h2>
+<div class="entry">
+<div class="phase">Pre-Harvest</div>
+<h3>Shading the Plants</h3>
+<div class="meta">
+<span class="tag">Chemistry</span>
+<span class="tag">Technique</span>
+</div>
 <p>
-Plants are covered for several weeks before harvest to manipulate chemical composition.
+Several weeks before harvest, tea plants are shaded to alter their chemical composition and enhance desirable flavor characteristics.
 </p>
 <div class="toggle">View Details</div>
 <div class="details">
-Shading reduces sunlight exposure, slowing photosynthesis. This prevents L-theanine from converting into catechins, preserving sweetness and reducing bitterness. Chlorophyll concentration increases, producing the deep green color associated with high quality matcha.
+Shading reduces sunlight exposure, slowing photosynthesis and preventing L-theanine from converting into catechins. This preserves sweetness while reducing bitterness. Chlorophyll levels increase, resulting in a deeper green color. Seeing this process reframed matcha quality as something intentionally engineered rather than naturally occurring.
 </div>
 </div>
 
 <!-- HARVEST -->
 
-<div class="card">
-<h2>First Harvest</h2>
+<div class="entry">
+<div class="phase">Harvest</div>
+<h3>First Flush Picking</h3>
+<div class="meta">
+<span class="tag">Quality</span>
+<span class="tag">Observation</span>
+</div>
 <p>
-Young leaves are hand picked at peak biochemical quality.
+The first harvest yields the youngest, most chemically rich leaves, which are essential for high-grade matcha.
 </p>
 <div class="toggle">View Details</div>
 <div class="details">
-The first flush (一番茶) produces leaves with the highest amino acid content and lowest fiber. Early harvesting ensures softer texture and smoother flavor. Delayed harvesting increases cellulose and bitterness.
+First flush leaves contain higher concentrations of amino acids and lower structural fiber. This results in smoother texture and reduced astringency. Experiencing different grades of matcha made it clear how dramatically harvest timing influences final quality.
 </div>
 </div>
 
 <!-- STEAMING -->
 
-<div class="card">
-<h2>Steaming</h2>
+<div class="entry">
+<div class="phase">Processing</div>
+<h3>Steaming</h3>
+<div class="meta">
+<span class="tag">Chemistry</span>
+<span class="tag">Preservation</span>
+</div>
 <p>
-Leaves are rapidly steamed to preserve chemical integrity.
+Fresh leaves are immediately steamed to halt oxidation and preserve their chemical structure.
 </p>
 <div class="toggle">View Details</div>
 <div class="details">
-Steaming halts enzymatic oxidation by deactivating polyphenol oxidase. This prevents browning and preserves chlorophyll and aromatic compounds. This step differentiates Japanese green tea from oxidized teas like black tea.
+Steaming deactivates enzymes responsible for oxidation, preserving chlorophyll and preventing browning. This step locks in the chemical qualities developed during cultivation. Understanding this helped explain why Japanese green tea maintains such a distinct flavor profile compared to oxidized teas.
 </div>
 </div>
 
 <!-- DRYING -->
 
-<div class="card">
-<h2>Drying and Tencha Production</h2>
+<div class="entry">
+<h3>Drying and Tencha Production</h3>
+<div class="meta">
+<span class="tag">Processing</span>
+</div>
 <p>
-Leaves are dried and refined into tencha before grinding.
+Leaves are dried and refined into tencha, the raw material used to produce matcha powder.
 </p>
 <div class="toggle">View Details</div>
 <div class="details">
-Leaves are air dried without rolling, maintaining flat structure. Stems and veins are removed to isolate soft leaf material. This reduces bitterness and prepares the material for fine grinding.
+Unlike other teas, leaves are not rolled but laid flat to dry. Stems and veins are removed, leaving only soft leaf tissue. This reduces bitterness and prepares the material for ultra-fine grinding.
 </div>
 </div>
 
 <!-- GRINDING -->
 
-<div class="card">
-<h2>Stone Grinding</h2>
+<div class="entry">
+<div class="phase">Final Production</div>
+<h3>Stone Grinding</h3>
+<div class="meta">
+<span class="tag">Technique</span>
+<span class="tag">Application</span>
+</div>
 <p>
-Tencha is ground into ultra fine powder using stone mills.
+Tencha is ground into a fine powder using traditional stone mills.
 </p>
 <div class="toggle">View Details</div>
 <div class="details">
-Granite mills rotate slowly to avoid heat buildup. Heat can degrade volatile aroma compounds and amino acids. The result is a fine powder (5–10 microns) that suspends evenly in water.
+Grinding occurs slowly to prevent heat buildup, which can degrade amino acids and aromatic compounds. The resulting powder is extremely fine, allowing it to suspend evenly in water and create a smooth, creamy texture. This stage made it clear how delicate the transition from leaf to powder really is.
 </div>
 </div>
 
 <!-- PREPARATION -->
 
-<div class="card">
-<h2>Preparation</h2>
+<div class="entry">
+<div class="phase">Preparation</div>
+<h3>Whisking and Water Control</h3>
+<div class="meta">
+<span class="tag">Application</span>
+<span class="tag">Experiment</span>
+</div>
 <p>
-Matcha is sifted, whisked, and dissolved into water.
+Preparation transforms matcha from a static material into an active sensory experience.
 </p>
 <div class="toggle">View Details</div>
 <div class="details">
-Powder is sifted to remove clumps. Water temperature is typically 70–80°C to balance extraction. Bamboo whisking introduces air, creating foam and improving texture. Whisking technique directly affects mouthfeel.
+Water temperature and whisking technique significantly affect flavor and texture. Lower temperatures enhance sweetness, while improper whisking can lead to uneven suspension. Experimenting with these variables revealed how much control the preparer has over perceived quality.
 </div>
 </div>
 
-<!-- CEREMONY BEFORE -->
+<!-- CEREMONY -->
 
-<div class="card">
-<h2>Pre Ceremony Ritual</h2>
+<div class="entry">
+<div class="phase">Tea Ceremony</div>
+<h3>Ritual and Execution</h3>
+<div class="meta">
+<span class="tag">Culture</span>
+<span class="tag">Observation</span>
+</div>
 <p>
-The tea ceremony begins with purification and intentional preparation.
+The tea ceremony reframes matcha as more than a beverage, emphasizing ritual, presence, and intentionality.
 </p>
 <div class="toggle">View Details</div>
 <div class="details">
-Participants cleanse hands and mentally prepare. Utensils are carefully arranged and cleaned in front of guests. These actions emphasize mindfulness and respect, setting the tone for the experience.
+Before preparation, utensils are cleaned and arranged in a deliberate sequence. Tea is prepared with precise, practiced movements. Guests rotate the bowl before drinking and consume the tea immediately to preserve its qualities. Afterward, utensils are appreciated and the experience is acknowledged. This process revealed that matcha quality is deeply tied to context, not just chemistry.
 </div>
 </div>
 
-<!-- CEREMONY SERVING -->
+<!-- FINAL -->
 
-<div class="card">
-<h2>Serving and Drinking</h2>
+<div class="entry">
+<div class="phase">Reflection</div>
+<h3>Redefining Matcha Quality</h3>
+<div class="meta">
+<span class="tag">Evaluation</span>
+<span class="tag">Synthesis</span>
+</div>
 <p>
-Tea is prepared and consumed with deliberate movements and etiquette.
+Matcha quality emerged as a combination of biological potential, technical execution, and cultural context.
 </p>
 <div class="toggle">View Details</div>
 <div class="details">
-The host prepares the tea with precise movements. Guests rotate the bowl before drinking as a sign of respect. Matcha is consumed immediately to preserve temperature and texture.
+Rather than being a fixed property, quality became something constructed through interaction between plant, producer, preparer, and environment. This shifted my understanding from a purely technical framework to a more holistic and relational one.
 </div>
 </div>
 
-<!-- CEREMONY AFTER -->
-
-<div class="card">
-<h2>Post Ceremony Reflection</h2>
-<p>
-The ceremony concludes with appreciation and reflection.
-</p>
-<div class="toggle">View Details</div>
-<div class="details">
-Utensils are examined and appreciated. Guests acknowledge the host and the experience. The emphasis is on gratitude, transience, and presence, reinforcing cultural values embedded in the practice.
-</div>
-</div>
-
-</div>
 </div>
 
 <script>
@@ -249,9 +315,9 @@ details.classList.toggle("open");
 });
 });
 
-/* FADE IN ON SCROLL */
+/* FADE IN */
 
-const cards = document.querySelectorAll(".card");
+const entries = document.querySelectorAll(".entry");
 
 const observer = new IntersectionObserver(entries=>{
 entries.forEach(entry=>{
@@ -261,7 +327,7 @@ entry.target.classList.add("visible");
 });
 },{ threshold:0.2 });
 
-cards.forEach(card=>observer.observe(card));
+entries.forEach(e=>observer.observe(e));
 
 </script>
 
