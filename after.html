@@ -4,6 +4,108 @@
 <meta charset="UTF-8">
 <title>After</title>
 <link rel="stylesheet" href="styles.css">
+
+<style>
+
+/* ---------------- INTRO ---------------- */
+
+.intro-extended{
+max-width:750px;
+margin:0 auto 80px auto;
+line-height:1.8;
+color:#555;
+}
+
+/* ---------------- COMPARISON GRID ---------------- */
+
+.comparison{
+max-width:1000px;
+margin:80px auto;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+}
+
+.column{
+background:white;
+padding:35px;
+border:1px solid #ddd;
+}
+
+.column h2{
+font-weight:400;
+margin-top:0;
+margin-bottom:20px;
+}
+
+/* ---------------- CATEGORY ---------------- */
+
+.category{
+margin-bottom:35px;
+}
+
+.category h3{
+font-size:16px;
+font-weight:400;
+margin-bottom:10px;
+color:#2f5d3a;
+}
+
+.category p{
+font-size:14px;
+line-height:1.8;
+color:#444;
+}
+
+/* ---------------- DIVIDER ---------------- */
+
+.divider{
+text-align:center;
+margin:100px 0 60px 0;
+font-size:12px;
+letter-spacing:2px;
+color:#888;
+}
+
+/* ---------------- COLLAPSIBLE ---------------- */
+
+.toggle{
+cursor:pointer;
+font-size:13px;
+color:#2f5d3a;
+margin-top:10px;
+}
+
+.details{
+max-height:0;
+overflow:hidden;
+transition:max-height .5s ease;
+font-size:13px;
+line-height:1.9;
+margin-top:10px;
+color:#444;
+}
+
+.details.open{
+max-height:500px;
+}
+
+/* ---------------- SYNTHESIS ---------------- */
+
+.synthesis{
+max-width:800px;
+margin:80px auto;
+line-height:1.9;
+font-size:15px;
+color:#333;
+}
+
+.synthesis h2{
+font-weight:400;
+margin-bottom:20px;
+}
+
+</style>
 </head>
 
 <body>
@@ -22,12 +124,134 @@
 
 <h1>After</h1>
 
-<p>
-This section will compare Japanese and international perceptions of matcha
-quality and explore how globalization reshapes those definitions.
+<p class="intro">
+This section evaluates how matcha quality is understood across different cultural contexts. By comparing Japanese and global perspectives, quality emerges not as a fixed standard, but as something shaped by values, experience, and intention.
 </p>
 
 </div>
+
+<div class="intro-extended">
+Through interviews, tastings, and observation, two distinct frameworks of evaluation became visible. One prioritizes tradition, restraint, and continuity, while the other often emphasizes accessibility, flavor intensity, and individual preference. This comparison does not aim to determine which is “correct,” but instead to understand how different systems produce different definitions of quality.
+</div>
+
+<!-- COMPARISON -->
+
+<div class="comparison">
+
+<!-- JAPANESE -->
+
+<div class="column">
+<h2>Japanese Perspective</h2>
+
+<div class="category">
+<h3>Quality as Restraint</h3>
+<p>
+Quality is defined by balance, subtlety, and harmony rather than intensity. Bitterness is minimized, and umami is integrated rather than dominant.
+</p>
+<div class="toggle">Expand</div>
+<div class="details">
+High quality matcha is not meant to be overwhelming. Instead, it reflects control across the entire production process. This perspective became clearer through the tea ceremony, where even small imbalances felt disruptive.
+</div>
+</div>
+
+<div class="category">
+<h3>Process Over Outcome</h3>
+<p>
+Attention is placed on cultivation methods, preparation, and ritual rather than just the final taste.
+</p>
+<div class="toggle">Expand</div>
+<div class="details">
+Shading duration, grinding technique, and preparation method are all considered part of quality. This reframes matcha as a process-driven product rather than a purely consumable one.
+</div>
+</div>
+
+<div class="category">
+<h3>Cultural Context</h3>
+<p>
+Matcha is embedded within tradition, particularly the tea ceremony, which shapes how it is evaluated and experienced.
+</p>
+<div class="toggle">Expand</div>
+<div class="details">
+Quality extends beyond taste into behavior, environment, and intention. The act of drinking becomes inseparable from the cultural framework surrounding it.
+</div>
+</div>
+
+</div>
+
+<!-- GLOBAL -->
+
+<div class="column">
+<h2>Global / International Perspective</h2>
+
+<div class="category">
+<h3>Quality as Intensity</h3>
+<p>
+Stronger flavor, vibrant color, and noticeable bitterness are often interpreted as indicators of quality.
+</p>
+<div class="toggle">Expand</div>
+<div class="details">
+Many consumers associate boldness with quality, similar to coffee culture. This contrasts with the subtle balance emphasized in traditional contexts.
+</div>
+</div>
+
+<div class="category">
+<h3>Outcome Over Process</h3>
+<p>
+Focus is placed on the final drink rather than how it was produced or prepared.
+</p>
+<div class="toggle">Expand</div>
+<div class="details">
+Convenience products such as matcha lattes shift attention away from traditional preparation, making quality more about immediate sensory impact.
+</div>
+</div>
+
+<div class="category">
+<h3>Adaptation and Fusion</h3>
+<p>
+Matcha is frequently incorporated into new formats such as desserts, flavored drinks, and wellness products.
+</p>
+<div class="toggle">Expand</div>
+<div class="details">
+This expands accessibility but also alters the original meaning of matcha. Through interviews, I noticed that flexibility is often valued more than authenticity in global contexts.
+</div>
+</div>
+
+</div>
+
+</div>
+
+<div class="divider">SYNTHESIS</div>
+
+<div class="synthesis">
+
+<h2>Reframing Matcha Quality</h2>
+
+<p>
+Through this comparison, matcha quality no longer appears as a universal standard, but as something constructed through cultural values and context. In Japanese practice, quality is embedded in restraint, continuity, and ritual precision. In global contexts, it often becomes associated with intensity, accessibility, and personal preference.
+</p>
+
+<p>
+Rather than viewing one perspective as superior, this project suggests that matcha exists across multiple systems of meaning. Its globalization does not simply dilute tradition, but transforms how quality is defined and experienced. This shift raises broader questions about how cultural products evolve when removed from their original context.
+</p>
+
+<p>
+Ultimately, matcha quality is not just a property of the leaf, but a relationship between production, preparation, and perception.
+</p>
+
+</div>
+
+<script>
+
+/* COLLAPSIBLE */
+
+document.querySelectorAll(".toggle").forEach(btn=>{
+btn.addEventListener("click", ()=>{
+const details = btn.nextElementSibling;
+details.classList.toggle("open");
+});
+});
+
+</script>
 
 </body>
 </html>
