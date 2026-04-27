@@ -2,107 +2,597 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>After</title>
+<title>After — Matcha Practicum</title>
 <link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
 
-/* ---------------- INTRO ---------------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-.intro-extended{
-max-width:750px;
-margin:0 auto 80px auto;
-line-height:1.8;
-color:#555;
+body {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  background: #f5f3ee;
+  color: #2a2a25;
 }
 
-/* ---------------- COMPARISON GRID ---------------- */
+/* ── NAVBAR (preserve original structure) ── */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;
+  border-bottom: 1px solid #ddd;
+  background: #f5f3ee;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-title { font-size: 14px; letter-spacing: 2px; color: #2f5d3a; font-family: 'DM Mono', monospace; font-weight: 300; }
+.nav-links a { margin-left: 28px; text-decoration: none; font-size: 13px; letter-spacing: 1.5px; color: #555; font-family: 'DM Mono', monospace; font-weight: 300; transition: color .2s; }
+.nav-links a:hover { color: #2f5d3a; }
 
-.comparison{
-max-width:1000px;
-margin:80px auto;
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:40px;
+/* ── HERO ── */
+.hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 100px 40px 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
 }
 
-.column{
-background:white;
-padding:35px;
-border:1px solid #ddd;
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  color: #2f5d3a;
+  margin-bottom: 20px;
+  text-transform: uppercase;
 }
 
-.column h2{
-font-weight:400;
-margin-top:0;
-margin-bottom:20px;
+.hero-title {
+  font-size: clamp(42px, 6vw, 72px);
+  font-weight: 300;
+  line-height: 1.1;
+  color: #1a2e1d;
+  letter-spacing: -1px;
 }
 
-/* ---------------- CATEGORY ---------------- */
-
-.category{
-margin-bottom:35px;
+.hero-title em {
+  font-style: italic;
+  color: #2f5d3a;
 }
 
-.category h3{
-font-size:16px;
-font-weight:400;
-margin-bottom:10px;
-color:#2f5d3a;
+.hero-right {
+  padding-bottom: 8px;
 }
 
-.category p{
-font-size:14px;
-line-height:1.8;
-color:#444;
+.hero-intro {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: #555;
 }
 
-/* ---------------- DIVIDER ---------------- */
-
-.divider{
-text-align:center;
-margin:100px 0 60px 0;
-font-size:12px;
-letter-spacing:2px;
-color:#888;
+.hero-rule {
+  width: 40px;
+  height: 1px;
+  background: #2f5d3a;
+  margin-bottom: 24px;
 }
 
-/* ---------------- COLLAPSIBLE ---------------- */
-
-.toggle{
-cursor:pointer;
-font-size:13px;
-color:#2f5d3a;
-margin-top:10px;
+/* ── CHAPTER LABEL ── */
+.chapter-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 4px;
+  color: #888;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 60px 0 30px;
 }
 
-.details{
-max-height:0;
-overflow:hidden;
-transition:max-height .5s ease;
-font-size:13px;
-line-height:1.9;
-margin-top:10px;
-color:#444;
+/* ── SPECTRUM BAR ── */
+.spectrum-section {
+  max-width: 900px;
+  margin: 0 auto 80px;
+  padding: 0 40px;
 }
 
-.details.open{
-max-height:500px;
+.spectrum-bar {
+  position: relative;
+  height: 6px;
+  background: linear-gradient(to right, #1a4d2a, #c8e4b0, #f5f3ee, #e8c9a0, #8b3a1a);
+  border-radius: 3px;
+  margin: 40px 0;
 }
 
-/* ---------------- SYNTHESIS ---------------- */
-
-.synthesis{
-max-width:800px;
-margin:80px auto;
-line-height:1.9;
-font-size:15px;
-color:#333;
+.spectrum-labels {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: #888;
+  margin-top: 12px;
 }
 
-.synthesis h2{
-font-weight:400;
-margin-bottom:20px;
+.spectrum-title {
+  font-size: 28px;
+  font-weight: 300;
+  color: #1a2e1d;
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+.spectrum-desc {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: #666;
+  max-width: 620px;
+}
+
+/* ── DUAL COLUMN COMPARISON ── */
+.compare-wrapper {
+  max-width: 900px;
+  margin: 0 auto 100px;
+  padding: 0 40px;
+}
+
+.compare-header {
+  display: grid;
+  grid-template-columns: 1fr 60px 1fr;
+  gap: 0;
+  margin-bottom: 40px;
+  align-items: center;
+}
+
+.compare-header-col {
+  text-align: center;
+}
+
+.compare-header h2 {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  font-family: 'DM Mono', monospace;
+  color: #2f5d3a;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.compare-header p {
+  font-size: 22px;
+  font-weight: 300;
+  color: #2a2a25;
+  font-style: italic;
+}
+
+.compare-vs {
+  text-align: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 300;
+  color: #ccc;
+  letter-spacing: 2px;
+}
+
+/* ── DIMENSION ROWS ── */
+.dimension {
+  display: grid;
+  grid-template-columns: 1fr 60px 1fr;
+  gap: 0;
+  border-top: 1px solid #e0ded8;
+  padding: 36px 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+
+.dimension.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dimension-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 4px;
+  gap: 8px;
+}
+
+.dimension-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f0ede6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dimension-icon svg {
+  width: 16px;
+  height: 16px;
+  stroke: #2f5d3a;
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.dim-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: #aaa;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.dimension-col {
+  padding: 0 32px;
+}
+
+.dimension-col.jp { text-align: right; border-right: 1px solid #e0ded8; }
+.dimension-col.us { text-align: left; border-left: 1px solid #e0ded8; }
+
+.dim-category {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 2.5px;
+  color: #2f5d3a;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.dim-headline {
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.25;
+  color: #1a2e1d;
+  margin-bottom: 14px;
+}
+
+.dim-body {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: #666;
+}
+
+.dim-quote {
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.75;
+  color: #888;
+  border-top: 1px solid #e0ded8;
+  padding-top: 14px;
+  margin-top: 16px;
+}
+
+/* ── TENSION METER ── */
+.dimension-col .tension-bar {
+  height: 3px;
+  background: #e8e5dd;
+  border-radius: 2px;
+  margin-top: 16px;
+  overflow: hidden;
+}
+
+.dimension-col.jp .tension-fill {
+  float: right;
+  height: 100%;
+  background: #2f5d3a;
+  border-radius: 2px;
+  transition: width 1s ease;
+}
+
+.dimension-col.us .tension-fill {
+  height: 100%;
+  background: #8b3a1a;
+  border-radius: 2px;
+  transition: width 1s ease;
+}
+
+/* ── TASTING NOTES VISUAL ── */
+.tasting-section {
+  background: #1a2e1d;
+  padding: 80px 40px;
+  margin-bottom: 0;
+}
+
+.tasting-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.tasting-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 4px;
+  color: #4a8c5c;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+.tasting-title {
+  font-size: 36px;
+  font-weight: 300;
+  color: #e8e4da;
+  margin-bottom: 60px;
+  line-height: 1.3;
+}
+
+.tasting-title em { font-style: italic; color: #7ab88a; }
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: #253d29;
+}
+
+.note-cell {
+  background: #1a2e1d;
+  padding: 28px 24px;
+}
+
+.note-cell-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  color: #4a8c5c;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.note-cell-value {
+  font-size: 20px;
+  font-weight: 300;
+  color: #c8e4b0;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.note-cell-bar {
+  height: 2px;
+  background: #253d29;
+  border-radius: 1px;
+  margin-top: 12px;
+}
+
+.note-cell-fill {
+  height: 100%;
+  background: #4a8c5c;
+  border-radius: 1px;
+}
+
+.note-cell.us-note .note-cell-fill { background: #b07048; }
+.note-cell.us-note .note-cell-value { color: #e8c9a0; }
+.note-cell.us-note .note-cell-label { color: #b07048; }
+
+/* ── SYNTHESIS ── */
+.synthesis-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 100px 40px 80px;
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 80px;
+}
+
+.synthesis-sidebar {
+  padding-top: 8px;
+}
+
+.synthesis-sidebar-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  color: #2f5d3a;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+
+.synthesis-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.synth-nav-item {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 300;
+  color: #aaa;
+  letter-spacing: 1px;
+  padding: 6px 0;
+  border-left: 2px solid transparent;
+  padding-left: 12px;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.synth-nav-item:hover, .synth-nav-item.active {
+  color: #2f5d3a;
+  border-left-color: #2f5d3a;
+}
+
+.synthesis-body {}
+
+.synthesis-block {
+  display: none;
+}
+
+.synthesis-block.active {
+  display: block;
+  animation: fadeUp .4s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.synthesis-block h2 {
+  font-size: 36px;
+  font-weight: 300;
+  color: #1a2e1d;
+  line-height: 1.2;
+  margin-bottom: 30px;
+}
+
+.synthesis-block h2 em {
+  font-style: italic;
+  color: #2f5d3a;
+}
+
+.synthesis-block p {
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.95;
+  color: #555;
+  margin-bottom: 22px;
+}
+
+.synthesis-block p strong {
+  font-weight: 500;
+  color: #2a2a25;
+}
+
+.synthesis-block blockquote {
+  border-left: 2px solid #2f5d3a;
+  padding-left: 24px;
+  margin: 32px 0;
+  font-size: 20px;
+  font-style: italic;
+  line-height: 1.7;
+  color: #2f5d3a;
+  font-weight: 300;
+}
+
+/* ── KEY FINDINGS TABLE ── */
+.findings-section {
+  max-width: 900px;
+  margin: 0 auto 80px;
+  padding: 0 40px;
+}
+
+.findings-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 4px;
+  color: #2f5d3a;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+.findings-row {
+  display: grid;
+  grid-template-columns: 200px 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid #e0ded8;
+  padding: 20px 0;
+  align-items: start;
+}
+
+.findings-row:last-child { border-bottom: 1px solid #e0ded8; }
+
+.findings-dimension {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 1.5px;
+  color: #888;
+}
+
+.findings-jp, .findings-us {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: #444;
+  padding: 0 24px;
+  border-left: 1px solid #e8e5dd;
+}
+
+.findings-jp::before {
+  content: 'JP ';
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: #2f5d3a;
+  letter-spacing: 2px;
+}
+
+.findings-us::before {
+  content: 'US ';
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: #8b3a1a;
+  letter-spacing: 2px;
+}
+
+/* ── FOOTER ── */
+.footer-note {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 40px 80px;
+  border-top: 1px solid #e0ded8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-note p {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 1.5px;
+  color: #aaa;
+}
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 700px) {
+  .hero { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px 40px; }
+  .compare-wrapper { padding: 0 24px; }
+  .compare-header, .dimension { grid-template-columns: 1fr; }
+  .compare-vs { display: none; }
+  .dimension-center { flex-direction: row; padding: 0 0 16px; }
+  .dim-label { writing-mode: horizontal-tb; }
+  .dimension-col.jp { text-align: left; border-right: none; border-bottom: 1px solid #e0ded8; padding: 0 0 20px; }
+  .dimension-col.us { border-left: none; }
+  .notes-grid { grid-template-columns: 1fr; }
+  .synthesis-section { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px; }
+  .synthesis-nav { flex-direction: row; flex-wrap: wrap; }
+  .findings-row { grid-template-columns: 1fr; gap: 12px; }
+  .findings-jp, .findings-us { border-left: none; padding: 0; }
+  .tasting-section { padding: 60px 24px; }
+  .findings-section { padding: 0 24px; }
+  .footer-note { padding: 40px 24px 60px; flex-direction: column; gap: 12px; }
 }
 
 </style>
@@ -111,147 +601,340 @@ margin-bottom:20px;
 <body>
 
 <div class="navbar">
-<div class="nav-title">Matcha Practicum</div>
-<div class="nav-links">
-<a href="index.html">Home</a>
-<a href="before.html">Before</a>
-<a href="during.html">During</a>
-<a href="after.html">After</a>
-</div>
-</div>
-  
-<div class="container">
-
-<h1>After</h1>
-
-<p class="intro">
-This section evaluates how matcha quality is understood across different cultural contexts. By comparing Japanese and global perspectives, quality emerges not as a fixed standard, but as something shaped by values, experience, and intention.
-</p>
-
+  <div class="nav-title">Matcha Practicum</div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="before.html">Before</a>
+    <a href="during.html">During</a>
+    <a href="after.html">After</a>
+  </div>
 </div>
 
-<div class="intro-extended">
-Through interviews, tastings, and observation, two distinct frameworks of evaluation became visible. One prioritizes tradition, restraint, and continuity, while the other often emphasizes accessibility, flavor intensity, and individual preference. This comparison does not aim to determine which is “correct,” but instead to understand how different systems produce different definitions of quality.
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Final Analysis · After</div>
+    <h1 class="hero-title">Two ways<br>to taste<br><em>the same leaf</em></h1>
+  </div>
+  <div class="hero-right">
+    <div class="hero-rule"></div>
+    <p class="hero-intro">
+      What makes matcha good? The answer depends entirely on who you ask. This section sets two frameworks of quality alongside each other — Japanese and American — not to judge them, but to understand what each reveals about the culture it comes from.
+    </p>
+  </div>
 </div>
 
-<!-- COMPARISON -->
-
-<div class="comparison">
-
-<!-- JAPANESE -->
-
-<div class="column">
-<h2>Japanese Perspective</h2>
-
-<div class="category">
-<h3>Quality as Restraint</h3>
-<p>
-Quality is defined by balance, subtlety, and harmony rather than intensity. Bitterness is minimized, and umami is integrated rather than dominant.
-</p>
-<div class="toggle">Expand</div>
-<div class="details">
-High quality matcha is not meant to be overwhelming. Instead, it reflects control across the entire production process. This perspective became clearer through the tea ceremony, where even small imbalances felt disruptive.
-</div>
+<!-- ── SPECTRUM ── -->
+<div class="spectrum-section reveal">
+  <div class="spectrum-title">Quality as a cultural construct</div>
+  <p class="spectrum-desc">Across research — interviews, tastings, and observation — two distinct systems of evaluation emerged. Both are internally coherent. Both produce genuine experiences of quality. The distance between them maps a broader story about how cultural products travel.</p>
+  <div class="spectrum-bar"></div>
+  <div class="spectrum-labels">
+    <span>Restraint · Ritual · Continuity</span>
+    <span>Intensity · Access · Preference</span>
+  </div>
 </div>
 
-<div class="category">
-<h3>Process Over Outcome</h3>
-<p>
-Attention is placed on cultivation methods, preparation, and ritual rather than just the final taste.
-</p>
-<div class="toggle">Expand</div>
-<div class="details">
-Shading duration, grinding technique, and preparation method are all considered part of quality. This reframes matcha as a process-driven product rather than a purely consumable one.
+<!-- ── CHAPTER LABEL ── -->
+<div class="chapter-label">Comparative Analysis</div>
+
+<!-- ── MAIN COMPARISON ── -->
+<div class="compare-wrapper">
+
+  <div class="compare-header">
+    <div class="compare-header-col">
+      <h2>Japan</h2>
+      <p>The traditional lens</p>
+    </div>
+    <div class="compare-vs">vs</div>
+    <div class="compare-header-col">
+      <h2>America</h2>
+      <p>The global lens</p>
+    </div>
+  </div>
+
+  <!-- DIMENSION 1 -->
+  <div class="dimension">
+    <div class="dimension-col jp">
+      <div class="dim-category">Quality Standard</div>
+      <div class="dim-headline">Subtlety as mastery</div>
+      <div class="dim-body">Quality is measured by what is absent — bitterness controlled, flavor balanced, nothing overreaching. The ideal cup is one where no single element draws attention.</div>
+      <div class="dim-quote">"If you notice the bitterness, the matcha has failed."</div>
+      <div class="tension-bar"><div class="tension-fill" style="width:88%"></div></div>
+    </div>
+    <div class="dimension-center">
+      <div class="dimension-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="12" x2="15" y2="15"/></svg>
+      </div>
+      <span class="dim-label">flavor</span>
+    </div>
+    <div class="dimension-col us">
+      <div class="dim-category">Quality Standard</div>
+      <div class="dim-headline">Boldness as signal</div>
+      <div class="dim-body">Intensity of color, depth of bitterness, and a strong umami hit are often read as markers of premium quality — similar to how coffee culture equates strength with quality.</div>
+      <div class="dim-quote">"The greener and stronger, the better."</div>
+      <div class="tension-bar"><div class="tension-fill" style="width:75%"></div></div>
+    </div>
+  </div>
+
+  <!-- DIMENSION 2 -->
+  <div class="dimension">
+    <div class="dimension-col jp">
+      <div class="dim-category">Evaluation Frame</div>
+      <div class="dim-headline">Process is inseparable from product</div>
+      <div class="dim-body">Shading duration, stone-grinding method, sifting, and whisking form part of quality itself. The how is indistinguishable from the what. A technically perfect cup prepared carelessly is not high quality.</div>
+      <div class="dim-quote">"The tea is the preparation."</div>
+      <div class="tension-bar"><div class="tension-fill" style="width:92%"></div></div>
+    </div>
+    <div class="dimension-center">
+      <div class="dimension-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <span class="dim-label">process</span>
+    </div>
+    <div class="dimension-col us">
+      <div class="dim-category">Evaluation Frame</div>
+      <div class="dim-headline">Outcome is what counts</div>
+      <div class="dim-body">The final drink — its taste, appearance, and how it feels — is the primary basis for evaluation. Convenience formats such as cold-brew matcha or lattes shift preparation away from the consumer entirely.</div>
+      <div class="dim-quote">"I just want it to taste good."</div>
+      <div class="tension-bar"><div class="tension-fill" style="width:60%"></div></div>
+    </div>
+  </div>
+
+  <!-- DIMENSION 3 -->
+  <div class="dimension">
+    <div class="dimension-col jp">
+      <div class="dim-category">Cultural Embedding</div>
+      <div class="dim-headline">Ritual shapes perception</div>
+      <div class="dim-body">The tea ceremony provides the frame through which matcha is experienced. Behavior, posture, environment, and intention all contribute to what quality means. Drinking alone, hastily, changes the evaluation.</div>
+      <div class="dim-quote">"The setting is part of the taste."</div>
+      <div class="tension-bar"><div class="tension-fill" style="width:96%"></div></div>
+    </div>
+    <div class="dimension-center">
+      <div class="dimension-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <span class="dim-label">context</span>
+    </div>
+    <div class="dimension-col us">
+      <div class="dim-category">Cultural Embedding</div>
+      <div class="dim-headline">Adaptability over authenticity</div>
+      <div class="dim-body">Matcha enters American culture through lattes, desserts, skincare, and supplements. Each adaptation strips and reattaches meaning. Authenticity is less important than whether the product fits into existing lifestyle categories.</div>
+      <div class="dim-quote">"Matcha is whatever I need it to be."</div>
+      <div class="tension-bar"><div class="tension-fill" style="width:50%"></div></div>
+    </div>
+  </div>
+
+  <!-- DIMENSION 4 -->
+  <div class="dimension">
+    <div class="dimension-col jp">
+      <div class="dim-category">Consumer Knowledge</div>
+      <div class="dim-headline">Expertise through tradition</div>
+      <div class="dim-body">Knowledge of quality is passed through lineage — teachers, ceremony schools, family practice. The expert is one who has internalized the tradition, not merely studied it analytically.</div>
+      <div class="dim-quote">"You learn it with your hands, not your eyes."</div>
+      <div class="tension-bar"><div class="tension-fill" style="width:85%"></div></div>
+    </div>
+    <div class="dimension-center">
+      <div class="dimension-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      </div>
+      <span class="dim-label">knowledge</span>
+    </div>
+    <div class="dimension-col us">
+      <div class="dim-category">Consumer Knowledge</div>
+      <div class="dim-headline">Expertise through information</div>
+      <div class="dim-body">Quality literacy is built through content — YouTube reviews, Reddit threads, influencer guides, and third-wave café culture. Knowledge is democratized but also easily manufactured or misleading.</div>
+      <div class="dim-quote">"I read that ceremonial grade means better quality."</div>
+      <div class="tension-bar"><div class="tension-fill" style="width:55%"></div></div>
+    </div>
+  </div>
+
+  <!-- DIMENSION 5 -->
+  <div class="dimension">
+    <div class="dimension-col jp">
+      <div class="dim-category">Relationship to Change</div>
+      <div class="dim-headline">Continuity as value</div>
+      <div class="dim-body">Innovation within tradition is slow and deliberate. Variation from established form requires justification. The value of matcha is partly its unchanging nature — its continuity with a centuries-old practice.</div>
+      <div class="dim-quote">"We do not change what has always worked."</div>
+      <div class="tension-bar"><div class="tension-fill" style="width:90%"></div></div>
+    </div>
+    <div class="dimension-center">
+      <div class="dimension-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+      </div>
+      <span class="dim-label">change</span>
+    </div>
+    <div class="dimension-col us">
+      <div class="dim-category">Relationship to Change</div>
+      <div class="dim-headline">Innovation as progress</div>
+      <div class="dim-body">New formats, flavor combinations, and delivery methods are seen as exciting rather than threatening. Adaptation is what makes matcha sustainable in a market driven by novelty and wellness trends.</div>
+      <div class="dim-quote">"There's a matcha flavor for everything now."</div>
+      <div class="tension-bar"><div class="tension-fill" style="width:42%"></div></div>
+    </div>
+  </div>
+
 </div>
+
+<!-- ── TASTING NOTES ── -->
+<div class="tasting-section">
+  <div class="tasting-inner">
+    <div class="tasting-eyebrow">Sensory Profile · Research Observations</div>
+    <div class="tasting-title">How each culture<br>reads <em>the same cup</em></div>
+
+    <div class="notes-grid">
+      <div class="note-cell">
+        <div class="note-cell-label">JP · Sweetness</div>
+        <div class="note-cell-value">Integrated, soft</div>
+        <div class="note-cell-bar"><div class="note-cell-fill" style="width:60%"></div></div>
+      </div>
+      <div class="note-cell">
+        <div class="note-cell-label">JP · Bitterness</div>
+        <div class="note-cell-value">Controlled, finishing</div>
+        <div class="note-cell-bar"><div class="note-cell-fill" style="width:35%"></div></div>
+      </div>
+      <div class="note-cell">
+        <div class="note-cell-label">JP · Umami</div>
+        <div class="note-cell-value">Deep, centered</div>
+        <div class="note-cell-bar"><div class="note-cell-fill" style="width:82%"></div></div>
+      </div>
+      <div class="note-cell us-note">
+        <div class="note-cell-label">US · Sweetness</div>
+        <div class="note-cell-value">Often added, expected</div>
+        <div class="note-cell-bar"><div class="note-cell-fill" style="width:85%"></div></div>
+      </div>
+      <div class="note-cell us-note">
+        <div class="note-cell-label">US · Bitterness</div>
+        <div class="note-cell-value">Desired, legible</div>
+        <div class="note-cell-bar"><div class="note-cell-fill" style="width:72%"></div></div>
+      </div>
+      <div class="note-cell us-note">
+        <div class="note-cell-label">US · Umami</div>
+        <div class="note-cell-value">Secondary, novel</div>
+        <div class="note-cell-bar"><div class="note-cell-fill" style="width:44%"></div></div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="category">
-<h3>Cultural Context</h3>
-<p>
-Matcha is embedded within tradition, particularly the tea ceremony, which shapes how it is evaluated and experienced.
-</p>
-<div class="toggle">Expand</div>
-<div class="details">
-Quality extends beyond taste into behavior, environment, and intention. The act of drinking becomes inseparable from the cultural framework surrounding it.
-</div>
-</div>
+<!-- ── SUMMARY FINDINGS ── -->
+<div class="findings-section" style="padding-top: 80px;">
+  <div class="findings-title reveal">Key Findings at a Glance</div>
 
-</div>
-
-<!-- GLOBAL -->
-
-<div class="column">
-<h2>Global / International Perspective</h2>
-
-<div class="category">
-<h3>Quality as Intensity</h3>
-<p>
-Stronger flavor, vibrant color, and noticeable bitterness are often interpreted as indicators of quality.
-</p>
-<div class="toggle">Expand</div>
-<div class="details">
-Many consumers associate boldness with quality, similar to coffee culture. This contrasts with the subtle balance emphasized in traditional contexts.
-</div>
-</div>
-
-<div class="category">
-<h3>Outcome Over Process</h3>
-<p>
-Focus is placed on the final drink rather than how it was produced or prepared.
-</p>
-<div class="toggle">Expand</div>
-<div class="details">
-Convenience products such as matcha lattes shift attention away from traditional preparation, making quality more about immediate sensory impact.
-</div>
+  <div class="findings-row reveal">
+    <div class="findings-dimension">Definition of quality</div>
+    <div class="findings-jp">Harmony, restraint, and process fidelity</div>
+    <div class="findings-us">Intensity, accessibility, and sensory impact</div>
+  </div>
+  <div class="findings-row reveal">
+    <div class="findings-dimension">Primary evaluation site</div>
+    <div class="findings-jp">The preparation and ceremony</div>
+    <div class="findings-us">The finished drink or product</div>
+  </div>
+  <div class="findings-row reveal">
+    <div class="findings-dimension">Role of tradition</div>
+    <div class="findings-jp">Constitutive — inseparable from quality</div>
+    <div class="findings-us">Optional — one possible aesthetic among many</div>
+  </div>
+  <div class="findings-row reveal">
+    <div class="findings-dimension">Knowledge pathway</div>
+    <div class="findings-jp">Embodied, relational, slow</div>
+    <div class="findings-us">Informational, digital, fast</div>
+  </div>
+  <div class="findings-row reveal">
+    <div class="findings-dimension">Stance on adaptation</div>
+    <div class="findings-jp">Suspicious; requires justification</div>
+    <div class="findings-us">Valued; signals creativity</div>
+  </div>
 </div>
 
-<div class="category">
-<h3>Adaptation and Fusion</h3>
-<p>
-Matcha is frequently incorporated into new formats such as desserts, flavored drinks, and wellness products.
-</p>
-<div class="toggle">Expand</div>
-<div class="details">
-This expands accessibility but also alters the original meaning of matcha. Through interviews, I noticed that flexibility is often valued more than authenticity in global contexts.
+<!-- ── SYNTHESIS ── -->
+<div class="chapter-label">Synthesis</div>
+
+<div class="synthesis-section">
+  <div class="synthesis-sidebar">
+    <div class="synthesis-sidebar-label">Navigate</div>
+    <div class="synthesis-nav">
+      <div class="synth-nav-item active" data-block="block1">Reframing quality</div>
+      <div class="synth-nav-item" data-block="block2">Globalization</div>
+      <div class="synth-nav-item" data-block="block3">What this means</div>
+    </div>
+  </div>
+
+  <div class="synthesis-body">
+
+    <div class="synthesis-block active" id="block1">
+      <h2>Quality is not found.<br>It is <em>constructed.</em></h2>
+      <p>This project began with a simple question: what makes matcha good? The answer, it turns out, cannot be extracted from the cup alone. Quality is not a fixed property of the leaf. It is a relationship — between the leaf, the person preparing it, the setting in which it is consumed, and the cultural system within which all of this takes place.</p>
+      <p>In Japan, that system is ancient, elaborately structured, and resistant to change. In America, it is new, flexible, and consumer-shaped. Neither system is wrong. Both produce genuine experiences of quality. But they are not measuring the same thing.</p>
+      <blockquote>Quality is not what is in the cup — it is the agreement about what should be there.</blockquote>
+      <p>The most significant finding of this research was not any specific difference between Japanese and American matcha culture, but the deeper insight it pointed toward: <strong>quality is always a social construction</strong>, and understanding where our standards come from is the beginning of understanding anything we value.</p>
+    </div>
+
+    <div class="synthesis-block" id="block2">
+      <h2>Globalization does not<br><em>dilute</em> — it transforms.</h2>
+      <p>A common narrative about matcha's global spread frames it as loss — tradition diluted, meaning stripped away, a sacred practice reduced to a latte flavor. This project complicates that story.</p>
+      <p>What globalization has done to matcha is not simply subtract from it. It has created new systems of meaning around the same plant. The American consumer who carefully sources ceremonial-grade powder and cold-brews it according to a YouTube tutorial is not doing tradition wrong — they are doing something different, with its own logic and its own form of care.</p>
+      <blockquote>The question is not whether matcha has changed. It always changes. The question is which changes we recognize as legitimate.</blockquote>
+      <p>That recognition is itself political. It reflects whose knowledge counts, whose practices are visible, and whose definitions of quality get to set the standard. Matcha's globalization is not a story about a thing traveling — it is a story about <strong>who gets to say what something is worth</strong>.</p>
+    </div>
+
+    <div class="synthesis-block" id="block3">
+      <h2>What one cup<br><em>reveals</em></h2>
+      <p>Matcha is a useful case study precisely because it is legible. Its cultural origin is clear, its traditional form is well-documented, and its global spread has been rapid and visible. But the questions it raises apply far beyond tea.</p>
+      <p>Whenever a cultural product crosses a border — whether food, music, textile, or language — the same dynamics emerge: competing definitions of quality, debates about authenticity, and the slow negotiation of what the thing actually is in its new context.</p>
+      <p>This project did not resolve those tensions. It documented them. And in doing so, it found that the most important quality of matcha — the quality that survives every adaptation — is its capacity to hold meaning. <strong>The cup is always also a conversation.</strong></p>
+      <blockquote>Ultimately, matcha quality is not just a property of the leaf — it is a relationship between production, preparation, and perception.</blockquote>
+      <p>That relationship looks different depending on where you stand. Both perspectives are worth understanding. This research has been an attempt to stand in both places at once, and to see what that reveals.</p>
+    </div>
+
+  </div>
 </div>
-</div>
 
-</div>
-
-</div>
-
-<div class="divider">SYNTHESIS</div>
-
-<div class="synthesis">
-
-<h2>Reframing Matcha Quality</h2>
-
-<p>
-Through this comparison, matcha quality no longer appears as a universal standard, but as something constructed through cultural values and context. In Japanese practice, quality is embedded in restraint, continuity, and ritual precision. In global contexts, it often becomes associated with intensity, accessibility, and personal preference.
-</p>
-
-<p>
-Rather than viewing one perspective as superior, this project suggests that matcha exists across multiple systems of meaning. Its globalization does not simply dilute tradition, but transforms how quality is defined and experienced. This shift raises broader questions about how cultural products evolve when removed from their original context.
-</p>
-
-<p>
-Ultimately, matcha quality is not just a property of the leaf, but a relationship between production, preparation, and perception.
-</p>
-
+<!-- ── FOOTER ── -->
+<div class="footer-note">
+  <p>Matcha Practicum · Final Analysis</p>
+  <p>After · Comparative Framework</p>
 </div>
 
 <script>
 
-/* COLLAPSIBLE */
+/* ── SCROLL REVEAL ── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
 
-document.querySelectorAll(".toggle").forEach(btn=>{
-btn.addEventListener("click", ()=>{
-const details = btn.nextElementSibling;
-details.classList.toggle("open");
+document.querySelectorAll('.reveal, .dimension').forEach(el => observer.observe(el));
+
+/* ── SYNTHESIS NAV ── */
+document.querySelectorAll('.synth-nav-item').forEach(item => {
+  item.addEventListener('click', () => {
+    document.querySelectorAll('.synth-nav-item').forEach(n => n.classList.remove('active'));
+    document.querySelectorAll('.synthesis-block').forEach(b => b.classList.remove('active'));
+    item.classList.add('active');
+    document.getElementById(item.dataset.block).classList.add('active');
+  });
 });
-});
+
+/* ── TENSION BARS ANIMATE ON SCROLL ── */
+const barObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const fills = e.target.querySelectorAll('.tension-fill');
+      fills.forEach(f => {
+        const w = f.style.width;
+        f.style.width = '0';
+        setTimeout(() => { f.style.width = w; }, 100);
+      });
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.dimension').forEach(el => barObserver.observe(el));
 
 </script>
-
 </body>
 </html>
