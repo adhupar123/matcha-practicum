@@ -4,49 +4,429 @@
 <meta charset="UTF-8">
 <title>Matcha Practicum</title>
 <link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  background: #f5f3ee;
+  color: #2a2a25;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── NAVBAR ── */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;
+  border-bottom: 1px solid #ddd;
+  background: #f5f3ee;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-title {
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: #2f5d3a;
+  font-family: 'DM Mono', monospace;
+  font-weight: 300;
+}
+.nav-links a {
+  margin-left: 28px;
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  color: #555;
+  font-family: 'DM Mono', monospace;
+  font-weight: 300;
+  transition: color .2s;
+}
+.nav-links a:hover { color: #2f5d3a; }
+
+/* ── HERO ── */
+.hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 110px 40px 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+}
+
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  color: #2f5d3a;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  font-size: clamp(48px, 7vw, 86px);
+  font-weight: 300;
+  line-height: 1.05;
+  color: #1a2e1d;
+  letter-spacing: -2px;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: #2f5d3a;
+}
+
+.hero-right { padding-bottom: 8px; }
+
+.hero-rule {
+  width: 40px;
+  height: 1px;
+  background: #2f5d3a;
+  margin-bottom: 24px;
+}
+
+.hero-intro {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: #555;
+  margin-bottom: 36px;
+}
+
+.hero-meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 2.5px;
+  color: #aaa;
+  text-transform: uppercase;
+  line-height: 2;
+}
+
+/* ── SPECTRUM BAR ── */
+.spectrum-section {
+  max-width: 900px;
+  margin: 0 auto 80px;
+  padding: 0 40px;
+}
+
+.spectrum-bar {
+  height: 1px;
+  background: linear-gradient(to right, #1a4d2a, #a3b18a, #f5f3ee, #c8a87a, #5c3010);
+  margin: 0 0 16px;
+}
+
+.spectrum-labels {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: #bbb;
+}
+
+/* ── CHAPTER LABEL ── */
+.chapter-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 4px;
+  color: #888;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 20px 0 40px;
+}
+
+/* ── CARDS ── */
+.sections {
+  max-width: 900px;
+  margin: 0 auto 0;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: #e0ded8;
+}
+
+.card {
+  background: #f5f3ee;
+  padding: 40px 36px 44px;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  position: relative;
+  transition: background .25s;
+  overflow: hidden;
+}
+
+.card:hover { background: #eeeae1; }
+
+.card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 36px;
+  right: 36px;
+  height: 1px;
+  background: #2f5d3a;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .35s ease;
+}
+
+.card:hover::after { transform: scaleX(1); }
+
+.card-number {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: #bbb;
+  margin-bottom: 28px;
+}
+
+.card h2 {
+  font-size: 32px;
+  font-weight: 300;
+  color: #1a2e1d;
+  margin-bottom: 6px;
+  line-height: 1.1;
+}
+
+.card h2 em {
+  font-style: italic;
+  color: #2f5d3a;
+}
+
+.card-phase {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 2.5px;
+  color: #2f5d3a;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.card p {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: #666;
+  margin-bottom: 32px;
+}
+
+.card-arrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: #2f5d3a;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-arrow::after {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 1px;
+  background: #2f5d3a;
+  transition: width .3s ease;
+}
+
+.card:hover .card-arrow::after { width: 32px; }
+
+/* ── DARK BAND ── */
+.dark-band {
+  background: #1a2e1d;
+  padding: 60px 40px;
+  margin-top: 0;
+}
+
+.dark-band-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  background: #253d29;
+}
+
+.dark-cell {
+  background: #1a2e1d;
+  padding: 28px 24px;
+}
+
+.dark-cell-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  color: #4a8c5c;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.dark-cell-value {
+  font-size: 22px;
+  font-weight: 300;
+  color: #c8e4b0;
+  line-height: 1.3;
+}
+
+/* ── FOOTER ── */
+.footer-note {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 40px 80px;
+  border-top: 1px solid #e0ded8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-note p {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 1.5px;
+  color: #aaa;
+}
+
+/* ── FADE IN ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 700px) {
+  .hero { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px 40px; }
+  .spectrum-section { padding: 0 24px; }
+  .sections { grid-template-columns: 1fr; padding: 0 24px; }
+  .dark-band { padding: 40px 24px; }
+  .dark-band-inner { grid-template-columns: 1fr; }
+  .footer-note { flex-direction: column; gap: 12px; padding: 40px 24px 60px; }
+}
+
+</style>
 </head>
 
 <body>
 
+<!-- ── NAVBAR ── -->
 <div class="navbar">
-<div class="nav-title">Matcha Practicum</div>
-<div class="nav-links">
-<a href="index.html">Home</a>
-<a href="before.html">Before</a>
-<a href="during.html">During</a>
-<a href="after.html">After</a>
-</div>
-</div>
-  
-<div class="container">
-
-<h1>Matcha Practicum</h1>
-
-<p class="intro">
-This project explores the cultivation, chemistry, and cultural meaning of matcha.
-The practicum is divided into three phases that build on one another.
-</p>
-
-<div class="sections">
-
-<a href="before.html" class="card">
-<h2>Before</h2>
-<p>Foundational research and the anatomy of matcha quality.</p>
-</a>
-
-<a href="during.html" class="card">
-<h2>During</h2>
-<p>Experiential learning through tastings, farm visits, and tea ceremony.</p>
-</a>
-
-<a href="after.html" class="card">
-<h2>After</h2>
-<p>Comparing Japanese and international perspectives on matcha quality.</p>
-</a>
-
+  <div class="nav-title">Matcha Practicum</div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="before.html">Before</a>
+    <a href="during.html">During</a>
+    <a href="after.html">After</a>
+  </div>
 </div>
 
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Semester Research · Index</div>
+    <h1 class="hero-title">Matcha<br><em>Practicum</em></h1>
+  </div>
+  <div class="hero-right">
+    <div class="hero-rule"></div>
+    <p class="hero-intro">
+      This project explores the cultivation, chemistry, and cultural meaning of matcha across three phases — tracing quality from the soil through the ceremony, and outward into the world.
+    </p>
+    <div class="hero-meta">
+      Three phases &nbsp;·&nbsp; Field research &nbsp;·&nbsp; Comparative analysis
+    </div>
+  </div>
 </div>
+
+<!-- ── SPECTRUM ── -->
+<div class="spectrum-section reveal">
+  <div class="spectrum-bar"></div>
+  <div class="spectrum-labels">
+    <span>Biological foundations</span>
+    <span>Cultural meaning</span>
+  </div>
+</div>
+
+<div class="chapter-label">Three Phases</div>
+
+<!-- ── CARDS ── -->
+<div class="sections reveal">
+
+  <a href="before.html" class="card">
+    <div class="card-number">01</div>
+    <div class="card-phase">Foundations</div>
+    <h2>Before</h2>
+    <p>Foundational research and the anatomy of matcha quality — from cultivar genetics and soil ecology to the chemistry of shading and stone milling.</p>
+    <div class="card-arrow">Explore</div>
+  </a>
+
+  <a href="during.html" class="card">
+    <div class="card-number">02</div>
+    <div class="card-phase">Field Research</div>
+    <h2>During</h2>
+    <p>Experiential learning through tastings, farm visits, and tea ceremony — tracing each step in the lifecycle from harvest to the final cup.</p>
+    <div class="card-arrow">Explore</div>
+  </a>
+
+  <a href="after.html" class="card">
+    <div class="card-number">03</div>
+    <div class="card-phase">Analysis</div>
+    <h2>After</h2>
+    <p>Comparing Japanese and international perspectives on matcha quality — and what the difference reveals about how culture shapes value.</p>
+    <div class="card-arrow">Explore</div>
+  </a>
+
+</div>
+
+<!-- ── DARK BAND ── -->
+<div class="dark-band reveal">
+  <div class="dark-band-inner">
+    <div class="dark-cell">
+      <div class="dark-cell-label">Method</div>
+      <div class="dark-cell-value">Tastings, interviews &amp; observation</div>
+    </div>
+    <div class="dark-cell">
+      <div class="dark-cell-label">Focus</div>
+      <div class="dark-cell-value">Japanese &amp; American matcha culture</div>
+    </div>
+    <div class="dark-cell">
+      <div class="dark-cell-label">Question</div>
+      <div class="dark-cell-value">What does quality mean, and to whom?</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<div class="footer-note">
+  <p>Matcha Practicum</p>
+  <p>Home · Index</p>
+</div>
+
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
