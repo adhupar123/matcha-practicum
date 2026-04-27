@@ -4,82 +4,225 @@
 <meta charset="UTF-8">
 <title>Before | Matcha Practicum</title>
 <link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
 
-/* ---------------- PAGE STRUCTURE ---------------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-.diagram-section{
-height:280vh;
-position:relative;
-margin-top:300px;
+body {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  background: #f5f3ee;
+  color: #2a2a25;
 }
 
-/* Sticky wrapper that accounts for navbar height */
-.diagram-wrapper{
-position:sticky;
-top:calc(50vh + 50px);   /* accounts for navbar */
-transform:translateY(-50%);
-height:720px;
-display:flex;
-justify-content:center;
+/* ── NAVBAR ── */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;
+  border-bottom: 1px solid #ddd;
+  background: #f5f3ee;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-title {
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: #2f5d3a;
+  font-family: 'DM Mono', monospace;
+  font-weight: 300;
+}
+.nav-links a {
+  margin-left: 28px;
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  color: #555;
+  font-family: 'DM Mono', monospace;
+  font-weight: 300;
+  transition: color .2s;
+}
+.nav-links a:hover { color: #2f5d3a; }
+
+/* ── HERO ── */
+.hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 100px 40px 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
 }
 
-/* ---------------- DIAGRAM ---------------- */
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  color: #2f5d3a;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
 
-.system-diagram{
-position:relative;
-width:720px;
-height:720px;
-transition:.6s ease;
+.hero-title {
+  font-size: clamp(42px, 6vw, 72px);
+  font-weight: 300;
+  line-height: 1.1;
+  color: #1a2e1d;
+  letter-spacing: -1px;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: #2f5d3a;
+}
+
+.hero-right { padding-bottom: 8px; }
+
+.hero-rule {
+  width: 40px;
+  height: 1px;
+  background: #2f5d3a;
+  margin-bottom: 24px;
+}
+
+.hero-intro {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: #555;
+}
+
+/* ── SCROLL GUIDE ── */
+.scroll-guide {
+  max-width: 900px;
+  margin: 0 auto 0;
+  padding: 0 40px 60px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.scroll-guide-layers {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.scroll-layer {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  opacity: .5;
+  transition: opacity .3s;
+}
+
+.scroll-layer.active { opacity: 1; }
+
+.scroll-layer-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.layer-bio .scroll-layer-dot { background: #2f5d3a; }
+.layer-craft .scroll-layer-dot { background: #6b7d5c; }
+.layer-sensory .scroll-layer-dot { background: #a3b18a; }
+
+.scroll-layer-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: #2a2a25;
+  text-transform: uppercase;
+}
+
+.scroll-guide-desc {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: #888;
+  font-style: italic;
+  border-left: 1px solid #ddd;
+  padding-left: 40px;
+}
+
+/* ── DIAGRAM SECTION ── */
+.diagram-section {
+  height: 280vh;
+  position: relative;
+  margin-top: 60px;
+}
+
+.diagram-wrapper {
+  position: sticky;
+  top: calc(50vh + 50px);
+  transform: translateY(-50%);
+  height: 720px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ── SYSTEM DIAGRAM ── */
+.system-diagram {
+  position: relative;
+  width: 720px;
+  height: 720px;
+  transition: .6s ease;
 }
 
 /* Ring Labels */
-
-.ring-label{
-position:absolute;
-left:50%;
-transform:translateX(-50%);
-font-size:12px;
-letter-spacing:2px;
-text-transform:uppercase;
-color:#2f5d3a;
-opacity:0;
-transition:opacity .5s ease;
-pointer-events:none;
+.ring-label {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #2f5d3a;
+  font-weight: 300;
+  opacity: 0;
+  transition: opacity .5s ease;
+  pointer-events: none;
 }
 
-.label-outer{ top:45px; }
-.label-middle{ top:80px; }
-.label-inner{ top:115px; }
+.label-outer { top: 38px; }
+.label-middle { top: 76px; }
+.label-inner { top: 114px; }
 
-.focus-outer .label-outer{ opacity:1; }
-.focus-middle .label-middle{ opacity:1; }
-.focus-inner .label-inner{ opacity:1; }
+.focus-outer .label-outer { opacity: 1; }
+.focus-middle .label-middle { opacity: 1; }
+.focus-inner .label-inner { opacity: 1; }
 
 /* Rings */
-
-.ring{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-border-radius:50%;
-border:1px solid rgba(47,93,58,0.08);
-transition:.6s ease;
+.ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px solid rgba(47, 93, 58, 0.08);
+  transition: .6s ease;
 }
 
-.outer{ width:680px; height:680px; }
-.middle{ width:480px; height:480px; border-width:1.5px; }
-.inner{ width:320px; height:320px; border-width:2px; }
+.outer  { width: 680px; height: 680px; }
+.middle { width: 480px; height: 480px; border-width: 1.5px; }
+.inner  { width: 320px; height: 320px; border-width: 2px; }
 
 .focus-outer .outer,
 .focus-middle .middle,
-.focus-inner .inner{
-border-color:#2f5d3a;
-box-shadow:
-0 0 0 6px rgba(47,93,58,0.05),
-0 0 35px rgba(47,93,58,0.15);
+.focus-inner .inner {
+  border-color: #2f5d3a;
+  box-shadow:
+    0 0 0 6px rgba(47, 93, 58, 0.04),
+    0 0 40px rgba(47, 93, 58, 0.12);
 }
 
 .focus-outer .middle,
@@ -87,76 +230,188 @@ box-shadow:
 .focus-middle .outer,
 .focus-middle .inner,
 .focus-inner .outer,
-.focus-inner .middle{
-opacity:.25;
+.focus-inner .middle { opacity: .2; }
+
+/* Bowl image */
+.system-diagram img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 220px;
+  pointer-events: none;
+  z-index: 1;
 }
 
-/* Bowl */
-
-.system-diagram img{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-width:220px;
-pointer-events:none;
-z-index:1;
+/* ── HOTSPOTS ── */
+.hotspot-container {
+  position: absolute;
+  z-index: 20;
 }
 
-/* ---------------- HOTSPOTS ---------------- */
-
-.hotspot-container{
-position:absolute;
-z-index:20;
+.hotspot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  animation: pulse 2.8s infinite;
 }
 
-.hotspot{
-width:12px;
-height:12px;
-border-radius:50%;
-cursor:pointer;
-animation:pulse 2.6s infinite;
-}
+.bio    .hotspot { background: #2f5d3a; }
+.craft  .hotspot { background: #6b7d5c; }
+.sensory .hotspot { background: #a3b18a; }
 
-.bio .hotspot{ background:#2f5d3a; }
-.craft .hotspot{ background:#6b7d5c; }
-.sensory .hotspot{ background:#a3b18a; }
-
-@keyframes pulse{
-0%{ box-shadow:0 0 0 0 rgba(47,93,58,0.35); }
-70%{ box-shadow:0 0 0 14px rgba(47,93,58,0); }
-100%{ box-shadow:0 0 0 0 rgba(47,93,58,0); }
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(47, 93, 58, 0.35); }
+  70%  { box-shadow: 0 0 0 14px rgba(47, 93, 58, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(47, 93, 58, 0); }
 }
 
 /* Fade inactive layers */
-
-.focus-outer .craft,
-.focus-outer .sensory,
+.focus-outer  .craft,
+.focus-outer  .sensory,
 .focus-middle .bio,
 .focus-middle .sensory,
-.focus-inner .bio,
-.focus-inner .craft{
-opacity:.2;
+.focus-inner  .bio,
+.focus-inner  .craft { opacity: .15; }
+
+/* Info cards */
+.info {
+  position: absolute;
+  width: 260px;
+  background: #f5f3ee;
+  border: 1px solid #e0ded8;
+  padding: 20px 22px;
+  opacity: 0;
+  transition: .25s ease;
+  pointer-events: none;
+  z-index: 30;
 }
 
-/* Info */
-
-.info{
-position:absolute;
-width:260px;
-background:white;
-padding:18px;
-box-shadow:0 20px 40px rgba(0,0,0,0.08);
-opacity:0;
-transition:.3s ease;
-font-size:12px;
-line-height:1.8;
-pointer-events:none;
-z-index:30;
+.info strong {
+  display: block;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #2f5d3a;
+  margin-bottom: 12px;
 }
 
-.hotspot:hover + .info{
-opacity:1;
+.info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.info ul li {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: #555;
+  padding: 6px 0;
+  border-top: 1px solid #ede9e1;
+}
+
+.info ul li:first-child { border-top: none; }
+
+.hotspot:hover + .info { opacity: 1; }
+
+/* ── LAYER COUNTER (sticky side label) ── */
+.layer-counter {
+  position: fixed;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 50;
+}
+
+.layer-pip {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ddd;
+  transition: background .4s, transform .4s;
+}
+
+.layer-pip.active {
+  background: #2f5d3a;
+  transform: scale(1.6);
+}
+
+/* ── BELOW DIAGRAM SECTION ── */
+.below-diagram {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 80px 40px 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  background: #e0ded8;
+}
+
+.below-cell {
+  background: #f5f3ee;
+  padding: 36px 32px;
+}
+
+.below-cell-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  color: #2f5d3a;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.below-cell-title {
+  font-size: 24px;
+  font-weight: 300;
+  color: #1a2e1d;
+  line-height: 1.25;
+  margin-bottom: 14px;
+  font-style: italic;
+}
+
+.below-cell-body {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: #666;
+}
+
+/* ── FOOTER ── */
+.footer-note {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 40px 80px;
+  border-top: 1px solid #e0ded8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-note p {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 1.5px;
+  color: #aaa;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 700px) {
+  .hero { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px 40px; }
+  .scroll-guide { flex-direction: column; padding: 0 24px 40px; }
+  .scroll-guide-desc { border-left: none; border-top: 1px solid #ddd; padding-left: 0; padding-top: 24px; }
+  .layer-counter { display: none; }
+  .below-diagram { grid-template-columns: 1fr; }
+  .footer-note { flex-direction: column; gap: 12px; padding: 40px 24px 60px; }
 }
 
 </style>
@@ -164,34 +419,65 @@ opacity:1;
 
 <body>
 
+<!-- ── NAVBAR ── -->
 <div class="navbar">
-<div class="nav-title">Matcha Practicum</div>
-<div class="nav-links">
-<a href="index.html">Home</a>
-<a href="before.html">Before</a>
-<a href="during.html">During</a>
-<a href="after.html">After</a>
-</div>
-</div>
-
-<div class="container">
-
-<h1>Foundations of Matcha Excellence</h1>
-
-<p class="intro">
-This section maps the full lifecycle system that determines matcha quality,
-from genetic foundation to sensory expression.
-</p>
-
+  <div class="nav-title">Matcha Practicum</div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="before.html">Before</a>
+    <a href="during.html">During</a>
+    <a href="after.html">After</a>
+  </div>
 </div>
 
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Foundations · Before</div>
+    <h1 class="hero-title">The system<br>behind<br><em>every cup</em></h1>
+  </div>
+  <div class="hero-right">
+    <div class="hero-rule"></div>
+    <p class="hero-intro">
+      Matcha quality does not begin at the bowl. It begins in the soil, unfolds through the leaf, and is shaped at every step of cultivation and craft. This section maps the full lifecycle system that determines what ends up in the cup.
+    </p>
+  </div>
+</div>
+
+<!-- ── SCROLL GUIDE ── -->
+<div class="scroll-guide">
+  <div class="scroll-guide-layers">
+    <div class="scroll-layer layer-bio active" id="guide-bio">
+      <div class="scroll-layer-dot"></div>
+      <div class="scroll-layer-label">Biological Foundations</div>
+    </div>
+    <div class="scroll-layer layer-craft" id="guide-craft">
+      <div class="scroll-layer-dot"></div>
+      <div class="scroll-layer-label">Craft &amp; Processing</div>
+    </div>
+    <div class="scroll-layer layer-sensory" id="guide-sensory">
+      <div class="scroll-layer-dot"></div>
+      <div class="scroll-layer-label">Sensory Expression</div>
+    </div>
+  </div>
+  <p class="scroll-guide-desc">Scroll to move through the three layers.<br>Hover any node to read the detail.</p>
+</div>
+
+<!-- ── STICKY PIPS ── -->
+<div class="layer-counter">
+  <div class="layer-pip active" id="pip-0"></div>
+  <div class="layer-pip" id="pip-1"></div>
+  <div class="layer-pip" id="pip-2"></div>
+</div>
+
+<!-- ── DIAGRAM SECTION ── -->
 <section class="diagram-section" id="scroll-section">
   <div class="diagram-wrapper">
     <div class="system-diagram focus-outer" id="diagram">
 
       <!-- Ring Labels -->
       <div class="ring-label label-outer">Biological Foundations</div>
-      <div class="ring-label label-middle">Craft & Processing</div>
+      <div class="ring-label label-middle">Craft &amp; Processing</div>
       <div class="ring-label label-inner">Sensory Expression</div>
 
       <!-- Rings -->
@@ -202,201 +488,251 @@ from genetic foundation to sensory expression.
       <!-- Matcha Bowl -->
       <img src="matcha-bowl.png" alt="Matcha Bowl">
 
-      <!-- HOTSPOTS (directly inside system-diagram) -->
+      <!-- BIOLOGICAL -->
+      <div class="hotspot-container bio" style="top:180px; left:570px;">
+        <div class="hotspot"></div>
+        <div class="info" style="top:-80px; left:50px;">
+          <strong>Cultivar (品種)</strong>
+          <ul>
+            <li>Genetic lineage determines leaf morphology, chlorophyll density, and enzyme expression.</li>
+            <li>Shade-adapted cultivars upregulate L-theanine synthase, producing elevated L-theanine and balanced catechin levels.</li>
+            <li>Chlorophyll biosynthesis and flavonoid pathways modulate both color and bitterness.</li>
+            <li>Leaf development and cell wall composition affect infusion efficiency and texture.</li>
+          </ul>
+        </div>
+      </div>
 
-     <!-- BIOLOGICAL -->
-<div class="hotspot-container bio" style="top:180px; left:570px;">
-  <div class="hotspot"></div>
-  <div class="info" style="top:-80px; left:50px;">
-    <strong>Cultivar (品種)</strong>
-    <ul>
-      <li>Genetic lineage determines leaf morphology, chlorophyll density, and enzyme expression.</li>
-      <li>Shade-adapted cultivars upregulate L-theanine synthase, producing elevated L-theanine and balanced catechin levels.</li>
-      <li>Chlorophyll biosynthesis and flavonoid pathways modulate both color and bitterness, creating refined sweetness and delicate astringency.</li>
-      <li>Leaf development and cell wall composition affect infusion efficiency and texture.</li>
-    </ul>
-  </div>
-</div>
+      <div class="hotspot-container bio" style="top:200px; left:110px;">
+        <div class="hotspot"></div>
+        <div class="info" style="top:30px; left:-100px;">
+          <strong>Soil Composition (土壌)</strong>
+          <ul>
+            <li>Balanced minerals and optimal nitrogen enhance amino acid synthesis and photosynthetic efficiency.</li>
+            <li>Magnesium, calcium, and potassium regulate enzymatic pathways for chlorophyll and flavonoid production.</li>
+            <li>Beneficial microbes facilitate nitrogen fixation, indirectly boosting L-theanine.</li>
+            <li>Soil pH influences catechin accumulation, affecting bitterness and astringency.</li>
+          </ul>
+        </div>
+      </div>
 
-<div class="hotspot-container bio" style="top:200px; left:110px;">
-  <div class="hotspot"></div>
-  <div class="info" style="top:30px; left:-100px;">
-    <strong>Soil Composition (土壌)</strong>
-    <ul>
-      <li>Balanced minerals and optimal nitrogen enhance amino acid synthesis and photosynthetic efficiency.</li>
-      <li>Magnesium, calcium, and potassium regulate enzymatic pathways for chlorophyll and flavonoid production.</li>
-      <li>Beneficial microbes facilitate nitrogen fixation, indirectly boosting L-theanine and overall leaf nutrient content.</li>
-      <li>Soil pH influences catechin accumulation, affecting bitterness and astringency in final matcha.</li>
-    </ul>
-  </div>
-</div>
+      <div class="hotspot-container bio" style="top:600px; left:190px;">
+        <div class="hotspot"></div>
+        <div class="info" style="top:-350px; left:-100px;">
+          <strong>Harvest Timing (一番茶)</strong>
+          <ul>
+            <li>First flush leaves deliver maximal L-theanine and minimal fiber due to reduced lignification.</li>
+            <li>Early harvesting preserves chlorophyll and amino acid content, enhancing smooth texture and subtle sweetness.</li>
+            <li>Delayed harvesting increases catechin synthesis, raising astringency and structural complexity.</li>
+            <li>Photosynthetic activity prior to harvest optimizes chlorophyll-to-carotenoid ratios.</li>
+          </ul>
+        </div>
+      </div>
 
-<div class="hotspot-container bio" style="top:600px; left:190px;">
-  <div class="hotspot"></div>
-  <div class="info" style="top:-350px; left:-100px;">
-    <strong>Harvest Timing (一番茶)</strong>
-    <ul>
-      <li>First flush leaves deliver maximal L-theanine and minimal fiber due to reduced lignification.</li>
-      <li>Early harvesting preserves chlorophyll and amino acid content, enhancing smooth texture and subtle sweetness.</li>
-      <li>Delayed harvesting increases catechin synthesis, raising astringency and structural complexity.</li>
-      <li>Photosynthetic activity prior to harvest optimizes chlorophyll-to-carotenoid ratios, improving leaf vibrancy.</li>
-    </ul>
-  </div>
-</div>
+      <div class="hotspot-container bio" style="top:500px; left:590px;">
+        <div class="hotspot"></div>
+        <div class="info" style="top:-200px; left:50px;">
+          <strong>Shading Strategy (覆下栽培)</strong>
+          <ul>
+            <li>Controlled shading downregulates catechin synthesis while upregulating L-theanine pathways.</li>
+            <li>Reduced UV exposure decreases polyphenol oxidase activity, preserving chlorophyll and enhancing umami.</li>
+            <li>Shading maintains lustrous jade color and improves sweetness-to-bitterness balance.</li>
+            <li>Photoreceptor signaling adjusts amino acid metabolism for richer flavor profiles.</li>
+          </ul>
+        </div>
+      </div>
 
-<div class="hotspot-container bio" style="top:500px; left:590px;">
-  <div class="hotspot"></div>
-  <div class="info" style="top:-200px; left:50px;">
-    <strong>Shading Strategy (覆下栽培)</strong>
-    <ul>
-      <li>Controlled shading downregulates catechin synthesis while upregulating L-theanine pathways.</li>
-      <li>Reduced UV exposure decreases polyphenol oxidase activity, preserving chlorophyll and enhancing umami.</li>
-      <li>Shading maintains lustrous jade color and improves sweetness-to-bitterness balance.</li>
-      <li>Photoreceptor signaling adjusts amino acid metabolism for richer flavor profiles.</li>
-    </ul>
-  </div>
-</div>
+      <!-- CRAFT -->
+      <div class="hotspot-container craft" style="top:170px; left:400px;">
+        <div class="hotspot"></div>
+        <div class="info" style="top:-160px; left:-320px;">
+          <strong>Processing (製茶工程)</strong>
+          <ul>
+            <li>Immediate steaming deactivates polyphenol oxidase, halting catechin oxidation.</li>
+            <li>Rolling and drying maintain cell wall integrity, influencing amino acid and volatile compound release.</li>
+            <li>Proper moisture management preserves L-theanine stability, maintaining refined flavor balance.</li>
+            <li>Controlled oxidation prevents bitter note development while maintaining color and sweetness.</li>
+          </ul>
+        </div>
+      </div>
 
-<!-- CRAFT -->
-<div class="hotspot-container craft" style="top:170px; left:400px;">
-  <div class="hotspot"></div>
-  <div class="info" style="top:-160px; left:-320px;">
-    <strong>Processing (製茶工程)</strong>
-    <ul>
-      <li>Immediate steaming deactivates polyphenol oxidase, halting catechin oxidation.</li>
-      <li>Rolling and drying maintain cell wall integrity, influencing amino acid and volatile compound release.</li>
-      <li>Proper moisture management preserves L-theanine stability, maintaining refined flavor balance.</li>
-      <li>Controlled oxidation prevents bitter note development while maintaining color and sweetness.</li>
-    </ul>
-  </div>
-</div>
+      <div class="hotspot-container craft" style="top:350px; left:560px;">
+        <div class="hotspot"></div>
+        <div class="info" style="top:-40px; left:40px;">
+          <strong>Stone Milling (石臼挽き)</strong>
+          <ul>
+            <li>Slow granite milling prevents frictional heat, preserving volatile aldehydes, pyrazines, and chlorophyll derivatives.</li>
+            <li>Ultra-fine particles increase infusion efficiency and creamy mouthfeel.</li>
+            <li>Milling rate influences catechin release, controlling perceived astringency and bitterness.</li>
+            <li>Particle size affects colloidal suspension stability, contributing to ceremonial texture.</li>
+          </ul>
+        </div>
+      </div>
 
-<div class="hotspot-container craft" style="top:350px; left:560px;">
-  <div class="hotspot"></div>
-  <div class="info" style="top:-40px; left:40px;">
-    <strong>Stone Milling (石臼挽き)</strong>
-    <ul>
-      <li>Slow granite milling prevents frictional heat, preserving volatile aldehydes, pyrazines, and chlorophyll derivatives.</li>
-      <li>Ultra-fine particles increase infusion efficiency and creamy mouthfeel.</li>
-      <li>Milling rate influences catechin release, controlling perceived astringency and bitterness.</li>
-      <li>Particle size affects colloidal suspension stability, contributing to ceremonial texture.</li>
-    </ul>
-  </div>
-</div>
+      <div class="hotspot-container craft" style="top:560px; left:400px;">
+        <div class="hotspot"></div>
+        <div class="info" style="top:-180px; left:50px;">
+          <strong>Freshness Management (鮮度管理)</strong>
+          <ul>
+            <li>Cold storage slows enzymatic oxidation and Maillard reactions.</li>
+            <li>Low oxygen and controlled humidity preserve L-theanine, chlorophyll, and aroma compounds.</li>
+            <li>Storage stability ensures consistent infusion, color, and flavor intensity.</li>
+            <li>Prevents leaf degradation, maintaining clarity of sweetness and vibrant appearance.</li>
+          </ul>
+        </div>
+      </div>
 
-<div class="hotspot-container craft" style="top:560px; left:400px;">
-  <div class="hotspot"></div>
-  <div class="info" style="top:-180px; left:50px;">
-    <strong>Freshness Management (鮮度管理)</strong>
-    <ul>
-      <li>Cold storage slows enzymatic oxidation and Maillard reactions.</li>
-      <li>Low oxygen and controlled humidity preserve L-theanine, chlorophyll, and aroma compounds.</li>
-      <li>Storage stability ensures consistent infusion, color, and flavor intensity.</li>
-      <li>Prevents leaf degradation, maintaining clarity of sweetness and vibrant appearance.</li>
-    </ul>
-  </div>
-</div>
+      <div class="hotspot-container craft" style="top:350px; left:150px;">
+        <div class="hotspot"></div>
+        <div class="info" style="top:-150px; left:-310px;">
+          <strong>Water Character (湯質)</strong>
+          <ul>
+            <li>Mineral content and pH influence extraction of L-theanine, caffeine, and catechins.</li>
+            <li>Soft water enhances sweetness and umami perception; hard water accentuates catechin bitterness.</li>
+            <li>Water composition modulates solubility of aroma compounds, impacting bouquet and mouthfeel.</li>
+            <li>Temperature and mineral balance affect suspension stability and infusion texture.</li>
+          </ul>
+        </div>
+      </div>
 
-<div class="hotspot-container craft" style="top:350px; left:150px;">
-  <div class="hotspot"></div>
-  <div class="info" style="top:-150px; left:-310px;">
-    <strong>Water Character (湯質)</strong>
-    <ul>
-      <li>Mineral content and pH influence extraction of L-theanine, caffeine, and catechins.</li>
-      <li>Soft water enhances sweetness and umami perception; hard water accentuates catechin bitterness.</li>
-      <li>Water composition modulates solubility of aroma compounds, impacting bouquet and mouthfeel.</li>
-      <li>Temperature and mineral balance affect suspension stability and infusion texture.</li>
-    </ul>
-  </div>
-</div>
+      <!-- SENSORY -->
+      <div class="hotspot-container sensory" style="top:250px; left:400px;">
+        <div class="hotspot"></div>
+        <div class="info" style="top:-250px; left:20px;">
+          <strong>Color (色)</strong>
+          <ul>
+            <li>Leaf and powder color reflects chlorophyll integrity preserved by shading, steaming, and milling.</li>
+            <li>High chlorophyll a/b ratios and minimal pheophytin formation maintain vivid jade hues.</li>
+            <li>Minor carotenoids contribute yellow-green undertones, signaling freshness and careful processing.</li>
+            <li>Color intensity correlates with amino acid and flavonoid balance, indicating quality.</li>
+          </ul>
+        </div>
+      </div>
 
-<!-- SENSORY -->
-<div class="hotspot-container sensory" style="top:250px; left:400px;">
-  <div class="hotspot"></div>
-  <div class="info" style="top:-250px; left:20px;">
-    <strong>Color (色)</strong>
-    <ul>
-      <li>Leaf and powder color reflects chlorophyll integrity preserved by shading, steaming, and milling.</li>
-      <li>High chlorophyll a/b ratios and minimal pheophytin formation maintain vivid jade hues.</li>
-      <li>Minor carotenoids contribute yellow-green undertones, signaling freshness and careful processing.</li>
-      <li>Color intensity correlates with amino acid and flavonoid balance, indicating quality.</li>
-    </ul>
-  </div>
-</div>
+      <div class="hotspot-container sensory" style="top:430px; left:460px;">
+        <div class="hotspot"></div>
+        <div class="info" style="top:-100px; left:40px;">
+          <strong>Aroma (香り)</strong>
+          <ul>
+            <li>Steaming preserves green aldehydes (hexanal, cis-3-hexenal) for fresh grassy notes.</li>
+            <li>Stone milling liberates pyrazines and terpenoids, adding roasted and marine nuances.</li>
+            <li>Mild drying promotes subtle Maillard volatiles without creating bitterness.</li>
+            <li>Volatile compounds interact with water to enhance bouquet perception in the cup.</li>
+          </ul>
+        </div>
+      </div>
 
-<div class="hotspot-container sensory" style="top:430px; left:460px;">
-  <div class="hotspot"></div>
-  <div class="info" style="top:-100px; left:40px;">
-    <strong>Aroma (香り)</strong>
-    <ul>
-      <li>Steaming preserves green aldehydes (hexanal, cis-3-hexenal) for fresh grassy notes.</li>
-      <li>Stone milling liberates pyrazines and terpenoids, adding roasted and marine nuances.</li>
-      <li>Mild drying promotes subtle Maillard volatiles without creating bitterness.</li>
-      <li>Volatile compounds interact with water to enhance bouquet perception in the cup.</li>
-    </ul>
-  </div>
-</div>
+      <div class="hotspot-container sensory" style="top:470px; left:290px;">
+        <div class="hotspot"></div>
+        <div class="info" style="top:-150px; left:-310px;">
+          <strong>Umami (旨味)</strong>
+          <ul>
+            <li>L-theanine synergizes with glutamic acid, activating T1R1/T1R3 receptors for deep, lingering umami.</li>
+            <li>Shading and rapid steaming maximize amino acid concentration.</li>
+            <li>Minor nucleotides (IMP, GMP) enhance taste complexity and depth.</li>
+            <li>Balanced infusion temperature preserves umami without activating excessive bitterness.</li>
+          </ul>
+        </div>
+      </div>
 
-<div class="hotspot-container sensory" style="top:470px; left:290px;">
-  <div class="hotspot"></div>
-  <div class="info" style="top:-150px; left:-310px;">
-    <strong>Umami (旨味)</strong>
-    <ul>
-      <li>L-theanine synergizes with glutamic acid, activating T1R1/T1R3 receptors for deep, lingering umami.</li>
-      <li>Shading and rapid steaming maximize amino acid concentration.</li>
-      <li>Minor nucleotides (IMP, GMP) enhance taste complexity and depth.</li>
-      <li>Balanced infusion temperature preserves umami without activating excessive bitterness.</li>
-    </ul>
-  </div>
-</div>
+      <div class="hotspot-container sensory" style="top:310px; left:250px;">
+        <div class="hotspot"></div>
+        <div class="info" style="top:-40px; left:-310px;">
+          <strong>Bitterness (渋み)</strong>
+          <ul>
+            <li>Catechin composition (EGCG, epicatechin) defines structural tension and flavor complexity.</li>
+            <li>Steaming and storage limit oxidation, balancing bitter and sweet notes.</li>
+            <li>Protein-polyphenol interactions during infusion modulate astringency and mouthfeel.</li>
+            <li>Infusion time and water temperature influence perceived bitterness intensity.</li>
+          </ul>
+        </div>
+      </div>
 
-<div class="hotspot-container sensory" style="top:310px; left:250px;">
-  <div class="hotspot"></div>
-  <div class="info" style="top:-40px; left:-310px;">
-    <strong>Bitterness (渋み)</strong>
-    <ul>
-      <li>Catechin composition (EGCG, epicatechin) defines structural tension and flavor complexity.</li>
-      <li>Steaming and storage limit oxidation, balancing bitter and sweet notes.</li>
-      <li>Protein-polyphenol interactions during infusion modulate astringency and mouthfeel.</li>
-      <li>Infusion time and water temperature influence perceived bitterness intensity.</li>
-    </ul>
-  </div>
-</div>
+      <div class="hotspot-container sensory" style="top:330px; left:480px;">
+        <div class="hotspot"></div>
+        <div class="info" style="top:-50px; left:40px;">
+          <strong>Texture (質感)</strong>
+          <ul>
+            <li>Ultra-fine powder ensures homogeneous colloidal suspension for smooth infusion.</li>
+            <li>Polysaccharides and lipids enhance viscosity, creating ceremonial creaminess.</li>
+            <li>Proper whisking preserves microbubbles, producing luxurious mouthfeel.</li>
+            <li>Particle size distribution affects sedimentation rate and mouthfeel stability.</li>
+          </ul>
+        </div>
+      </div>
 
-<div class="hotspot-container sensory" style="top:330px; left:480px;">
-  <div class="hotspot"></div>
-  <div class="info" style="top:-50px; left:40px;">
-    <strong>Texture (質感)</strong>
-    <ul>
-      <li>Ultra-fine powder ensures homogeneous colloidal suspension for smooth infusion.</li>
-      <li>Polysaccharides and lipids enhance viscosity, creating ceremonial creaminess.</li>
-      <li>Proper whisking preserves microbubbles, producing luxurious mouthfeel.</li>
-      <li>Particle size distribution affects sedimentation rate and mouthfeel stability.</li>
-    </ul>
-  </div>
-</div>
-
+    </div><!-- /.system-diagram -->
+  </div><!-- /.diagram-wrapper -->
 </section>
 
+<!-- ── THREE PILLARS SUMMARY ── -->
+<div style="max-width:900px; margin:0 auto; padding: 0 40px 20px;">
+  <div style="font-family:'DM Mono',monospace; font-size:10px; font-weight:300; letter-spacing:4px; color:#2f5d3a; text-transform:uppercase; margin-bottom:32px; opacity:0; animation: fadeUp .6s .3s forwards;">
+    Three Layers of Quality
+  </div>
+</div>
+
+<div class="below-diagram">
+  <div class="below-cell">
+    <div class="below-cell-eyebrow">Layer 01 · Biology</div>
+    <div class="below-cell-title">The leaf before it is touched</div>
+    <div class="below-cell-body">Cultivar genetics, soil composition, shading strategy, and harvest timing form the biological foundation. Everything that follows can only preserve or diminish what begins here.</div>
+  </div>
+  <div class="below-cell">
+    <div class="below-cell-eyebrow">Layer 02 · Craft</div>
+    <div class="below-cell-title">Precision across every step</div>
+    <div class="below-cell-body">Steaming, rolling, stone milling, and storage each introduce or close off possibilities. The craftsperson's choices translate biological potential into something the cup can hold.</div>
+  </div>
+  <div class="below-cell">
+    <div class="below-cell-eyebrow">Layer 03 · Sensory</div>
+    <div class="below-cell-title">Where the system becomes experience</div>
+    <div class="below-cell-body">Color, aroma, umami, bitterness, and texture are not isolated qualities — they are the accumulated expression of every prior decision. The cup is the diagram made visible.</div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<div class="footer-note">
+  <p>Matcha Practicum · Foundations</p>
+  <p>Before · Lifecycle System</p>
+</div>
+
 <script>
-const diagram = document.getElementById("diagram");
-const section = document.getElementById("scroll-section");
 
-window.addEventListener("scroll", () => {
-const rect = section.getBoundingClientRect();
-const total = section.offsetHeight - window.innerHeight;
-const progress = Math.min(Math.max(-rect.top / total, 0), 1);
+const diagram  = document.getElementById('diagram');
+const section  = document.getElementById('scroll-section');
+const pips     = [
+  document.getElementById('pip-0'),
+  document.getElementById('pip-1'),
+  document.getElementById('pip-2')
+];
+const guides   = [
+  document.getElementById('guide-bio'),
+  document.getElementById('guide-craft'),
+  document.getElementById('guide-sensory')
+];
 
-if(progress < 0.33){
-diagram.className = "system-diagram focus-outer";
+let currentStage = 0;
+
+function setStage(stage) {
+  if (stage === currentStage) return;
+  currentStage = stage;
+
+  const classes = ['focus-outer', 'focus-middle', 'focus-inner'];
+  diagram.className = 'system-diagram ' + classes[stage];
+
+  pips.forEach((p, i)  => p.classList.toggle('active', i === stage));
+  guides.forEach((g, i) => g.classList.toggle('active', i === stage));
 }
-else if(progress < 0.66){
-diagram.className = "system-diagram focus-middle";
-}
-else{
-diagram.className = "system-diagram focus-inner";
-}
+
+window.addEventListener('scroll', () => {
+  const rect  = section.getBoundingClientRect();
+  const total = section.offsetHeight - window.innerHeight;
+  const progress = Math.min(Math.max(-rect.top / total, 0), 1);
+
+  if (progress < 0.33)       setStage(0);
+  else if (progress < 0.66)  setStage(1);
+  else                        setStage(2);
 });
+
 </script>
 
 </body>
