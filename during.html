@@ -2,116 +2,314 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>During</title>
+<title>During | Matcha Practicum</title>
 <link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
 
-/* ---------------- TIMELINE ---------------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-.timeline{
-position:relative;
-max-width:850px;
-margin:120px auto;
-padding-left:50px;
-border-left:2px solid #dcdcdc;
+body {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  background: #f5f3ee;
+  color: #2a2a25;
 }
 
-.entry{
-position:relative;
-margin-bottom:110px;
-opacity:0;
-transform:translateY(30px);
-transition:.6s ease;
+/* ── NAVBAR ── */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;
+  border-bottom: 1px solid #ddd;
+  background: #f5f3ee;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-title {
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: #2f5d3a;
+  font-family: 'DM Mono', monospace;
+  font-weight: 300;
+}
+.nav-links a {
+  margin-left: 28px;
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  color: #555;
+  font-family: 'DM Mono', monospace;
+  font-weight: 300;
+  transition: color .2s;
+}
+.nav-links a:hover { color: #2f5d3a; }
+
+/* ── HERO ── */
+.hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 100px 40px 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
 }
 
-.entry.visible{
-opacity:1;
-transform:translateY(0);
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  color: #2f5d3a;
+  margin-bottom: 20px;
+  text-transform: uppercase;
 }
 
-.entry::before{
-content:"";
-position:absolute;
-left:-57px;
-top:8px;
-width:14px;
-height:14px;
-background:#2f5d3a;
-border-radius:50%;
+.hero-title {
+  font-size: clamp(42px, 6vw, 72px);
+  font-weight: 300;
+  line-height: 1.1;
+  color: #1a2e1d;
+  letter-spacing: -1px;
 }
 
-/* ICON */
-
-.icon{
-position:absolute;
-left:-95px;
-top:0;
-font-size:20px;
-opacity:0.8;
+.hero-title em {
+  font-style: italic;
+  color: #2f5d3a;
 }
 
-/* PHASE */
+.hero-right { padding-bottom: 8px; }
 
-.phase{
-font-size:12px;
-letter-spacing:2px;
-color:#2f5d3a;
-margin-bottom:10px;
+.hero-rule {
+  width: 40px;
+  height: 1px;
+  background: #2f5d3a;
+  margin-bottom: 24px;
 }
 
-/* TITLE */
-
-.entry h3{
-margin:0 0 10px 0;
-font-size:22px;
-font-weight:400;
+.hero-intro {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: #555;
 }
 
-/* TAGS */
-
-.meta{
-font-size:12px;
-color:#777;
-margin-bottom:12px;
+/* ── TIMELINE ── */
+.timeline {
+  position: relative;
+  max-width: 860px;
+  margin: 20px auto 100px;
+  padding: 0 40px 0 100px;
 }
 
-.tag{
-display:inline-block;
-font-size:11px;
-padding:4px 8px;
-margin-right:6px;
-border:1px solid #ccc;
-border-radius:4px;
+/* vertical rule */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 100px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: #e0ded8;
 }
 
-/* TEXT */
-
-.entry p{
-line-height:1.9;
-color:#444;
+/* ── ENTRY ── */
+.entry {
+  position: relative;
+  margin-bottom: 90px;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .65s ease, transform .65s ease;
 }
 
-/* COLLAPSIBLE */
-
-.toggle{
-margin-top:15px;
-cursor:pointer;
-font-size:13px;
-color:#2f5d3a;
+.entry.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.details{
-max-height:0;
-overflow:hidden;
-transition:max-height .5s ease;
-font-size:13px;
-line-height:1.9;
-margin-top:10px;
+/* dot on the line */
+.entry::before {
+  content: '';
+  position: absolute;
+  left: -62px;
+  top: 10px;
+  width: 9px;
+  height: 9px;
+  background: #2f5d3a;
+  border-radius: 50%;
+  border: 2px solid #f5f3ee;
+  box-shadow: 0 0 0 1px #2f5d3a;
 }
 
-.details.open{
-max-height:900px;
+/* phase number in the left gutter */
+.entry-number {
+  position: absolute;
+  left: -98px;
+  top: 6px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  color: #bbb;
+  width: 28px;
+  text-align: right;
+}
+
+/* ── PHASE LABEL ── */
+.phase {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #2f5d3a;
+  margin-bottom: 10px;
+}
+
+/* ── ENTRY TITLE ── */
+.entry h3 {
+  font-size: 28px;
+  font-weight: 300;
+  color: #1a2e1d;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+/* ── TAGS ── */
+.meta {
+  margin-bottom: 16px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 1.5px;
+  padding: 4px 10px;
+  border: 1px solid #d0cdc6;
+  color: #888;
+}
+
+/* ── ENTRY BODY ── */
+.entry > p {
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: #555;
+  max-width: 620px;
+}
+
+/* ── COLLAPSIBLE ── */
+.toggle {
+  margin-top: 16px;
+  cursor: pointer;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: #2f5d3a;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+  transition: opacity .2s;
+}
+
+.toggle:hover { opacity: .7; }
+
+.toggle::after {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 1px;
+  background: #2f5d3a;
+  transition: width .3s;
+}
+
+.toggle.open::after { width: 6px; }
+
+.details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .55s ease;
+}
+
+.details.open { max-height: 900px; }
+
+.details-inner {
+  margin-top: 18px;
+  padding: 22px 24px;
+  border-left: 2px solid #2f5d3a;
+  background: #f0ede6;
+}
+
+.details-inner p {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: #555;
+}
+
+/* ── PROGRESS INDICATOR (fixed right) ── */
+.progress-rail {
+  position: fixed;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  z-index: 50;
+}
+
+.progress-pip {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #d0cdc6;
+  transition: background .35s, transform .35s;
+  cursor: default;
+}
+
+.progress-pip.active {
+  background: #2f5d3a;
+  transform: scale(1.7);
+}
+
+/* ── FOOTER ── */
+.footer-note {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 40px 80px;
+  border-top: 1px solid #e0ded8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-note p {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 1.5px;
+  color: #aaa;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 700px) {
+  .hero { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px 40px; }
+  .timeline { padding: 0 24px 0 64px; }
+  .timeline::before { left: 64px; }
+  .entry::before { left: -44px; }
+  .entry-number { display: none; }
+  .progress-rail { display: none; }
+  .footer-note { flex-direction: column; gap: 12px; padding: 40px 24px 60px; }
 }
 
 </style>
@@ -119,181 +317,225 @@ max-height:900px;
 
 <body>
 
+<!-- ── NAVBAR ── -->
 <div class="navbar">
-<div class="nav-title">Matcha Practicum</div>
-<div class="nav-links">
-<a href="index.html">Home</a>
-<a href="before.html">Before</a>
-<a href="during.html">During</a>
-<a href="after.html">After</a>
-</div>
-</div>
-  
-<div class="container">
-
-<h1>During</h1>
-
-<p class="intro">
-This phase traces the full lifecycle of matcha from cultivation to ceremony. Each step reveals how biological systems, human intervention, and cultural practice interact to construct what we perceive as “quality.”
-</p>
-
+  <div class="nav-title">Matcha Practicum</div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="before.html">Before</a>
+    <a href="during.html">During</a>
+    <a href="after.html">After</a>
+  </div>
 </div>
 
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Field Research · During</div>
+    <h1 class="hero-title">From soil<br>to<br><em>ceremony</em></h1>
+  </div>
+  <div class="hero-right">
+    <div class="hero-rule"></div>
+    <p class="hero-intro">
+      This phase traces the full lifecycle of matcha from cultivation to ceremony. Each step reveals how biological systems, human intervention, and cultural practice interact to construct what we perceive as quality.
+    </p>
+  </div>
+</div>
+
+<!-- ── PROGRESS RAIL ── -->
+<div class="progress-rail" id="progress-rail">
+  <div class="progress-pip active"></div>
+  <div class="progress-pip"></div>
+  <div class="progress-pip"></div>
+  <div class="progress-pip"></div>
+  <div class="progress-pip"></div>
+  <div class="progress-pip"></div>
+  <div class="progress-pip"></div>
+  <div class="progress-pip"></div>
+</div>
+
+<!-- ── TIMELINE ── -->
 <div class="timeline">
 
-<!-- CULTIVATION -->
+  <!-- 01 -->
+  <div class="entry" data-index="0">
+    <div class="entry-number">01</div>
+    <div class="phase">Cultivation</div>
+    <h3>Planting and Soil Ecology</h3>
+    <div class="meta">
+      <span class="tag">Biology</span>
+      <span class="tag">Foundation</span>
+    </div>
+    <p>Matcha quality begins at the level of soil and genetics, where nitrogen availability and cultivar selection determine the plant's biochemical capacity to produce amino acids and aromatic precursors.</p>
+    <div class="toggle">Expand</div>
+    <div class="details">
+      <div class="details-inner">
+        <p>Tea plants grown in nitrogen-rich soil accumulate higher concentrations of L-theanine, a key compound responsible for sweetness and umami. Specific cultivars such as shade-adapted varieties further enhance this effect through genetic predisposition. Over time, pruning strategies redirect plant energy toward tender leaf production rather than vertical growth. What initially seemed like distant agricultural setup increasingly felt like the foundation of everything I later tasted. Subtle differences in sweetness and depth began to feel traceable back to soil and plant decisions made years earlier.</p>
+      </div>
+    </div>
+  </div>
 
-<div class="entry">
-<div class="icon">🌱</div>
-<div class="phase">Cultivation</div>
-<h3>Planting and Soil Ecology</h3>
-<div class="meta"><span class="tag">Biology</span><span class="tag">Foundation</span></div>
-<p>
-Matcha quality begins at the level of soil and genetics, where nitrogen availability and cultivar selection determine the plant’s biochemical capacity to produce amino acids and aromatic precursors.
-</p>
-<div class="toggle">View Details</div>
-<div class="details">
-Tea plants grown in nitrogen-rich soil accumulate higher concentrations of L-theanine, a key compound responsible for sweetness and umami. Specific cultivars such as shade-adapted varieties further enhance this effect through genetic predisposition. Over time, pruning strategies redirect plant energy toward tender leaf production rather than vertical growth. What initially seemed like distant agricultural setup increasingly felt like the foundation of everything I later tasted. Subtle differences in sweetness and depth began to feel traceable back to soil and plant decisions made years earlier.
-</div>
+  <!-- 02 -->
+  <div class="entry" data-index="1">
+    <div class="entry-number">02</div>
+    <div class="phase">Pre-Harvest</div>
+    <h3>Shading and Metabolic Control</h3>
+    <div class="meta">
+      <span class="tag">Chemistry</span>
+      <span class="tag">Technique</span>
+    </div>
+    <p>Shading transforms the plant's internal chemistry by limiting sunlight and altering metabolic pathways tied to flavor development.</p>
+    <div class="toggle">Expand</div>
+    <div class="details">
+      <div class="details-inner">
+        <p>By covering tea plants for several weeks, producers reduce photosynthetic activity. This prevents the conversion of L-theanine into catechins, preserving sweetness while suppressing bitterness. At the same time, chlorophyll production increases, intensifying color. Experiencing shaded vs unshaded matcha made this process tangible. What I had previously understood as "better flavor" became something clearly engineered through environmental manipulation rather than inherent quality.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 -->
+  <div class="entry" data-index="2">
+    <div class="entry-number">03</div>
+    <div class="phase">Harvest</div>
+    <h3>First Flush Selection</h3>
+    <div class="meta">
+      <span class="tag">Quality</span>
+      <span class="tag">Timing</span>
+    </div>
+    <p>The timing of harvest determines leaf tenderness, chemical composition, and ultimately the smoothness of the final matcha.</p>
+    <div class="toggle">Expand</div>
+    <div class="details">
+      <div class="details-inner">
+        <p>First flush leaves contain peak amino acid concentrations and minimal structural fiber. As leaves mature, cellulose increases and flavor becomes more astringent. Observing and tasting different grades revealed how quickly quality declines with time. Harvest timing felt less like a simple decision and more like a narrow window where biological potential can either be captured or lost.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 -->
+  <div class="entry" data-index="3">
+    <div class="entry-number">04</div>
+    <div class="phase">Processing</div>
+    <h3>Steaming and Enzyme Deactivation</h3>
+    <div class="meta">
+      <span class="tag">Chemistry</span>
+      <span class="tag">Preservation</span>
+    </div>
+    <p>Steaming locks in the chemical composition of the leaf by halting enzymatic oxidation immediately after harvest.</p>
+    <div class="toggle">Expand</div>
+    <div class="details">
+      <div class="details-inner">
+        <p>Heat denatures enzymes such as polyphenol oxidase, preventing oxidation and preserving chlorophyll and volatile compounds. This step distinguishes Japanese green tea from oxidized teas. Understanding this clarified why matcha maintains such a vibrant color and fresh aroma. It became clear that quality is not only developed in the field but actively protected through precise intervention.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 -->
+  <div class="entry" data-index="4">
+    <div class="entry-number">05</div>
+    <div class="phase">Processing</div>
+    <h3>Drying and Tencha Refinement</h3>
+    <div class="meta">
+      <span class="tag">Processing</span>
+    </div>
+    <p>Leaves are carefully dried and stripped down to their most delicate components before grinding.</p>
+    <div class="toggle">Expand</div>
+    <div class="details">
+      <div class="details-inner">
+        <p>Unlike other teas, leaves are not rolled but laid flat to dry, preserving structure. Stems and veins are removed, isolating soft leaf tissue that produces smoother texture and less bitterness. This stage revealed how much of matcha quality comes from subtraction — removing what is undesirable rather than simply enhancing what is present.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 -->
+  <div class="entry" data-index="5">
+    <div class="entry-number">06</div>
+    <div class="phase">Final Production</div>
+    <h3>Stone Milling</h3>
+    <div class="meta">
+      <span class="tag">Technique</span>
+      <span class="tag">Precision</span>
+    </div>
+    <p>Grinding transforms tencha into a fine powder, enabling its unique method of consumption.</p>
+    <div class="toggle">Expand</div>
+    <div class="details">
+      <div class="details-inner">
+        <p>Traditional stone mills rotate slowly to prevent heat buildup that could degrade amino acids and aromatic compounds. The resulting particles are extremely fine, allowing them to suspend in water rather than dissolve. This stage made the fragility of matcha more apparent. Even after cultivation and processing, quality can still be lost through something as subtle as heat during grinding.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 -->
+  <div class="entry" data-index="6">
+    <div class="entry-number">07</div>
+    <div class="phase">Preparation</div>
+    <h3>Whisking and Extraction</h3>
+    <div class="meta">
+      <span class="tag">Application</span>
+      <span class="tag">Control</span>
+    </div>
+    <p>Preparation determines how the chemical potential of matcha is expressed in the final cup.</p>
+    <div class="toggle">Expand</div>
+    <div class="details">
+      <div class="details-inner">
+        <p>Water temperature influences extraction balance, with lower temperatures emphasizing sweetness and higher temperatures increasing bitterness. Whisking technique creates microfoam, affecting texture and mouthfeel. Practicing preparation revealed that quality is not fixed in the powder but actively shaped in the moment of use.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 08 -->
+  <div class="entry" data-index="7">
+    <div class="entry-number">08</div>
+    <div class="phase">Tea Ceremony</div>
+    <h3>Ritual and Meaning</h3>
+    <div class="meta">
+      <span class="tag">Culture</span>
+      <span class="tag">Experience</span>
+    </div>
+    <p>The tea ceremony situates matcha within a cultural framework that emphasizes mindfulness, precision, and presence.</p>
+    <div class="toggle">Expand</div>
+    <div class="details">
+      <div class="details-inner">
+        <p>Movements are deliberate, utensils are purified, and the act of drinking becomes ritualized. Guests rotate the bowl and consume the tea immediately, preserving its ideal state. What stood out most was how quality extended beyond taste into experience. Matcha was no longer just evaluated chemically or sensorially, but through the intentional environment in which it was consumed.</p>
+      </div>
+    </div>
+  </div>
+
 </div>
 
-<!-- SHADING -->
-
-<div class="entry">
-<div class="icon">🌿</div>
-<div class="phase">Pre Harvest</div>
-<h3>Shading and Metabolic Control</h3>
-<div class="meta"><span class="tag">Chemistry</span><span class="tag">Technique</span></div>
-<p>
-Shading transforms the plant’s internal chemistry by limiting sunlight and altering metabolic pathways tied to flavor development.
-</p>
-<div class="toggle">View Details</div>
-<div class="details">
-By covering tea plants for several weeks, producers reduce photosynthetic activity. This prevents the conversion of L-theanine into catechins, preserving sweetness while suppressing bitterness. At the same time, chlorophyll production increases, intensifying color. Experiencing shaded vs unshaded matcha made this process tangible. What I had previously understood as “better flavor” became something clearly engineered through environmental manipulation rather than inherent quality.
-</div>
-</div>
-
-<!-- HARVEST -->
-
-<div class="entry">
-<div class="icon">🍃</div>
-<div class="phase">Harvest</div>
-<h3>First Flush Selection</h3>
-<div class="meta"><span class="tag">Quality</span><span class="tag">Timing</span></div>
-<p>
-The timing of harvest determines leaf tenderness, chemical composition, and ultimately the smoothness of the final matcha.
-</p>
-<div class="toggle">View Details</div>
-<div class="details">
-First flush leaves contain peak amino acid concentrations and minimal structural fiber. As leaves mature, cellulose increases and flavor becomes more astringent. Observing and tasting different grades revealed how quickly quality declines with time. Harvest timing felt less like a simple decision and more like a narrow window where biological potential can either be captured or lost.
-</div>
-</div>
-
-<!-- STEAMING -->
-
-<div class="entry">
-<div class="icon">♨️</div>
-<div class="phase">Processing</div>
-<h3>Steaming and Enzyme Deactivation</h3>
-<div class="meta"><span class="tag">Chemistry</span><span class="tag">Preservation</span></div>
-<p>
-Steaming locks in the chemical composition of the leaf by halting enzymatic oxidation immediately after harvest.
-</p>
-<div class="toggle">View Details</div>
-<div class="details">
-Heat denatures enzymes such as polyphenol oxidase, preventing oxidation and preserving chlorophyll and volatile compounds. This step distinguishes Japanese green tea from oxidized teas. Understanding this clarified why matcha maintains such a vibrant color and fresh aroma. It became clear that quality is not only developed in the field but actively protected through precise intervention.
-</div>
-</div>
-
-<!-- DRYING -->
-
-<div class="entry">
-<div class="icon">🍂</div>
-<h3>Drying and Tencha Refinement</h3>
-<div class="meta"><span class="tag">Processing</span></div>
-<p>
-Leaves are carefully dried and stripped down to their most delicate components before grinding.
-</p>
-<div class="toggle">View Details</div>
-<div class="details">
-Unlike other teas, leaves are not rolled but laid flat to dry, preserving structure. Stems and veins are removed, isolating soft leaf tissue that produces smoother texture and less bitterness. This stage revealed how much of matcha quality comes from subtraction removing what is undesirable rather than simply enhancing what is present.
-</div>
-</div>
-
-<!-- GRINDING -->
-
-<div class="entry">
-<div class="icon">⚪</div>
-<div class="phase">Final Production</div>
-<h3>Stone Milling</h3>
-<div class="meta"><span class="tag">Technique</span><span class="tag">Precision</span></div>
-<p>
-Grinding transforms tencha into a fine powder, enabling its unique method of consumption.
-</p>
-<div class="toggle">View Details</div>
-<div class="details">
-Traditional stone mills rotate slowly to prevent heat buildup that could degrade amino acids and aromatic compounds. The resulting particles are extremely fine, allowing them to suspend in water rather than dissolve. This stage made the fragility of matcha more apparent. Even after cultivation and processing, quality can still be lost through something as subtle as heat during grinding.
-</div>
-</div>
-
-<!-- PREPARATION -->
-
-<div class="entry">
-<div class="icon">🍵</div>
-<div class="phase">Preparation</div>
-<h3>Whisking and Extraction</h3>
-<div class="meta"><span class="tag">Application</span><span class="tag">Control</span></div>
-<p>
-Preparation determines how the chemical potential of matcha is expressed in the final cup.
-</p>
-<div class="toggle">View Details</div>
-<div class="details">
-Water temperature influences extraction balance, with lower temperatures emphasizing sweetness and higher temperatures increasing bitterness. Whisking technique creates microfoam, affecting texture and mouthfeel. Practicing preparation revealed that quality is not fixed in the powder but actively shaped in the moment of use.
-</div>
-</div>
-
-<!-- CEREMONY -->
-
-<div class="entry">
-<div class="icon">🧘</div>
-<div class="phase">Tea Ceremony</div>
-<h3>Ritual and Meaning</h3>
-<div class="meta"><span class="tag">Culture</span><span class="tag">Experience</span></div>
-<p>
-The tea ceremony situates matcha within a cultural framework that emphasizes mindfulness, precision, and presence.
-</p>
-<div class="toggle">View Details</div>
-<div class="details">
-Movements are deliberate, utensils are purified, and the act of drinking becomes ritualized. Guests rotate the bowl and consume the tea immediately, preserving its ideal state. What stood out most was how quality extended beyond taste into experience. Matcha was no longer just evaluated chemically or sensorially, but through the intentional environment in which it was consumed.
-</div>
-</div>
-
+<!-- ── FOOTER ── -->
+<div class="footer-note">
+  <p>Matcha Practicum · Field Research</p>
+  <p>During · Lifecycle Trace</p>
 </div>
 
 <script>
 
-/* COLLAPSIBLE */
-
-document.querySelectorAll(".toggle").forEach(btn=>{
-btn.addEventListener("click", ()=>{
-const details = btn.nextElementSibling;
-details.classList.toggle("open");
+/* ── COLLAPSIBLE ── */
+document.querySelectorAll('.toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const details = btn.nextElementSibling;
+    details.classList.toggle('open');
+    btn.classList.toggle('open');
+    btn.textContent = details.classList.contains('open') ? 'Collapse' : 'Expand';
+    btn.classList.toggle('open');
+  });
 });
-});
 
-/* FADE IN */
+/* ── SCROLL REVEAL + PROGRESS PIPS ── */
+const entries  = document.querySelectorAll('.entry');
+const pips     = document.querySelectorAll('.progress-pip');
 
-const entries = document.querySelectorAll(".entry");
+const observer = new IntersectionObserver(observed => {
+  observed.forEach(obs => {
+    if (obs.isIntersecting) {
+      obs.target.classList.add('visible');
+      const idx = parseInt(obs.target.dataset.index);
+      pips.forEach((p, i) => p.classList.toggle('active', i === idx));
+    }
+  });
+}, { threshold: 0.35 });
 
-const observer = new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add("visible");
-}
-});
-},{ threshold:0.2 });
-
-entries.forEach(e=>observer.observe(e));
+entries.forEach(e => observer.observe(e));
 
 </script>
 
